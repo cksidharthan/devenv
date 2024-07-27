@@ -1,7 +1,13 @@
 #!/usr/bin/env zsh
 
-# Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Check for Homebrew, and then install it
+if test ! "$(which brew)"; then
+    echo "Installing homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo "Homebrew installed successfully"
+else
+    echo "Homebrew already installed!"
+fi
 
 # Setup Homebrew
 echo "Setting up Homebrew..."
@@ -75,6 +81,8 @@ tools=(
     bat
     go
     starship
+    zsh-autosuggestions
+    zsh-syntax-highlighting
     azure-cli
     k6
     fzf
@@ -89,6 +97,8 @@ tools=(
     golang-migrate
     silicon
     styrainc/packages/eopa
+    lua-language-server
+    yaml-language-server
 )
 
 # Install tools

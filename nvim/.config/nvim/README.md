@@ -47,8 +47,16 @@ _NOTE_:
 
 - I use [Wezterm](https://wezfurlong.org/wezterm/) as my terminal emulator. To know more on my wezterm configuration, check [here](https://github.com/cksidharthan/mac-setup/blob/main/.wezterm.lua)
 
-## Screenshots
+## Keybindings
 
+*NOTE*: I use `<Space>` as my leader key :)
+
+There are two ways to view the keybindings:
+1. type `<Space>` and wait for 2 seconds to view the keybindings
+2. type `<Space>` and type `:Telescope keymaps` to view the keybindings
+
+## Screenshots
 ![Screenshot 1](screenshots/screenshot1.png)
 ![Screenshot 2](screenshots/screenshot2.png)
 ![Screenshot 3](screenshots/screenshot3.png)
+

@@ -21,6 +21,8 @@ keymap.set("n", "<leader>ls", "<cmd>Lazy sync<cr>")
 keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>")
 keymap.set("n", "<leader>lp", "<cmd>Lazy profile<cr>")
 
+keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+keymap.set("n", "<leader>ml", "<cmd>Lazy<cr>")
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
@@ -42,8 +44,8 @@ keymap.set("n", "bp", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
 
 -- code navigation
 keymap.set("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
--- when i press <C-[> it should go back to the previous location in the tag list and override any <C-[> mappings
-keymap.set("n", "<C-[>", "<C-t>", { desc = "Go back to the previous location" })
+-- when i press <C-[> it should go back to the previous location
+keymap.set("n", "<C-[>", "<C-t>", { desc = "Go back to previous location" })
 keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration" })
 keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Go to references" })
 keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Go to implementation" })
