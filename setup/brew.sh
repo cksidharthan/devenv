@@ -1,13 +1,7 @@
 #!/usr/bin/env zsh
 
-# Check for Homebrew, and then install it
-if test ! "$(which brew)"; then
-    echo "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    echo "Homebrew installed successfully"
-else
-    echo "Homebrew already installed!"
-fi
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Setup Homebrew
 echo "Setting up Homebrew..."

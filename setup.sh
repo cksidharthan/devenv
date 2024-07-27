@@ -15,7 +15,7 @@ cat ~/.ssh/id_rsa.pub
 echo "Please add the above ssh key to your github account and press any key to continue"
 
 # Wait for user to press any key
-read -n 1 -s
+read -s -n 1
 
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do
