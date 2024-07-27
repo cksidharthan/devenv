@@ -1,0 +1,16 @@
+customCommands:
+  containers:
+    - name: "delete running containers started > 5 minutes"
+      attach: false
+      shell: true
+      command: docker rm -f $(docker ps --format '{{.ID}}' --filter "status=running" --filter "since=5m")
+  images:
+    - name: "delete dangling images"
+      attach: false
+      shell: true
+      command: 'docker rmi $(docker images -f "dangling=true" -q)'
+  networks:
+    - name: "delete unused networks"
+      attach: false
+      shell: true
+      command: 'docker network prune -f'

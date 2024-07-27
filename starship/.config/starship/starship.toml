@@ -1,0 +1,64 @@
+# Don't print a new line at the start of the prompt
+add_newline = true
+command_timeout = 2000
+# Replace the "❯" symbol in the prompt with "➜"
+[character]      # The name of the module we are configuring is "character"
+error_symbol = "✗"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[battery]
+disabled = false
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+
+[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+threshold = 10
+style = "bold red"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+threshold = 30
+style = "bold yellow"
+
+[[battery.display]]
+threshold = 70
+style = "bold blue"
+
+[[battery.display]]
+threshold = 100
+style = "bold green"
+
+[directory]
+# truncation_length = 4
+
+# docker
+[docker_context]
+symbol = "🐋 "
+disabled = false
+
+# git
+[git_commit]
+commit_hash_length = 6
+
+[git_status]
+style="dimmed green"
+up_to_date = "[✓](green)"
+staged = '[++\($count\)](green)'
+
+# hostname
+[hostname]
+ssh_only = false
+prefix = "⟪"
+suffix = "⟫"
+trim_at = ".companyname.com"
+disabled = true
+
+# kubernetes
+[kubernetes]
+format = 'on [⎈ ($cluster) ](#FFA500)'
+style = "dimmed green"
+disabled = false
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
