@@ -49,8 +49,7 @@ local function split_nav(resize_or_move, key)
         }, pane)
       else
         -- Adjust pane size or activate pane direction based on the action
-        local action = resize_or_move == "resize" and { AdjustPaneSize = { direction_keys[key], 3 } } or
-        { ActivatePaneDirection = direction_keys[key] }
+        local action = resize_or_move == "resize" and { AdjustPaneSize = { direction_keys[key], 3 } } or { ActivatePaneDirection = direction_keys[key] }
         win:perform_action(action, pane)
       end
     end),
