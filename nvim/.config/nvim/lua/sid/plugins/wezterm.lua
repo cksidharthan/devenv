@@ -1,6 +1,6 @@
 return {
   "letieu/wezterm-move.nvim",
-  event = "VeryLazy",
+  lazy = true,
   keys = {
       {
         "<C-h>",

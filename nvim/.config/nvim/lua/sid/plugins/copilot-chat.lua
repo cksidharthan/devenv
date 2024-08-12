@@ -1,7 +1,27 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   branch = "canary",
-  event = "VeryLazy",
+  cmd = {
+    "CopilotChatToggle",
+    "CopilotAuth",
+    "CopilotChatOpen",
+    "CopilotChatClose",
+    "CopilotChatStop",
+    "CopilotChatReset",
+    "CopilotChatSave",
+    "CopilotChatLoad",
+    "CopilotChatDebugInfo",
+    "CopilotChatModels",
+    "CopilotChatExplain",
+    "CopilotChatReview",
+    "CopilotChatFix",
+    "CopilotChatOptimize",
+    "CopilotChatDocs",
+    "CopilotChatTests",
+    "CopilotChatFixDiagnostic",
+    "CopilotChatCommit",
+    "CopilotChatCommitStaged",
+  },
   dependencies = {
     { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
     { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
@@ -14,8 +34,8 @@ return {
       -- see Configuration section for more options
       debug = false, -- Enable debugging
       show_help = false,
-      question_header = " ## Sid ",
-      answer_header = " ## Assistant ",
+      question_header = " ## 👨Sid ",
+      answer_header = " ## 🤖 GPT ",
       -- See Configuration section for rest
       -- default window options
       window = {
@@ -34,7 +54,13 @@ return {
 
 
     })
-    local keymap = vim.keymap
-    keymap.set("n", "<leader>cct", "<cmd>CopilotChatToggle<cr>", { desc = "Toggle Copilot Chat" })
   end,
+  keys = {
+    {
+      "<leader>cct",
+      function()
+        vim.cmd("CopilotChatToggle")
+      end,
+    },
+  },
 }

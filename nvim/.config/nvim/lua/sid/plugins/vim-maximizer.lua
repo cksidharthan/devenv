@@ -1,6 +1,6 @@
 return {
   "szw/vim-maximizer",
-  event = "VeryLazy",
+  cmd = "MaximizerToggle",
   keys = {
     { "<leader>sm", "<cmd>MaximizerToggle<CR>", desc = "Maximize/minimize a split" },
   },
