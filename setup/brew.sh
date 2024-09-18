@@ -75,8 +75,6 @@ tools=(
     bat
     go
     starship
-    zsh-autosuggestions
-    zsh-syntax-highlighting
     azure-cli
     k6
     fzf
