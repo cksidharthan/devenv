@@ -89,6 +89,7 @@ tools=(
     golang-migrate
     silicon
     styrainc/packages/eopa
+    styrainc/packages/regal
     lua-language-server
     yaml-language-server
 )
