@@ -49,6 +49,7 @@ tools=(
     luarocks
     minikube
     jq
+    yq
     make
     node
     npm
