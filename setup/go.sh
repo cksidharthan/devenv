@@ -23,6 +23,7 @@ go_packages=(
     github.com/jesseduffield/lazygit
     github.com/vmware/govmomi/govc
     github.com/sqlc-dev/sqlc/cmd/sqlc
+    github.com/air-verse/air
 )
 
 # Install Golang packages
