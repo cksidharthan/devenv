@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"williamboman/mason.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-        "neovim/nvim-lspconfig",
+		"neovim/nvim-lspconfig",
 	},
 	cmd = "Mason",
 	config = function()
@@ -27,7 +27,7 @@ return {
 		})
 
 		mason_lspconfig.setup({
-      automatic_installation = true,
+			automatic_installation = true,
 			ensure_installed = {
 				"ts_ls",
 				"html",
@@ -58,7 +58,23 @@ return {
 				"black", -- python formatter
 				"delve",
 				"goimports",
-				"shfmt"
+				"shellcheck",
+				"eslint",
+				"go-debug-adapter",
+				"golangci-lint",
+				"buf",
+				"gomodifytags",
+				"jsonlint",
+				"json-to-struct",
+				"sqlfmt",
+				"yamlfix",
+				"yamllint",
+				"yq",
+				"jq",
+				"yamlfmt",
+				"taplo",
+        "iferr",
+				"beautysh",
 			},
 		})
 	end,
