@@ -18,6 +18,9 @@ config.window_padding = {
   right = 4,
   top = 0,
 }
+config.enable_wayland = true
+config.animation_fps = 60
+config.cursor_blink_rate = 500
 
 -- Function to check if the pane is running Neovim
 local function is_vim(pane)
