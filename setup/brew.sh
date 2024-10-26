@@ -93,6 +93,7 @@ tools=(
     styrainc/packages/regal
     lua-language-server
     yaml-language-server
+    pnpm
 )
 
 # Install tools
