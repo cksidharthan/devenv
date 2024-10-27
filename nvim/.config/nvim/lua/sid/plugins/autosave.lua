@@ -1,16 +1,11 @@
 return {
 	'0x00-ketsu/autosave.nvim',
-	lazy = true,
-  cmd = {
-    'ASToggle',
-    'ASDisable',
-    'ASEnable',
-  },
+  event = 'VeryLazy',
 	config = function()
 		local autosave = require('autosave')
 		autosave.setup({
 			enable = true,
-			prompt_style = 'stdout',
+			prompt_style = 'notify',
 			prompt_message = function()
 				return 'Autosave: saved at ' .. vim.fn.strftime('%H:%M:%S')
 			end,
@@ -21,7 +16,7 @@ return {
 				filename_is_not = {},
 				filetype_is_not = {},
 			},
-			write_all_buffers = false,
+			write_all_buffers = true,
 			debounce_delay = 135,
 		})
 	end,
