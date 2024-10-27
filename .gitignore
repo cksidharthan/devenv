@@ -2,3 +2,8 @@ extras/
 .DS_Store
 .vscode/
 extras/
+
+
+k9s/.config/k9s/benchmarks
+k9s/.config/k9s/clusters/*
+k9s/.config/k9s/screen-dumps

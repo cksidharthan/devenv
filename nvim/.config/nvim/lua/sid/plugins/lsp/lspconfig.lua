@@ -44,11 +44,13 @@ return {
 		require("lspconfig").tailwindcss.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+      filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
 		})
 
 		require("lspconfig").gopls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+      filetypes = { "go" },
 			settings = {
 				gopls = {
 					codelenses = {
@@ -88,6 +90,7 @@ return {
     require("lspconfig").golangci_lint_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "go" },
     })
 
 		require("lspconfig").ts_ls.setup({
@@ -126,21 +129,19 @@ return {
 		require("lspconfig").lua_ls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+      filetypes = { "lua" },
 		})
 
 		require("lspconfig").pyright.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-		})
-
-		require("lspconfig").rust_analyzer.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
+      filetypes = { "python" },
 		})
 
 		require("lspconfig").volar.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+      filetypes = { "vue" },
 			init_options = {
 				typescript = {
 					-- get the home directory of the current user and append the path to the typescript lib
@@ -188,6 +189,9 @@ return {
 						["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = "azure/*/*.{yml,yaml}",
 						["https://taskfile.dev/schema.json"] = "Taskfile.{yml,yaml}",
 					},
+          schemaStore = {
+            enable = true
+          }
 				},
 			},
 		})
@@ -233,18 +237,21 @@ return {
 		require("lspconfig").dockerls.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			filetypes = { "dockerfile" },
 		})
 
 		require("lspconfig").html.setup({
 			on_init = on_init,
 			capabilities = capabilities,
 			on_attach = on_attach,
+			filetypes = { "html" },
 		})
 
     require("lspconfig").sqls.setup({
       on_init = on_init,
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "sql", "mysql" },
     })
 	end,
 }

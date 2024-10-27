@@ -51,97 +51,18 @@ return {
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
 		dapui.setup({
-			mappings = {
-				-- Use a table to apply multiple mappings
-				expand = { "<CR>", "<2-LeftMouse>" },
-				open = "o",
-				remove = "d",
-				edit = "e",
-				repl = "r",
-			},
+			mappings = { expand = { "<CR>", "<2-LeftMouse>" }, open = "o", remove = "d", edit = "e", repl = "r" },
 			force_buffers = false,
-			element_mappings = {
-				close = { "q", "<Esc>" },
-			},
-			floating = {
-				max_height = nil,
-				max_width = nil,
-				mappings = {
-					close = { "q", "<Esc>" },
-				},
-				border = {
-					enable = true,
-					focusable = true,
-					highlight = "Normal",
-				},
-			},
-			render = {
-				show_on = "never",
-				indent = 2,
-			},
-			border = {
-				enable = true,
-				focusable = true,
-				highlight = "Normal",
-			},
-			-- Set icons to characters that are more likely to work in every terminal.
-			--    Feel free to remove or use ones that you like more! :)
-			--    Don't feel like these are good choices.
+			element_mappings = { close = { "q", "<Esc>" } },
+			floating = { max_height = nil, max_width = nil, mappings = { close = { "q", "<Esc>" } }, border = { enable = true, focusable = true, highlight = "Normal" } },
+			render = { show_on = "never", indent = 2 },
+			border = { enable = true, focusable = true, highlight = "Normal" },
 			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
-			-- all the icons should be like jetbrains icons
-			controls = {
-				enabled = true,
-				element = "repl",
-				icons = {
-					pause = "",
-					play = "",
-					step_into = "",
-					step_over = "",
-					step_out = "",
-					step_back = "",
-					run_last = "",
-					terminate = "",
-					disconnect = "",
-				},
-			},
+			controls = { enabled = true, element = "repl", icons = { pause = "", play = "", step_into = "", step_over = "��", step_out = "", step_back = "", run_last = "", terminate = "", disconnect = "" } },
 			expand_lines = true,
 			layouts = {
-				{
-					elements = {
-						{
-							id = "console",
-							size = 0.5,
-						},
-						{
-							id = "breakpoints",
-							size = 0.5,
-						},
-						{
-							id = "stacks",
-							size = 0,
-						},
-						{
-							id = "watches",
-							size = 0,
-						},
-					},
-					position = "left",
-					size = 40,
-				},
-				{
-					elements = {
-						{
-							id = "repl",
-							size = 0.50,
-						},
-						{
-							id = "scopes",
-							size = 0.50,
-						},
-					},
-					position = "bottom",
-					size = 10,
-				},
+				{ elements = { { id = "console", size = 0.5 }, { id = "breakpoints", size = 0.5 }, { id = "stacks", size = 0 }, { id = "watches", size = 0 } }, position = "left", size = 40 },
+				{ elements = { { id = "repl", size = 0.50 }, { id = "scopes", size = 0.50 } }, position = "bottom", size = 10 },
 			},
 		})
 
@@ -153,86 +74,17 @@ return {
 		require("dap-go").setup()
 	end,
 	keys = {
-		{
-			"<leader>ds",
-			function()
-				require("dap").continue()
-			end,
-			desc = "Debug: Start/Continue",
-			mode = "n",
-		},
-    -- debug the last run debug
-    {
-      "<leader>dl",
-      function()
-        require("dap").run_last()
-      end,
-      desc = "Debug: Last",
-      mode = "n",
-    },
-		{
-			"<F5>",
-			function()
-				require("dap").step_into()
-			end,
-			desc = "Debug: Step Into",
-			mode = "n",
-		},
-		{
-			"<F2>",
-			function()
-				require("dap").step_over()
-			end,
-			desc = "Debug: Step Over",
-			mode = "n",
-		},
-		{
-			"<F3>",
-			function()
-				require("dap").step_out()
-			end,
-			desc = "Debug: Step Out",
-			mode = "n",
-		},
-		{
-			"<leader>b",
-			function()
-				require("dap").toggle_breakpoint()
-			end,
-			desc = "Debug: Toggle Breakpoint",
-			mode = "n",
-		},
-		{
-			"<leader>B",
-			function()
-				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-			end,
-			desc = "Debug: Set Breakpoint",
-			mode = "n",
-		},
-		{
-			"<leader>dx",
-			function()
-				require("dap").disconnect()
-			end,
-			desc = "Debug: Stop",
-			mode = "n",
-		},
-		{
-			"<leader>du",
-			function()
-				require("dapui").toggle()
-			end,
-			desc = "Toggle Debug UI",
-			mode = "n",
-		},
-		{
-			"<leader>dt",
-			function()
-				require("dap-go").debug_test()
-			end,
-			desc = "Debug: Test",
-			mode = "n",
-		},
+		{ "<leader>ds", function() require("dap").continue() end, desc = "Debug: Start/Continue", mode = "n" },
+		{ "<leader>dl", function() require("dap").run_last() end, desc = "Debug: Last", mode = "n" },
+		{ "<F5>", function() require("dap").step_into() end, desc = "Debug: Step Into", mode = "n" },
+		{ "<F2>", function() require("dap").step_over() end, desc = "Debug: Step Over", mode = "n" },
+		{ "<F3>", function() require("dap").step_out() end, desc = "Debug: Step Out", mode = "n" },
+		{ "<leader>b", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint", mode = "n" },
+		{ "<leader>B", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = "Debug: Set Breakpoint", mode = "n" },
+		{ "<leader>dx", function() require("dap").disconnect() end, desc = "Debug: Stop", mode = "n" },
+		{ "<leader>du", function() require("dapui").toggle() end, desc = "Toggle Debug UI", mode = "n" },
+		{ "<leader>dt", function() require("dap-go").debug_test() end, desc = "Debug: Test", mode = "n" },
+		{ "<leader>rt", function() require("dap-go").debug_test_nearest() end, desc = "Run: Test Nearest", mode = "n" },
+    { "<leader>rf", function() require("dap-go").run() end, desc = "Run: Function", mode = "n" },
 	},
 }

@@ -43,7 +43,7 @@ return {
 		keymap.set(
 			"n",
 			"<leader>ff",
-			"<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>",
+			"<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>",
 			{ desc = "Fuzzy find files in Current working directory" }
 		)
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find files in Recent files" })

@@ -32,6 +32,7 @@ casks=(
     rectangle
     wezterm
     font-jetbrains-mono-nerd-font
+    font-martian-mono-nerd-font
     ticktick
     logi-options+
 )
@@ -93,6 +94,7 @@ tools=(
     styrainc/packages/regal
     lua-language-server
     yaml-language-server
+    pnpm
 )
 
 # Install tools

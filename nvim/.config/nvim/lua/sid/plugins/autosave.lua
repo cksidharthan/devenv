@@ -1,7 +1,23 @@
 return {
-	"Pocco81/auto-save.nvim",
-	event = "BufReadPre",
+	'0x00-ketsu/autosave.nvim',
+  event = 'VeryLazy',
 	config = function()
-		require("auto-save").setup({})
+		local autosave = require('autosave')
+		autosave.setup({
+			enable = true,
+			prompt_style = 'notify',
+			prompt_message = function()
+				return 'Autosave: saved at ' .. vim.fn.strftime('%H:%M:%S')
+			end,
+			events = { 'InsertLeave', 'TextChanged' },
+			conditions = {
+				exists = true,
+				modifiable = true,
+				filename_is_not = {},
+				filetype_is_not = {},
+			},
+			write_all_buffers = true,
+			debounce_delay = 135,
+		})
 	end,
 }

@@ -14,3 +14,4 @@ npm install -g @redocly/cli@latest
 npm install -g @quobix/vacuum
 npm install -g newman jsonlint newman-reporter-htmlextra
 npm install -g vscode-json-languageserver
+npm install -g live-server
