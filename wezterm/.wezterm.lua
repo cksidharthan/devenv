@@ -2,8 +2,8 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 config.font = wezterm.font_with_fallback {
-  'MartianMono Nerd Font',
   'JetbrainsMono Nerd Font',
+  'MartianMono Nerd Font',
 }
 -- General settings
 config.color_scheme = "Tokyo Night Moon"
