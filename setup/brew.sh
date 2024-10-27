@@ -32,6 +32,7 @@ casks=(
     rectangle
     wezterm
     font-jetbrains-mono-nerd-font
+    font-martian-mono-nerd-font
     ticktick
     logi-options+
 )
