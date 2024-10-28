@@ -1,7 +1,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = "nvim-tree/nvim-web-devicons",
-  event = "UIEnter",
+  event = "VeryLazy",
   config = function()
     local nvimtree = require("nvim-tree")
 

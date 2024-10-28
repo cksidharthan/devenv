@@ -41,7 +41,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 alias mk="minikube"
 alias python="python3"
 alias cd="z"
-alias nuke="nvim ."
+alias nuke="nvim"
 alias nuk="nvim ."
 alias nnn="nvim ."
 

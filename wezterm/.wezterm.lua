@@ -92,7 +92,7 @@ config.keys = {
   -- Use cmd + t to open a new tab
   { key = "t",  mods = "CMD",  action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
   -- ctrl +b to create a horizontal split at the bottom
-  { key = "b",  mods = "CTRL", action = wezterm.action.SplitPane({ direction = "Down" }) },
+  { key = "b",  mods = "CTRL", action = wezterm.action.SplitPane({ direction = "Down", size = { Percent = 25 } }) },
   -- ctrl + \ to create a vertical split to the right
   { key = "\\", mods = "CTRL", action = wezterm.action.SplitPane({ direction = "Right" }) },
   -- move between split panes
