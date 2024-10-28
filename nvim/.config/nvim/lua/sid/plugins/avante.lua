@@ -42,4 +42,9 @@ return {
 			ft = { 'markdown', 'Avante' },
 		},
 	},
+  keys = {
+    { '<leader>coa', '<cmd>AvanteAsk<CR>', desc = 'Ask Avante' },
+    { '<leader>coc', '<cmd>AvanteChat<CR>', desc = 'Chat with Avante' },
+    { '<leader>cot', '<cmd>AvanteToggle<CR>', desc = 'Toggle Avante' },
+  }
 }
