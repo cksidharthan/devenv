@@ -82,7 +82,7 @@ alias :q="exit"
 alias :qa="exit"
 alias :QA="exit"
 alias qa="exit"
-alias sc="silicon --from-clipboard -l bash --to-clipboard -f 'JetbrainsMono Nerd Font' --window-title "
+alias sc="silicon --from-clipboard -l bash --to-clipboard -f 'JetbrainsMono Nerd Font Mono' --window-title "
 
 # Kubernetes Autocompletions
 autoload -Uz compinit
