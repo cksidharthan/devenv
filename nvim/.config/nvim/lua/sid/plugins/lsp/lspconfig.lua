@@ -10,6 +10,8 @@ return {
 		"jose-elias-alvarez/typescript.nvim",
 	},
 	config = function()
+
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
 		-- import cmp-nvim-lsp plugin
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)

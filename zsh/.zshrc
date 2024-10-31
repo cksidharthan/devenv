@@ -42,8 +42,8 @@ alias mk="minikube"
 alias python="python3"
 alias cd="z"
 alias nuke="nvim"
-alias nuk="nvim ."
-alias nnn="nvim ."
+alias nuk="nvim"
+alias nnn="nvim"
 
 # tmux alpases
 alias tn="tmux new -s"
