@@ -21,12 +21,6 @@ keymap.set("n", "<leader>ls", "<cmd>Lazy sync<cr>")
 keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>")
 keymap.set("n", "<leader>lp", "<cmd>Lazy profile<cr>")
 
-keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-keymap.set("n", "<leader>li", "<cmd>Lazy install<cr>")
-keymap.set("n", "<leader>ls", "<cmd>Lazy sync<cr>")
-keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>")
-keymap.set("n", "<leader>lp", "<cmd>Lazy profile<cr>")
-
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
@@ -69,4 +63,3 @@ keymap.set("n", "<leader>cn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { d
 keymap.set("n", "<leader>re", ":e!<CR>", { desc = "Reload current window" })
 keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice notifications" })
 keymap.set("n", "<leader>cb", "<cmd>%bd|e#|bd#|NvimTreeOpen<CR>", { desc = "Close all buffers except NvimTree" })
-
