@@ -17,7 +17,7 @@ return {
 				filetype_is_not = {},
 			},
 			write_all_buffers = true,
-			debounce_delay = 135,
+			debounce_delay = 2000,
 		})
 	end,
 }
