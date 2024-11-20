@@ -1,6 +1,15 @@
 return {
 	'rmagatti/auto-session',
-	lazy = false,
+	lazy = true,
+  keys = {
+    "SessionDelete",
+    "SessionRestore",
+    "SessionSave",
+    "SessionSearch",
+    "SessionToggleAutoSave",
+    "SessionDisableAutoSave",
+    "SessionPurgeOrphaned"
+  },
 
 	---enables autocomplete for opts
 	---@module "auto-session"
