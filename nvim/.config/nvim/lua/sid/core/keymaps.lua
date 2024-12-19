@@ -66,3 +66,7 @@ keymap.set("n", "<leader>cb", "<cmd>%bd|e#|bd#|NvimTreeOpen<CR>", { desc = "Clos
 
 keymap.set('n', 'n', 'nzz', { silent = true })
 keymap.set('n', 'p', 'pzz', { silent = true })
+
+-- set a keymap <tab> to go to next buffer
+keymap.set("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" })
+keymap.set("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer" })

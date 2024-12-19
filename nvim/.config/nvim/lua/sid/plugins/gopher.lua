@@ -15,6 +15,6 @@ return {
 			},
 		})
 	end,
-	event = { 'CmdlineEnter' },
+	lazy = true,
 	ft = { 'go', 'gomod' },
 }
