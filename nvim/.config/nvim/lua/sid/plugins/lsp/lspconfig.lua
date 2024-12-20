@@ -35,10 +35,6 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-		local on_init = function(client)
-			client.resolved_capabilities.document_formatting = false
-		end
-
 		local on_attach = function(client)
 			require('lsp-zero').on_attach(client)
 		end
