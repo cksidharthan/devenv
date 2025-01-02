@@ -5,9 +5,12 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Save and quit" })
+keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
+
 keymap.set("n", "<leader><leader>x", "<CMD>source %<CR>", { desc = "Source the current file" })
-keymap.set("n", "<leader>x", ":.lua<CR>", { desc = "Execute the current file" })
-keymap.set("v", "<leader>x", "<ESC>:.lua<CR>", { desc = "Execute the selected code" })
 
 -- to escape insert mode instead of pressing escape
 keymap.set("i", "jk", "<ESC>", { desc = "Exit Insert mode with jk" })
@@ -66,7 +69,7 @@ keymap.set("n", "<leader>cn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { d
 
 keymap.set("n", "<leader>re", ":e!<CR>", { desc = "Reload current window" })
 keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice notifications" })
-keymap.set("n", "<leader>cb", "<cmd>%bd|e#|bd#|NvimTreeOpen<CR>", { desc = "Close all buffers except NvimTree" })
+keymap.set("n", "<leader>cb", "<cmd>%bd|enew<CR>", { desc = "Close all buffers except NvimTree" })
 
 keymap.set('n', 'n', 'nzz', { silent = true })
 keymap.set('n', 'p', 'pzz', { silent = true })
