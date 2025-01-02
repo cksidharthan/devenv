@@ -2,7 +2,6 @@ return {
   "nvim-treesitter/nvim-treesitter",
   event = {
     "BufReadPre",
-    "BufNewFile",
   },
   -- to update all the language configs when this plugin is updated
   build = ":TSUpdate",

@@ -5,6 +5,10 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
+keymap.set("n", "<leader><leader>x", "<CMD>source %<CR>", { desc = "Source the current file" })
+keymap.set("n", "<leader>x", ":.lua<CR>", { desc = "Execute the current file" })
+keymap.set("v", "<leader>x", "<ESC>:.lua<CR>", { desc = "Execute the selected code" })
+
 -- to escape insert mode instead of pressing escape
 keymap.set("i", "jk", "<ESC>", { desc = "Exit Insert mode with jk" })
 
