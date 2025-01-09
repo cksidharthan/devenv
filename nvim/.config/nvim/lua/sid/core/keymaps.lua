@@ -77,3 +77,9 @@ keymap.set('n', 'p', 'pzz', { silent = true })
 -- set a keymap <tab> to go to next buffer
 keymap.set("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" })
 keymap.set("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer" })
+
+
+-- set copilot chat keymaps
+keymap.set("n", "<leader>ccm", "<CMD>CopilotChatModels<CR>", { desc = "Open Copilot Chat Models" })
+keymap.set("n", "<leader>cc", "<CMD>CopilotChat<CR>", { desc = "Open Copilot Chat" })
+keymap.set("n", "<leader>cct", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Copilot Chat" })
