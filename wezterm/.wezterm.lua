@@ -14,6 +14,7 @@ config.macos_window_background_blur = 90
 config.bold_brightens_ansi_colors = true
 config.freetype_load_flags = 'NO_HINTING'
 config.font_size = 16
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.cell_width = 0.9
 config.line_height = 1.2
 config.window_decorations = "RESIZE"
