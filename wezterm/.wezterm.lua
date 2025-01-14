@@ -24,7 +24,6 @@ config.window_padding = {
   right = 4,
   top = 0,
 }
-config.enable_wayland = true
 config.animation_fps = 120
 config.cursor_blink_rate = 500
 
