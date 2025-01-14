@@ -19,7 +19,6 @@ plugins=(
   history
   zsh-autosuggestions
   zsh-syntax-highlighting
-  alias-finder
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -84,10 +83,10 @@ alias :QA="exit"
 alias qa="exit"
 alias sc="silicon --from-clipboard -l bash --to-clipboard -f 'JetbrainsMono Nerd Font Mono' --window-title "
 
-# Kubernetes Autocompletions
-autoload -Uz compinit
-compinit
-source <(kubectl completion zsh)
+# Kubernetes Autocompletions - Uncomment if you want to use it - Have commented it out because it slows down the shell startup
+# autoload -Uz compinit
+# compinit
+# source <(kubectl completion zsh)
 
 # Go
 alias makedeps="go mod download && go mod tidy && go mod verify && go mod vendor"
@@ -123,13 +122,3 @@ fi
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# yazi configuration
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
