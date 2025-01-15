@@ -30,7 +30,7 @@ return {
 						["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 					},
 				},
-				file_ignore_patterns = { ".git/", "node_modules/", "vendor/", ".nuxt/" },
+				file_ignore_patterns = { ".git/", "node_modules/", "vendor/", ".nuxt/", ".idea", ".vscode" },
 			},
 		})
 
