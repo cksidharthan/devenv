@@ -22,7 +22,7 @@ return {
 				},
 				lualine_a = {
 					-- { "mode", icon = "" },
-          { "mode" },
+          { "mode", icon = "" },
 				},
 				lualine_c = {
 					{
