@@ -97,6 +97,7 @@ config.keys = {
   { key = "b",  mods = "CTRL", action = wezterm.action.SplitPane({ direction = "Down", size = { Percent = 25 } }) },
   -- ctrl + \ to create a vertical split to the right
   { key = "\\", mods = "CTRL", action = wezterm.action.SplitPane({ direction = "Right" }) },
+  { key = '1', mods = 'ALT', action = wezterm.action.ShowTabNavigator },
   -- move between split panes
   split_nav('move', 'h'),
   split_nav('move', 'j'),
