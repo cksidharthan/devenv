@@ -37,6 +37,7 @@ return {
                 'golangci_lint_ls',
                 'volar',
                 'sqls',
+                'jsonls', -- Add JSON language server
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
