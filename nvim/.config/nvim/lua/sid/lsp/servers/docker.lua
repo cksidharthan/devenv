@@ -49,6 +49,20 @@ function M.setup(capabilities, on_attach)
                 schemaStore = {
                     enable = true,
                 },
+                validate = true,
+                customTags = [
+                    '!include_dir_list',
+                    '!include_dir_named',
+                    '!include_dir_merge_list',
+                    '!include_dir_merge_named',
+                    '!include',
+                    '!secret',
+                    '!env_var',
+                ],
+                -- Disable YAML validation for Helm chart files
+                disableValidation = {
+                    ['helm'] = true,
+                },
             },
         },
     })
@@ -59,11 +73,9 @@ function M.setup(capabilities, on_attach)
         on_attach = on_attach,
         filetypes = { 'helm' },
         settings = {
-            yaml = {
-                schemas = {
-                    kubernetes = '*.{yaml,yml}',
-                    ['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
-                    ['https://json.schemastore.org/chart.json'] = '/deployment/helm/*',
+            ['helm-ls'] = {
+                yamlls = {
+                    enabled = false, -- Disable YAML validation for Helm files
                 },
             },
         },
