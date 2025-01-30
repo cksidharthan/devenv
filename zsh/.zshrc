@@ -36,6 +36,7 @@ fi
 alias k="kubectl"
 alias watch="watch -n .5"
 alias g="git"
+alias gitundo="git reset HEAD~1"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias mk="minikube"
 alias python="python3"
