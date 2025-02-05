@@ -7,14 +7,13 @@ return {
 		force_buffers = false,
 		element_mappings = { close = { 'q', '<Esc>' } },
 		floating = {
-			max_height = nil,
-			max_width = nil,
+      width = 50,
+      height = 50,
 			mappings = { close = { 'q', '<Esc>' } },
 			border = { enable = true, focusable = true, highlight = 'Normal' },
 		},
 		render = { show_on = 'never', indent = 2 },
 		border = { enable = true, focusable = true, highlight = 'Normal' },
-		icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
 		controls = {
 			enabled = true,
 			element = 'repl',
@@ -30,27 +29,7 @@ return {
 				disconnect = '',
 			},
 		},
-		expand_lines = true,
-		layouts = {
-			{
-				elements = {
-					{ id = 'console', size = 0.5 },
-					{ id = 'repl', size = 0.5 },
-				},
-				position = 'left',
-				size = 50,
-			},
-			{
-				elements = {
-					{ id = 'scopes', size = 0.50 },
-					{ id = 'breakpoints', size = 0.20 },
-					{ id = 'stacks', size = 0.15 },
-					{ id = 'watches', size = 0.15 },
-				},
-				position = 'bottom',
-				size = 15,
-			},
-		},
+		expand_lines = false,
 	},
 	config = function(_, opts)
 		require('dapui').setup(opts)

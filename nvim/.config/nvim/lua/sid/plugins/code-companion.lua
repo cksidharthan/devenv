@@ -22,7 +22,7 @@ return {
 			},
 			strategies = {
 				chat = {
-					adapter = 'anthropic',
+					adapter = 'copilot',
 				},
 				inline = {
 					adapter = 'copilot',
