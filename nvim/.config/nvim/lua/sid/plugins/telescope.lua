@@ -68,6 +68,7 @@ return {
 			{ desc = "Fuzzy find in current buffer" }
 		)
 		keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Fuzzy find keymaps" })
+		keymap.set("n", "<leader>fo", "<cmd>TodoTelescope<CR>", { desc = "Fuzzy find TODOs" })
 		-- add keymap for lsp symbols in the current buffer
 		keymap.set(
 			"n",
