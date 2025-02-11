@@ -1,6 +1,9 @@
 return {
 	"zbirenbaum/copilot.lua",
 	event = "InsertEnter",
+  dependencies = {
+    "AndreM222/copilot-lualine"
+  },
 	keys = {
 		{ "<leader>cod", "<cmd>Copilot disable<CR>", desc = "Copilot disable" },
 		{ "<leader>coe", "<cmd>Copilot enable<CR>", desc = "Copilot enable" },

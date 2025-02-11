@@ -1,5 +1,6 @@
 return {
 	'nvim-tree/nvim-web-devicons',
+  tag = "nerd-v2-compat",
   event = "VeryLazy",
 	config = function()
 		require('nvim-web-devicons').setup({
