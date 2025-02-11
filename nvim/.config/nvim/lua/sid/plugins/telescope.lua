@@ -5,13 +5,11 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		"nvim-tree/nvim-web-devicons",
-		"xiyaowong/telescope-emoji.nvim",
+		"echasnovski/mini.icons",
 	},
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
-		telescope.load_extension("emoji")
 
 		telescope.setup({
 			defaults = {
@@ -47,7 +45,6 @@ return {
 			{ desc = "Fuzzy find files in Current working directory" }
 		)
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find files in Recent files" })
-    keymap.set("n", "<leader>fe", "<cmd>Telescope emoji<CR>", { desc = "Fuzzy find emojis" })
 		keymap.set(
 			"n",
 			"<leader>fs",

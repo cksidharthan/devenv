@@ -5,5 +5,5 @@ return {
     "Oil"
   },
 	-- Optional dependencies
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = { "echasnovski/mini.icons" },
 }
