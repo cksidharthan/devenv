@@ -16,7 +16,7 @@ return {
 				go = { 'gofmt' },
 				html = { 'prettier' },
 				bash = { 'beautysh' },
-				proto = { 'buf' },
+				proto = { 'buf_ls' },
 				yaml = { 'yamlfmt' },
 				toml = { 'taplo' },
 				css = { 'prettier' },
