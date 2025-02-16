@@ -12,6 +12,12 @@ return {
 	'supermaven-inc/supermaven-nvim',
   event = "VeryLazy",
 	config = function()
-		require('supermaven-nvim').setup({})
+		require('supermaven-nvim').setup({
+      ignore_filetypes = { env = false },
+      use_free = false,
+    })
 	end,
+  keys = {
+    { "<leader>smt", "<cmd>SupermavenToggle<cr>", desc = "Toggle Supermaven" },
+  }
 }

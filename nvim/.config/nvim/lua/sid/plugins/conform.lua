@@ -17,7 +17,7 @@ return {
 				html = { 'prettier' },
 				bash = { 'beautysh' },
 				proto = { 'buf' },
-				yaml = { 'yamlfmt' },
+				yaml = { 'prettier' },
 				toml = { 'taplo' },
 				css = { 'prettier' },
 				scss = { 'prettier' },
