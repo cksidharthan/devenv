@@ -4,7 +4,6 @@ return {
 	name = 'tailwind-tools',
 	build = ':UpdateRemotePlugins',
 	ft = { 'html', 'css' },
-  lazy = true,
 	dependencies = {
 		'nvim-treesitter/nvim-treesitter',
 		'nvim-telescope/telescope.nvim', -- optional
