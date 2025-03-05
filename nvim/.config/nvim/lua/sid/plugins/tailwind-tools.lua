@@ -2,6 +2,7 @@
 return {
 	'luckasRanarison/tailwind-tools.nvim',
 	name = 'tailwind-tools',
+  lazy = true,
 	build = ':UpdateRemotePlugins',
 	ft = { 'html', 'css' },
 	dependencies = {
