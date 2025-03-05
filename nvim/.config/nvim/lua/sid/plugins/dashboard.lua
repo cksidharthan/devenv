@@ -31,7 +31,8 @@ return {
       theme = "hyper",
       config = {
         header = vim.split(logo, "\n"),
-        mru = { enable = true, limit = 5, label = '', cwd_only = false },
+        mru = { enable = true, limit = 5, label = ' Recently Opened Files', cwd_only = false },
+        vertical_center = true,
       }
     }
 
