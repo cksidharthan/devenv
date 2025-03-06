@@ -37,7 +37,8 @@ return {
 			},
 			config = {
 				header = vim.split(logo, '\n'),
-				mru = { enable = true, limit = 5, label = ' Recently Opened Files', cwd_only = false },
+        project = { enable = true, limit = 10, label = ' Recently Opened Projects', cwd_only = false },
+				mru = { enable = false, limit = 5, label = ' Recently Opened Files', cwd_only = false },
 				vertical_center = true,
 			},
 		}
