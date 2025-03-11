@@ -43,7 +43,11 @@ function M.setup(capabilities, on_attach)
 					['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
 					['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
 					['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
-					['https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json'] = 'azure/*/*.{yml,yaml}',
+					['https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json'] = {
+						'azure/**/*.{yml,yaml}',
+						'pipeline/**/*.{yml,yaml}',
+						'pipelines/**/.*.{yml,yaml}',
+					},
 					['https://taskfile.dev/schema.json'] = 'Taskfile.{yml,yaml}',
 				},
 				schemaStore = {
@@ -54,7 +58,7 @@ function M.setup(capabilities, on_attach)
 		},
 	})
 
-  -- Helm
+	-- Helm
 	require('lspconfig').helm_ls.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
@@ -69,7 +73,6 @@ function M.setup(capabilities, on_attach)
 			},
 		},
 	})
-
 end
 
 return M
