@@ -67,7 +67,7 @@ return {
         },
       },
       filters = {
-        custom = { ".DS_Store", ".trunk", ".idea", ".vscode", "node_modules", "vendor", ".nuxt"},
+        custom = { ".DS_Store", ".trunk", ".idea", ".vscode", "node_modules", ".nuxt"},
       },
       git = {
         ignore = false,

@@ -37,9 +37,12 @@ return {
 			},
 			config = {
 				header = vim.split(logo, '\n'),
-        project = { enable = true, limit = 10, label = ' Recently Opened Projects', cwd_only = false },
+        project = { enable = false, limit = 10, label = ' Recently Opened Projects', cwd_only = false },
 				mru = { enable = false, limit = 5, label = ' Recently Opened Files', cwd_only = false },
 				vertical_center = true,
+        footer = {
+          "🚀 Keep Calm and believe in Max !!! 🚀"
+        }
 			},
 		}
 

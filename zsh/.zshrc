@@ -44,7 +44,8 @@ alias python="python3"
 alias cd="z"
 alias nuke="nvim"
 alias nuk="nvim"
-alias nnn="nvim"
+alias n="nvim"
+alias sz="source ~/.zshrc"
 
 # tmux alpases
 alias tn="tmux new -s"
