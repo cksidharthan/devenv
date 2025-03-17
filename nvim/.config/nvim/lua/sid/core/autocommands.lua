@@ -48,3 +48,25 @@ local function set_filetype(pattern, filetype)
 end
 
 set_filetype({ "docker-compose.yml", "docker-compose.yaml" }, "yaml.docker-compose")
+
+
+-- LSP Log Autocommands
+local group = vim.api.nvim_create_augroup("LSPLogLevel", { clear = true })
+
+-- On NVIM startup disable lsp log
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = group,
+  callback = function()
+    vim.lsp.set_log_level("off")
+  end,
+})
+
+vim.api.nvim_create_user_command("LSPLogOff", function()
+  vim.lsp.set_log_level("off")
+  print("LSP log level set to 'off'")
+end, {})
+
+vim.api.nvim_create_user_command("LSPLogOn", function()
+  vim.lsp.set_log_level("debug")
+  print("LSP log level set to 'debug'")
+end, {})
