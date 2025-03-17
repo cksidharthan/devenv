@@ -6,7 +6,7 @@ config.font = wezterm.font_with_fallback {
   'MartianMono Nerd Font',
 }
 -- General settings
-config.color_scheme = "tokyonight"
+config.color_scheme = "carbonfox"
 config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.window_background_opacity = 0.9
@@ -17,6 +17,8 @@ config.font_size = 16
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.cell_width = 0.9
 config.line_height = 1.2
+-- to disable rounded corners.
+-- config.window_decorations = "RESIZE|MACOS_FORCE_SQUARE_CORNERS"
 config.window_decorations = "RESIZE"
 config.window_padding = {
   bottom = 0,
