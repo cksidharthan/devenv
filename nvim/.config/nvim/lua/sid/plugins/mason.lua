@@ -55,6 +55,7 @@ return {
 				'golangci_lint_ls',
 				'volar',
 				'sqls',
+        'rust_analyzer', -- rust analyzer
 				'jsonls', -- Add JSON language server
 			},
 			-- auto-install configured servers (with lspconfig)
@@ -74,6 +75,7 @@ return {
 				'yamllint', -- yaml linter
 				'shellcheck', -- shell script linter
 				'shfmt', -- shell script formatter
+        'rustfmt', -- rust formatter
 			},
 		})
 	end,
