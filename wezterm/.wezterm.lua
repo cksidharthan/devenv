@@ -6,9 +6,9 @@ config.font = wezterm.font_with_fallback({
 	"MartianMono Nerd Font",
 })
 -- General settings
-config.color_scheme = "carbonfox"
+config.color_scheme = "tokyonight"
 config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 90
 config.bold_brightens_ansi_colors = true
@@ -112,12 +112,11 @@ config.keys = {
 	split_nav("resize", "l"),
 }
 
-
--- Pipe divider symbols
+-- Pipe divider symbols - For the Tab Bar
 local LEFT_DIVIDER = ''
 local RIGHT_DIVIDER = ' '
 
--- Function to get the current directory name
+-- Function to get the current directory name to populate in the tab title
 local function get_current_directory(tab)
   local current_dir = tab.active_pane.current_working_dir
   if current_dir then
