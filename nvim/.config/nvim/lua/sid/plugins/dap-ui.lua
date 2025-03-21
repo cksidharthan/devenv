@@ -7,8 +7,8 @@ return {
 		force_buffers = false,
 		element_mappings = { close = { 'q', '<Esc>' } },
 		floating = {
-      width = 50,
-      height = 50,
+			width = 50,
+			height = 50,
 			mappings = { close = { 'q', '<Esc>' } },
 			border = { enable = true, focusable = true, highlight = 'Normal' },
 		},
@@ -31,28 +31,22 @@ return {
 		},
 		expand_lines = false,
 	},
+  keys = {
+    { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+    { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+  },
 	config = function(_, opts)
-		require('dapui').setup(opts)
-
-		local listener = require('dap').listeners
-		listener.after.event_initialized['dapui_config'] = function()
-			require('dapui').open()
+		local dap = require('dap')
+		local dapui = require('dapui')
+		dapui.setup(opts)
+		dap.listeners.after.event_initialized['dapui_config'] = function()
+			dapui.open({})
 		end
-		vim.keymap.set('n', '<localleader>T', function()
-			require('dapui').toggle()
-		end, { desc = 'Toggle DAP UI' })
-
-		-- REPL completions
-		require('cmp').setup({
-			enabled = function()
-				return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
-			end,
-		})
-
-		require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
-			sources = {
-				{ name = 'dap' },
-			},
-		})
+		dap.listeners.before.event_terminated['dapui_config'] = function()
+			dapui.close({})
+		end
+		dap.listeners.before.event_exited['dapui_config'] = function()
+			dapui.close({})
+		end
 	end,
 }
