@@ -54,7 +54,7 @@ return {
 		},
 
 		sources = {
-			default = { 'lsp', 'path', 'buffer' },
+			default = { 'lsp', 'path', 'omni' },
 		},
 
 		fuzzy = { implementation = 'prefer_rust_with_warning' },
