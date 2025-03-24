@@ -12,7 +12,7 @@ end
 -- Setup LSP capabilities
 function M.get_capabilities()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	return vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+	return vim.tbl_deep_extend('force', capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
 end
 
 -- Setup document highlight
