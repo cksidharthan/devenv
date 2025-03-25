@@ -35,6 +35,7 @@ casks=(
     font-martian-mono-nerd-font
     ticktick
     logi-options+
+    bruno
 )
 
 # Install casks
