@@ -1,7 +1,7 @@
 return {
 	'rcarriga/nvim-dap-ui',
 	lazy = true,
-	dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio', 'rcarriga/cmp-dap' },
+	dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
 	opts = {
 		mappings = { expand = { '<CR>', '<2-LeftMouse>' }, open = 'o', remove = 'd', edit = 'e', repl = 'r' },
 		force_buffers = false,

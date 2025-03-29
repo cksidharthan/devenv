@@ -19,8 +19,6 @@ return {
 			preset = 'default',
 			['<C-j>'] = { 'select_next', 'fallback' },
 			['<C-k>'] = { 'select_prev', 'fallback' },
-      -- press tab to confirm completion
-      ['<Tab>'] = { 'select_and_accept', 'fallback' },
       -- press enter to confirm completion
       ['<CR>'] = { 'select_and_accept', 'fallback' },
 		},

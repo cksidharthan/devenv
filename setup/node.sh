@@ -15,3 +15,4 @@ npm install -g @quobix/vacuum
 npm install -g newman jsonlint newman-reporter-htmlextra
 npm install -g vscode-json-languageserver
 npm install -g live-server
+npm install -g @anthropic-ai/claude-code
