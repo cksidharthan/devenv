@@ -1,7 +1,7 @@
 return {
 	'saghen/blink.cmp',
 	version = '*',
-  event = { "InsertEnter" },
+	event = { 'InsertEnter' },
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 		-- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -16,11 +16,11 @@ return {
 		--
 		-- See :h blink-cmp-config-keymap for defining your own keymap
 		keymap = {
-			preset = 'default',
+			preset = 'none',
 			['<C-j>'] = { 'select_next', 'fallback' },
 			['<C-k>'] = { 'select_prev', 'fallback' },
-      -- press enter to confirm completion
-      ['<CR>'] = { 'select_and_accept', 'fallback' },
+			-- press enter to confirm completion
+			['<CR>'] = { 'select_and_accept', 'fallback' },
 		},
 
 		appearance = {
@@ -37,7 +37,7 @@ return {
 		completion = {
 			documentation = {
 				auto_show = true,
-        auto_show_delay_ms = 500,
+				auto_show_delay_ms = 500,
 				window = {
 					border = 'single',
 				},

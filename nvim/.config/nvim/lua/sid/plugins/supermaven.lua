@@ -10,23 +10,28 @@
 -- :SupermavenClearLog clear logs for supermaven-nvim
 return {
 	'supermaven-inc/supermaven-nvim',
-  lazy = true,
+	lazy = true,
 	config = function()
 		require('supermaven-nvim').setup({
-      ignore_filetypes = { env = false },
-      use_free = false,
-    })
+			ignore_filetypes = { env = false },
+			keymaps = {
+				accept_suggestion = '<Tab>',
+				clear_suggestion = '<C-]>',
+				accept_word = '<C-j>',
+			},
+			use_free = false,
+		})
 	end,
-  cmds = {
-    "SupermavenStart",
-    "SupermavenStop",
-    "SupermavenRestart",
-    "SupermavenToggle",
-    "SupermavenStatus",
-  },
-  keys = {
-    { "<leader>smt", "<cmd>SupermavenToggle<cr>", desc = "Toggle Supermaven" },
-    { "<leader>sme", "<cmd>SupermavenStart<cr>", desc = "Enable Supermaven" },
-    { "<leader>smd", "<cmd>SupermavenStop<cr>", desc = "Disable Supermaven" },
-  }
+	cmds = {
+		'SupermavenStart',
+		'SupermavenStop',
+		'SupermavenRestart',
+		'SupermavenToggle',
+		'SupermavenStatus',
+	},
+	keys = {
+		{ '<leader>smt', '<cmd>SupermavenToggle<cr>', desc = 'Toggle Supermaven' },
+		{ '<leader>sme', '<cmd>SupermavenStart<cr>', desc = 'Enable Supermaven' },
+		{ '<leader>smd', '<cmd>SupermavenStop<cr>', desc = 'Disable Supermaven' },
+	},
 }
