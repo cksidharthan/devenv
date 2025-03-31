@@ -24,6 +24,8 @@ return {
       ['<Up>'] = { 'select_prev', 'fallback' },
 			-- press enter to confirm completion
 			['<CR>'] = { 'select_and_accept', 'fallback' },
+      -- press ctrl + space to trigger completion
+      ['<C-Space>'] = { 'show', 'fallback' },
 		},
 
 		appearance = {
