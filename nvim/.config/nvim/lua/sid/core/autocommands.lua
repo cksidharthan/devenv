@@ -70,3 +70,13 @@ vim.api.nvim_create_user_command("LSPLogOn", function()
   vim.lsp.set_log_level("debug")
   print("LSP log level set to 'debug'")
 end, {})
+
+
+-- any yaml file inside azure/pipelines directory should be treated as yaml.azure-pipelines
+local function set_azure_pipelines_filetype(pattern)
+    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+        pattern = pattern,
+        command = "set filetype=yaml.azure-pipelines",
+    })
+end
+set_azure_pipelines_filetype({ "azure/pipelines/*.yml", "azure/pipelines/*.yaml" })

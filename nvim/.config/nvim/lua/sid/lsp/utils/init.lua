@@ -24,6 +24,8 @@ function M.setup_diagnostic_signs()
 			},
 		},
 		virtual_text = true,
+    virtual_lines = false,
+    update_in_insert = true,
 	})
 end
 
