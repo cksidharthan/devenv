@@ -1,6 +1,7 @@
 return {
 	'saghen/blink.cmp',
 	version = '*',
+  lazy = true,
 	event = { 'InsertEnter' },
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)

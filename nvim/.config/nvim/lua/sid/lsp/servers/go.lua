@@ -31,10 +31,10 @@ function M.setup(capabilities, on_attach)
 					nilness = true,
 					unusedparams = true,
 					unusedwrite = true,
-          deprecated = true,
-          shadow = true,
-          unused = true,
-          unreachable = true,
+					deprecated = true,
+					shadow = true,
+					unused = true,
+					unreachable = true,
 				},
 				completeUnimported = true,
 				staticcheck = true,
@@ -48,7 +48,12 @@ function M.setup(capabilities, on_attach)
 	require('lspconfig').golangci_lint_ls.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
-		filetypes = { 'go' },
+		filetypes = { 'go', 'gomod' },
+		cmd = { 'golangci-lint-langserver' },
+		root_dir = require('lspconfig').util.root_pattern('.git', 'go.mod'),
+		init_options = {
+			command = { 'golangci-lint', 'run', '--out-format', 'json', '--issues-exit-code=1' },
+		},
 	})
 end
 
