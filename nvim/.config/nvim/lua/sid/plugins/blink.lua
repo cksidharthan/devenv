@@ -1,7 +1,7 @@
 return {
 	'saghen/blink.cmp',
 	version = '*',
-  lazy = true,
+	lazy = true,
 	event = { 'InsertEnter' },
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
@@ -20,13 +20,13 @@ return {
 			preset = 'none',
 			['<C-j>'] = { 'select_next', 'fallback' },
 			['<C-k>'] = { 'select_prev', 'fallback' },
-      -- accept down arrow and up arrow
-      ['<Down>'] = { 'select_next', 'fallback' },
-      ['<Up>'] = { 'select_prev', 'fallback' },
+			-- accept down arrow and up arrow
+			['<Down>'] = { 'select_next', 'fallback' },
+			['<Up>'] = { 'select_prev', 'fallback' },
 			-- press enter to confirm completion
 			['<CR>'] = { 'select_and_accept', 'fallback' },
-      -- press ctrl + space to trigger completion
-      ['<C-Space>'] = { 'show', 'fallback' },
+			-- press ctrl + space to trigger completion
+			['<C-Space>'] = { 'show', 'fallback' },
 		},
 
 		appearance = {
@@ -37,6 +37,14 @@ return {
 			enabled = false,
 			window = {
 				border = 'single',
+			},
+		},
+		cmdline = {
+			enabled = true,
+			completion = {
+				ghost_text = {
+					enabled = true,
+				},
 			},
 		},
 
