@@ -11,5 +11,7 @@ return {
     vim.api.nvim_set_hl(0, 'LineNr', { fg='white', bold=true })
     vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#FB508F', bold=true })
 	end,
-	opts = {},
+	opts = {
+    cache = true,
+  },
 }
