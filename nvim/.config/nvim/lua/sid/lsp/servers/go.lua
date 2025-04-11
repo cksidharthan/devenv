@@ -51,9 +51,9 @@ function M.setup(capabilities, on_attach)
 		filetypes = { 'go', 'gomod' },
 		cmd = { 'golangci-lint-langserver' },
 		root_dir = require('lspconfig').util.root_pattern('.git', 'go.mod'),
-		-- init_options = {
-		-- 	command = { 'golangci-lint', 'run', '--out-format', 'json', '--issues-exit-code=1' },
-		-- },
+		init_options = {
+			command = { 'golangci-lint', 'run', '--out-format', 'json', '--issues-exit-code=1' },
+		},
 	})
 end
 
