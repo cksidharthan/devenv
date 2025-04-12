@@ -1,6 +1,5 @@
 return {
 	'folke/tokyonight.nvim',
-	event = 'VeryLazy',
 	priority = 1000,
 	config = function()
 		vim.cmd('colorscheme tokyonight-night')
@@ -11,5 +10,7 @@ return {
     vim.api.nvim_set_hl(0, 'LineNr', { fg='white', bold=true })
     vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#FB508F', bold=true })
 	end,
-	opts = {},
+	opts = {
+    cache = true,
+  },
 }
