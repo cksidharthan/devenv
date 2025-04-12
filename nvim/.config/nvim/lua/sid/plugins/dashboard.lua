@@ -1,6 +1,7 @@
 return {
 	'nvimdev/dashboard-nvim',
 	event = 'UIEnter',
+  enabled = false,
 	dependencies = {
 		'echasnovski/mini.icons',
 	},

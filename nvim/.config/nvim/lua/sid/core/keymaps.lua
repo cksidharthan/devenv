@@ -41,6 +41,16 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+-- switch tabs by <leader>X where x is number from 1 to 9
+keymap.set("n", "<leader>1", "<cmd>tabnext 1<CR>", { desc = "Switch to tab 1" })
+keymap.set("n", "<leader>2", "<cmd>tabnext 2<CR>", { desc = "Switch to tab 2" })
+keymap.set("n", "<leader>3", "<cmd>tabnext 3<CR>", { desc = "Switch to tab 3" })
+keymap.set("n", "<leader>4", "<cmd>tabnext 4<CR>", { desc = "Switch to tab 4" })
+keymap.set("n", "<leader>5", "<cmd>tabnext 5<CR>", { desc = "Switch to tab 5" })
+keymap.set("n", "<leader>6", "<cmd>tabnext 6<CR>", { desc = "Switch to tab 6" })
+keymap.set("n", "<leader>7", "<cmd>tabnext 7<CR>", { desc = "Switch to tab 7" })
+keymap.set("n", "<leader>8", "<cmd>tabnext 8<CR>", { desc = "Switch to tab 8" })
+keymap.set("n", "<leader>9", "<cmd>tabnext 9<CR>", { desc = "Switch to tab 9" })
 
 -- buffer management
 keymap.set("n", "bx", "<cmd>bd<CR>", { desc = "Close current buffer" })
