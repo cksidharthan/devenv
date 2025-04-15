@@ -38,7 +38,7 @@ return {
 		-- Add your own debuggers here
 		'leoluz/nvim-dap-go',
 	},
-	conf8jg = function()
+	config = function()
 		require('dap-go').setup()
 	end,
 	keys = {
