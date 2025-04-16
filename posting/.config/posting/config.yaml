@@ -1,0 +1,9 @@
+theme: galaxy
+editor: nvim
+curl_export_extra_args: "--verbose -w %{time_total} %{http_code}"
+layout: vertical
+response:
+  prettify_json: false
+heading:
+  visible: true
+  show_host: false
