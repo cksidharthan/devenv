@@ -35,6 +35,7 @@ chmod +x ./setup/go.sh
 chmod +x ./setup/node.sh
 chmod +x ./setup/configs.sh
 chmod +x ./setup/stow.sh
+chmod +x ./setup/pipx.sh
 
 ./setup/mac.sh
 ./setup/brew.sh
@@ -45,6 +46,7 @@ source ~/.zprofile
 
 ./setup/go.sh
 ./setup/node.sh
+./setup/pipx.sh
 ./setup/configs.sh  # runs the stow commands
 ./setup/stow.sh
 
