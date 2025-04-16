@@ -6,3 +6,4 @@ stow -v -t ~ tmux --adopt
 stow -v -t ~ starship --adopt
 stow -v -t ~ wezterm --adopt
 stow -v -t ~ k9s --adopt
+stow -v -t ~ posting --adopt
