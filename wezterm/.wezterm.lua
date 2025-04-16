@@ -69,6 +69,12 @@ end
 
 -- Key bindings
 config.keys = {
+	-- remove ctrl+p keymap to use in posting
+	{
+		key = "P",
+		mods = "CTRL",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 	-- Split the window horizontally at the bottom with a line of 10
 	{
 		key = "H",
@@ -113,56 +119,53 @@ config.keys = {
 }
 
 -- Pipe divider symbols - For the Tab Bar
-local LEFT_DIVIDER = ''
-local RIGHT_DIVIDER = ' '
+local LEFT_DIVIDER = ""
+local RIGHT_DIVIDER = " "
 
 -- Function to get the current directory name to populate in the tab title
 local function get_current_directory(tab)
-  local current_dir = tab.active_pane.current_working_dir
-  if current_dir then
-    -- Convert URI format to regular path
-    local path = current_dir.file_path or ''
-    -- Get just the last directory name
-    local dir_name = string.match(path, "[/\\]([^/\\]+)$")
-    -- If we're at root, show '/'
-    return dir_name or path:match("[/\\]$") and "/" or path
-  end
-  return 'wezterm'
+	local current_dir = tab.active_pane.current_working_dir
+	if current_dir then
+		-- Convert URI format to regular path
+		local path = current_dir.file_path or ""
+		-- Get just the last directory name
+		local dir_name = string.match(path, "[/\\]([^/\\]+)$")
+		-- If we're at root, show '/'
+		return dir_name or path:match("[/\\]$") and "/" or path
+	end
+	return "wezterm"
 end
 
 -- Main tab title formatting
-wezterm.on(
-  'format-tab-title',
-  function(tab, hover)
-    local edge_background = '#0b0022'
-    local background = '#05fef3' -- Orange background
-    local foreground = '#000000' -- Black text for better contrast on orange
-    local divider_color = '#ffffff' -- White color for dividers
+wezterm.on("format-tab-title", function(tab, hover)
+	local edge_background = "#0b0022"
+	local background = "#05fef3" -- Orange background
+	local foreground = "#000000" -- Black text for better contrast on orange
+	local divider_color = "#ffffff" -- White color for dividers
 
-    if tab.is_active then
-      background = '#ffad33' -- Lighter orange for active tab
-      foreground = '#000000'
-    elseif hover then
-      background = '#ffffff'
-      foreground = '#000000'
-    end
+	if tab.is_active then
+		background = "#ffad33" -- Lighter orange for active tab
+		foreground = "#000000"
+	elseif hover then
+		background = "#ffffff"
+		foreground = "#000000"
+	end
 
-    local title = get_current_directory(tab)
-    local tab_number = tab.tab_index + 1 -- Adding 1 because tab_index is 0-based
+	local title = get_current_directory(tab)
+	local tab_number = tab.tab_index + 1 -- Adding 1 because tab_index is 0-based
 
-    return {
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = divider_color } },
-      { Text = LEFT_DIVIDER },
-      { Background = { Color = background } },
-      { Foreground = { Color = foreground } },
-      { Text = ' ' .. tab_number .. ': ' .. title .. ' ' }, -- Added tab number here
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = divider_color } },
-      { Text = RIGHT_DIVIDER },
-    }
-  end
-)
+	return {
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = divider_color } },
+		{ Text = LEFT_DIVIDER },
+		{ Background = { Color = background } },
+		{ Foreground = { Color = foreground } },
+		{ Text = " " .. tab_number .. ": " .. title .. " " }, -- Added tab number here
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = divider_color } },
+		{ Text = RIGHT_DIVIDER },
+	}
+end)
 
 config.tab_max_width = 45
 
