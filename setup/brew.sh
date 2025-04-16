@@ -96,6 +96,9 @@ tools=(
     lua-language-server
     yaml-language-server
     pnpm
+    httpie
+    golangci-lint
+    mockery
 )
 
 # Install tools

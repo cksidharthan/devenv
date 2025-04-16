@@ -11,7 +11,6 @@ fi
 
 go_packages=(
     golang.org/x/tools/cmd/goimports
-    github.com/golangci/golangci-lint/cmd/golangci-lint
     github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen
     go.uber.org/mock/mockgen
     github.com/nikolaydubina/go-cover-treemap
