@@ -49,7 +49,8 @@ return {
 			options = {
 				icons_enabled = true,
 				-- theme = my_lualine_theme,
-				theme = 'ayu_mirage',
+				-- theme = 'ayu_mirage',
+				theme = 'auto',
 				component_separators = { right = '┃', left = '┃' },
 				section_separators = { right = '┃', left = '┃' },
 			},
