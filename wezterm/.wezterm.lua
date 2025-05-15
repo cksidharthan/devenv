@@ -6,7 +6,7 @@ config.font = wezterm.font_with_fallback({
 	"MartianMono Nerd Font",
 })
 -- General settings
-config.color_scheme = "tokyonight"
+config.color_scheme = "cyberdream"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
 config.window_background_opacity = 0.9
