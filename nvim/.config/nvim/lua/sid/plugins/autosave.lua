@@ -1,6 +1,6 @@
 return {
 	'0x00-ketsu/autosave.nvim',
-  event = 'VeryLazy',
+  event = 'BufReadPre',
 	config = function()
 		local autosave = require('autosave')
 		autosave.setup({

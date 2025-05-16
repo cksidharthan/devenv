@@ -5,43 +5,49 @@ return {
 	},
 	event = 'VeryLazy',
 	config = function()
-    
-    -- code companion spinner
-    -- Define the spinner component inline
-    local CodeCompanionSpinner = require("lualine.component"):extend()
-    CodeCompanionSpinner.processing = false
-    CodeCompanionSpinner.spinner_index = 1
-    local spinner_symbols = {
-      "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏",
-    }
-    local spinner_symbols_len = 10
-    
-    function CodeCompanionSpinner:init(options)
-      CodeCompanionSpinner.super.init(self, options)
-      local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
-      vim.api.nvim_create_autocmd({ "User" }, {
-        pattern = "CodeCompanionRequest*",
-        group = group,
-        callback = function(request)
-          if request.match == "CodeCompanionRequestStarted" then
-            self.processing = true
-          elseif request.match == "CodeCompanionRequestFinished" then
-            self.processing = false
-          end
-        end,
-      })
-    end
-    
-    function CodeCompanionSpinner:update_status()
-      if self.processing then
-        self.spinner_index = (self.spinner_index % spinner_symbols_len) + 1
-        return spinner_symbols[self.spinner_index]
-      else
-        return nil
-      end
-    end
+		-- code companion spinner
+		-- Define the spinner component inline
+		local CodeCompanionSpinner = require('lualine.component'):extend()
+		CodeCompanionSpinner.processing = false
+		CodeCompanionSpinner.spinner_index = 1
+		local spinner_symbols = {
+			'⠋',
+			'⠙',
+			'⠹',
+			'⠸',
+			'⠼',
+			'⠴',
+			'⠦',
+			'⠧',
+			'⠇',
+			'⠏',
+		}
+		local spinner_symbols_len = 10
 
+		function CodeCompanionSpinner:init(options)
+			CodeCompanionSpinner.super.init(self, options)
+			local group = vim.api.nvim_create_augroup('CodeCompanionHooks', {})
+			vim.api.nvim_create_autocmd({ 'User' }, {
+				pattern = 'CodeCompanionRequest*',
+				group = group,
+				callback = function(request)
+					if request.match == 'CodeCompanionRequestStarted' then
+						self.processing = true
+					elseif request.match == 'CodeCompanionRequestFinished' then
+						self.processing = false
+					end
+				end,
+			})
+		end
 
+		function CodeCompanionSpinner:update_status()
+			if self.processing then
+				self.spinner_index = (self.spinner_index % spinner_symbols_len) + 1
+				return spinner_symbols[self.spinner_index]
+			else
+				return nil
+			end
+		end
 
 		local lualine = require('lualine')
 		-- configure lualine with modified theme
@@ -50,16 +56,22 @@ return {
 				icons_enabled = true,
 				-- theme = my_lualine_theme,
 				-- theme = 'ayu_mirage',
-        -- available themes - https://git.mzte.de/nvim-plugins/lualine.nvim/src/tag/compat-nvim-0.5/THEMES.md
+				-- available themes - https://git.mzte.de/nvim-plugins/lualine.nvim/src/tag/compat-nvim-0.5/THEMES.md
 				theme = 'onedark',
-        global_status = true,
+				global_status = true,
 				component_separators = { right = '┃', left = '┃' },
 				section_separators = { right = '┃', left = '┃' },
 			},
 			sections = {
 				lualine_x = {
-          { CodeCompanionSpinner },
-          { 'tabs' },
+					{ CodeCompanionSpinner },
+          -- for showing the recording messages
+					{
+						require('noice').api.statusline.mode.get,
+						cond = require('noice').api.statusline.mode.has,
+						color = { fg = '#ff9e64' },
+					},
+					{ 'tabs' },
 					{ 'encoding' },
 					{ 'filetype' },
 				},

@@ -6,7 +6,6 @@ return {
 		'nvim-lua/plenary.nvim',
 		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		'echasnovski/mini.icons',
-	  'nvim-telescope/telescope-frecency.nvim',
 	},
 	config = function()
 		local telescope = require('telescope')
@@ -34,10 +33,10 @@ return {
 		})
 
 		telescope.load_extension('fzf')
+    require("telescope").load_extension("noice")
 
 		vim.keymap.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', { desc = 'Change Colorscheme' })
-		-- vim.keymap.set( 'n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>", { desc = 'Fuzzy find files in Current working directory' })
-		vim.keymap.set( 'n', '<leader>ff', "<cmd>Telescope frecency workspace=CWD<CR>", { desc = 'Fuzzy find files in Current working directory' })
+		vim.keymap.set( 'n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>", { desc = 'Fuzzy find files in Current working directory' })
 		vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>', { desc = 'Fuzzy find files in Recent files' })
 		vim.keymap.set( 'n', '<leader>fs', '<cmd>Telescope live_grep<CR>', { desc = 'Fuzzy string in Current working directory' })
 		-- add another keymap for listing open buffers
