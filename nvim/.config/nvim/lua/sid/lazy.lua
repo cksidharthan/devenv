@@ -1,20 +1,23 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- put this in your main init.lua file ( before lazy setup )
+vim.g.base46_cache = vim.fn.stdpath('data') .. '/base46_cache/'
+
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable branch
+		'git',
+		'clone',
+		'--filter=blob:none',
+		'https://github.com/folke/lazy.nvim.git',
+		'--branch=stable', -- latest stable branch
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-	{ import = "sid.plugins" },
-	{ import = "sid.plugins.lsp" },
-	{ import = "sid.plugins.colorschemes" },
+require('lazy').setup({
+	{ import = 'sid.plugins' },
+	{ import = 'sid.plugins.nvchad' },
+	{ import = 'sid.plugins.colorschemes' },
 }, {
 	-- defaults = { lazy = true },
 	install = {
@@ -32,17 +35,22 @@ require("lazy").setup({
 	},
 	debug = false,
 	ui = {
-		position = "bottom",
+		position = 'bottom',
 	},
 	performance = {
 		rtp = {
 			disabled_plugins = {
-				"gzip",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
+				'gzip',
+				'tarPlugin',
+				'tohtml',
+				'tutor',
+				'zipPlugin',
 			},
 		},
 	},
 })
+
+-- (method 2, for non lazyloaders) to load all highlights at once
+for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+	dofile(vim.g.base46_cache .. v)
+end

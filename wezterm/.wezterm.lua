@@ -6,11 +6,11 @@ config.font = wezterm.font_with_fallback({
 	"MartianMono Nerd Font",
 })
 -- General settings
-config.color_scheme = "cyberdream"
+config.color_scheme = "OneDark (base16)"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = false
-config.window_background_opacity = 0.9
-config.macos_window_background_blur = 90
+config.window_background_opacity = 1
+config.macos_window_background_blur = 95
 config.bold_brightens_ansi_colors = true
 config.freetype_load_flags = "NO_HINTING"
 config.font_size = 16
