@@ -40,11 +40,33 @@ require('lazy').setup({
 	performance = {
 		rtp = {
 			disabled_plugins = {
-				'gzip',
-				'tarPlugin',
+				'2html_plugin',
 				'tohtml',
-				'tutor',
+				'getscrip',
+				'getscripPlugin',
+				'gzip',
+				'logipat',
+				'netrw',
+				'netrwPlugin',
+				'netrwSettings',
+				'netrwFileHandlers',
+				'matchit',
+				'tar',
+				'tarPlugin',
+				'rrhelper',
+				'spellfile_plugin',
+				'vimball',
+				'vimballPlugin',
+				'zip',
 				'zipPlugin',
+				'tutor',
+				'rplugin',
+				'syntax',
+				'synmenu',
+				'optwin',
+				'compiler',
+				'bugreport',
+				'ftplugin',
 			},
 		},
 	},
@@ -54,3 +76,6 @@ require('lazy').setup({
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
 	dofile(vim.g.base46_cache .. v)
 end
+
+-- to color the buffer separators
+vim.api.nvim_command('highlight WinSeparator guifg=#ffff99')

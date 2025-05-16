@@ -78,7 +78,6 @@ vim.cmd('hi DiagnosticFloatingWarn ctermbg=NONE guibg=NONE guifg=#E8AB53')
 vim.cmd('hi DiagnosticFloatingError ctermbg=NONE guibg=NONE guifg=#ff5189')
 vim.cmd('set background=dark')
 
-vim.api.nvim_command('highlight WinSeparator guifg=#ffff99')
 -- line number coloring
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#51B3EC', bold = true })
 vim.api.nvim_set_hl(0, 'LineNr', { fg = 'white', bold = true })

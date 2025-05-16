@@ -76,7 +76,9 @@ end, {})
 local function set_azure_pipelines_filetype(pattern)
     vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         pattern = pattern,
-        command = "set filetype=yaml.azure-pipelines",
+        -- this should be setting the file tupe to yaml.azure-pipelines. but for some reason my neovim yamlls config is taking yaml.gitlab as default.
+        -- i;m not able to override it.
+        command = "set filetype=yaml.gitlab",
     })
 end
 set_azure_pipelines_filetype({ "azure/pipelines/*.yml", "azure/pipelines/*.yaml" })
