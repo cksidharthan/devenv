@@ -6,6 +6,7 @@ return {
 		'nvim-lua/plenary.nvim',
 		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		'echasnovski/mini.icons',
+	  'nvim-telescope/telescope-frecency.nvim',
 	},
 	config = function()
 		local telescope = require('telescope')
@@ -35,13 +36,14 @@ return {
 		telescope.load_extension('fzf')
 
 		vim.keymap.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', { desc = 'Change Colorscheme' })
-		vim.keymap.set( 'n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>", { desc = 'Fuzzy find files in Current working directory' })
+		-- vim.keymap.set( 'n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>", { desc = 'Fuzzy find files in Current working directory' })
+		vim.keymap.set( 'n', '<leader>ff', "<cmd>Telescope frecency<CR>", { desc = 'Fuzzy find files in Current working directory' })
 		vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>', { desc = 'Fuzzy find files in Recent files' })
 		vim.keymap.set( 'n', '<leader>fs', '<cmd>Telescope live_grep<CR>', { desc = 'Fuzzy string in Current working directory' })
 		-- add another keymap for listing open buffers
 		vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = 'Fuzzy find open buffers' })
 		-- find todos
-		vim.keymap.set( 'n', '<leader>en', '<cmd>Telescope find_files cwd=~/.config/nvim<CR>', { desc = 'Fuzzy find filetypes in Current working directory' })
+		vim.keymap.set( 'n', '<leader>en', '<cmd>Telescope frecency CWD=~/.config/nvim<CR>', { desc = 'Fuzzy find filetypes in Current working directory' })
 		vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { desc = 'Fuzzy find help tags' })
 		vim.keymap.set( 'n', '<leader>fib', '<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending<CR>', { desc = 'Fuzzy find in current buffer' })
 		vim.keymap.set('n', '<leader>fk', '<cmd>Telescope keymaps<CR>', { desc = 'Fuzzy find keymaps' })
