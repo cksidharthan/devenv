@@ -69,12 +69,7 @@ keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover in
 keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
 keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
 keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format code" })
-keymap.set(
-	"n",
-	"<leader>cd",
-	"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
-	{ desc = "Show line diagnostics" }
-)
+keymap.set( "n", "<leader>cd", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", { desc = "Show line diagnostics" })
 keymap.set("n", "<leader>cn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { desc = "Go to next diagnostic" })
 
 keymap.set("n", "<leader>re", ":e!<CR>", { desc = "Reload current window" })
@@ -85,11 +80,7 @@ keymap.set('n', 'n', 'nzz', { silent = true })
 keymap.set('n', 'p', 'pzz', { silent = true })
 
 -- set a keymap <tab> to go to next buffer
-keymap.set("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer" })
-keymap.set("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer" })
-keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close current buffer" })
-
--- set copilot chat keymaps
-keymap.set("n", "<leader>ccm", "<CMD>CopilotChatModels<CR>", { desc = "Open Copilot Chat Models" })
-keymap.set("n", "<leader>cc", "<CMD>CopilotChat<CR>", { desc = "Open Copilot Chat" })
-keymap.set("n", "<leader>cct", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Copilot Chat" })
+vim.keymap.set("n", "<TAB>", "<cmd>:lua require('nvchad.tabufline').next()<CR>", { desc = "Go to next buffer" })
+vim.keymap.set("n", "<leader>co", "<cmd>:lua require('nvchad.tabufline').closeAllBufs(false)<CR>", { desc = "Close Other Buffers" })
+vim.keymap.set("n", "<S-TAB>", "<CMD>:lua require('nvchad.tabufline').prev()<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close current buffer" })

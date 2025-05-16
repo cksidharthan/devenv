@@ -22,8 +22,8 @@ config.line_height = 1.2
 config.window_decorations = "RESIZE"
 config.window_padding = {
 	bottom = 0,
-	left = 3,
-	right = 3,
+	left = 4,
+	right = 4,
 	top = 10,
 }
 config.animation_fps = 60

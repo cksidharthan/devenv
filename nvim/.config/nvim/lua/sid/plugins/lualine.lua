@@ -50,7 +50,9 @@ return {
 				icons_enabled = true,
 				-- theme = my_lualine_theme,
 				-- theme = 'ayu_mirage',
-				theme = 'ayu_mirage',
+        -- available themes - https://git.mzte.de/nvim-plugins/lualine.nvim/src/tag/compat-nvim-0.5/THEMES.md
+				theme = 'onedark',
+        global_status = true,
 				component_separators = { right = '┃', left = '┃' },
 				section_separators = { right = '┃', left = '┃' },
 			},
