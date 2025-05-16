@@ -80,7 +80,10 @@ keymap.set('n', 'n', 'nzz', { silent = true })
 keymap.set('n', 'p', 'pzz', { silent = true })
 
 -- set a keymap <tab> to go to next buffer
-vim.keymap.set("n", "<TAB>", "<cmd>:lua require('nvchad.tabufline').next()<CR>", { desc = "Go to next buffer" })
-vim.keymap.set("n", "<leader>co", "<cmd>:lua require('nvchad.tabufline').closeAllBufs(false)<CR>", { desc = "Close Other Buffers" })
-vim.keymap.set("n", "<S-TAB>", "<CMD>:lua require('nvchad.tabufline').prev()<CR>", { desc = "Go to previous buffer" })
-vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<TAB>", "<cmd>:lua require('nvchad.tabufline').next()<CR>", { desc = "Go to next buffer" })
+keymap.set("n", "<leader>co", "<cmd>:lua require('nvchad.tabufline').closeAllBufs(false)<CR>", { desc = "Close Other Buffers" })
+keymap.set("n", "<S-TAB>", "<CMD>:lua require('nvchad.tabufline').prev()<CR>", { desc = "Go to previous buffer" })
+keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close current buffer" })
+
+-- trigger codelens actions
+keymap.set("n", "<leader>cl", "<cmd>:lua vim.lsp.codelens.run()<CR>", { desc = "Run Codelens Actions" })

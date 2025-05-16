@@ -5,7 +5,7 @@ return {
 	settings = {
 		gopls = {
 			codelenses = {
-				gc_details = false,
+				gc_details = true,
 				generate = true,
 				regenerate_cgo = true,
 				run_govulncheck = true,
@@ -34,6 +34,8 @@ return {
 			},
 			completeUnimported = true,
 			staticcheck = true,
+      symbolMatcher = 'fuzzy',
+      matcher = 'fuzzy',
 			directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
 			semanticTokens = true,
 		},
