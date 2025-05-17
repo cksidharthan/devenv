@@ -70,7 +70,6 @@ tools=(
     lua
     pipx
     luajit
-    neovide
     opa
     regal
     gnu-sed
@@ -95,10 +94,10 @@ tools=(
     styrainc/packages/regal
     lua-language-server
     yaml-language-server
-    pnpm
     httpie
     golangci-lint
     mockery
+    tree
 )
 
 # Install tools
