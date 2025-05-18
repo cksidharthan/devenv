@@ -6,6 +6,7 @@ This is my personal Neovim configuration. It is a work in progress(indefinitely 
 
 _NOTE_:
 
+- go to the file [README](/README.md) 
 - If you have an existing Neovim configuration, make sure to backup your existing configuration before proceeding.
 - This configuration is will work only on Neovim 0.10 and above.
 - The leader key is set to `<Space>`. If you want to change it, you can do so by changing the value of `g:mapleader` in `./lua/sid/core/keymaps.lua`
@@ -46,9 +47,3 @@ _NOTE_:
   - etc., (I tweak my configuration frequently and the list of plugins may change)
 
 - I use [Wezterm](https://wezfurlong.org/wezterm/) as my terminal emulator. To know more on my wezterm configuration, check [here](https://github.com/cksidharthan/mac-setup/blob/main/.wezterm.lua)
-
-## Screenshots
-
-![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
-![Screenshot 3](screenshots/screenshot3.png)
