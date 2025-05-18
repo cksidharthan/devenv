@@ -1,5 +1,5 @@
 return {
-	cmd = { 'yamlls' },
+	cmd = { 'yaml-language-server' },
 	filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.azure-pipelines' },
 	settings = {
 		yaml = {

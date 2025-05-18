@@ -1,5 +1,5 @@
 return {
-  cmd = { "docker_compose_language_server" },
+  cmd = { "docker-compose-langserver" },
 	filetypes = { 'yaml.docker-compose' },
 	settings = {
 		docker = {

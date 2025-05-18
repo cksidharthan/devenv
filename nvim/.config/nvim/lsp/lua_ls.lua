@@ -1,5 +1,5 @@
 return {
-	cmd = { 'lua_ls' },
+	cmd = { 'lua-language-server' },
 	filetypes = { 'lua' },
 	settings = {
 		Lua = {

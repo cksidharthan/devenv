@@ -1,4 +1,4 @@
 return {
-  cmd = { "dockerls" },
+  cmd = { "docker-langserver" },
   filetypes = { 'dockerfile' },
 }

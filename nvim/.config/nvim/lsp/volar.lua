@@ -1,12 +1,12 @@
 return {
-	cmd = { 'volar' },
+	cmd = { 'vue-language-server', '--stdio' },
 	filetypes = { 'vue' },
 	init_options = {
 		typescript = {
 			tsdk = vim.fn.expand('~/') .. '.local/share/nvim/mason/packages/vue-language-server/node_modules/typescript/lib',
 		},
 		preferences = {
-			disableSuggestions = true,
+			disableSuggestions = false,
 		},
 		languageFeatures = {
 			implementation = true,
@@ -27,6 +27,31 @@ return {
 				defaultAttrNameCase = 'kebabCase',
 				getDocumentNameCasesRequest = false,
 				getDocumentSelectionRequest = false,
+			},
+		},
+		vue = {
+			hybridMode = false,
+		},
+	},
+	settings = {
+		typescript = {
+			inlayHints = {
+				enumMemberValues = {
+					enabled = true,
+				},
+				functionLikeReturnTypes = {
+					enabled = true,
+				},
+				propertyDeclarationTypes = {
+					enabled = true,
+				},
+				parameterTypes = {
+					enabled = true,
+					suppressWhenArgumentMatchesName = true,
+				},
+				variableTypes = {
+					enabled = true,
+				},
 			},
 		},
 	},

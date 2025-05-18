@@ -1,4 +1,4 @@
 return {
-  cmd = {"html"},
+  cmd = {"vscode-html-language-server"},
   filetypes = { 'html' },
 }

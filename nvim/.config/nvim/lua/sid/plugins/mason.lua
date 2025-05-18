@@ -76,7 +76,6 @@ return {
 				'yamllint', -- yaml linter
 				'shellcheck', -- shell script linter
 				'shfmt', -- shell script formatter
-        'rustfmt', -- rust formatter
 			},
 		})
 	end,

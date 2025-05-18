@@ -1,4 +1,4 @@
 return {
-	cmd = { 'rust_analyzer' },
+	cmd = { 'rust-analyzer' },
 	filetypes = { 'rust' },
 }
