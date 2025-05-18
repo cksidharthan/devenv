@@ -6,8 +6,8 @@ return {
     "GrugFarWithin",
   },
   keys = {
-    { "<leader>gruf", "<cmd>GrugFar<cr>" },
-    { "<leader>gruF", "<cmd>GrugFarWithin<cr>" },
+    { "<leader>sr", "<cmd>GrugFar<cr>" },
+    { "<leader>rw", "<cmd>GrugFarWithin<cr>" },
   },
   opts = {},
 	config = function()

@@ -37,13 +37,4 @@ _NOTE_:
 
 ## Features
 
-- I use multiple plugins to enhance the functionality of Neovim. Some of the plugins that I use are:
-
-  - Github Copilot
-  - Telescope
-  - Mason
-  - Gitblame, Delve, etc.,
-  - Lazy.nvim (for plugin lazy loading)
-  - etc., (I tweak my configuration frequently and the list of plugins may change)
-
 - I use [Wezterm](https://wezfurlong.org/wezterm/) as my terminal emulator. To know more on my wezterm configuration, check [here](https://github.com/cksidharthan/mac-setup/blob/main/.wezterm.lua)
