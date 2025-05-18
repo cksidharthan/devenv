@@ -11,7 +11,15 @@ return {
 		-- OPTIONAL:
 		--   `nvim-notify` is only needed, if you want to use the notification view.
 		--   If not available, we use `mini` as the fallback
-		'rcarriga/nvim-notify',
+		{
+      'rcarriga/nvim-notify',
+      opts = {
+        render = "compact",
+        stages = "slide",
+        fps = 120,
+      }
+    },
+
 	},
 	config = function()
 		require('noice').setup({
