@@ -33,12 +33,14 @@ return {
 		})
 
 		telescope.load_extension('fzf')
-    require("telescope").load_extension("noice")
+    telescope.load_extension("noice")
+    telescope.load_extension('notify')
 
 		vim.keymap.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', { desc = 'Change Colorscheme' })
 		vim.keymap.set( 'n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>", { desc = 'Fuzzy find files in Current working directory' })
 		vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>', { desc = 'Fuzzy find files in Recent files' })
 		vim.keymap.set( 'n', '<leader>fs', '<cmd>Telescope live_grep<CR>', { desc = 'Fuzzy string in Current working directory' })
+		vim.keymap.set( 'n', '<leader>fn', '<cmd>Telescope notify<CR>', { desc = 'Fuzzy search in notifications' })
 		-- add another keymap for listing open buffers
 		vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = 'Fuzzy find open buffers' })
 		-- find todos
