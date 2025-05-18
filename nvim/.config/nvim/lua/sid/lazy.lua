@@ -17,7 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	{ import = 'sid.plugins' },
 	{ import = 'sid.plugins.nvchad' },
-	{ import = 'sid.plugins.colorschemes' },
 }, {
 	-- defaults = { lazy = true },
 	install = {
