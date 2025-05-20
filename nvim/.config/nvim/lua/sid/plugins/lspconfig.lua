@@ -26,6 +26,7 @@ return {
 		vim.lsp.enable('volar')
 		vim.lsp.enable('yamlls')
 
+    -- show icons in lsp diagnostics
 		vim.diagnostic.config({
 			signs = {
 				numhl = {
