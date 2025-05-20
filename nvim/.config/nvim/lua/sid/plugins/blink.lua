@@ -34,7 +34,7 @@ return {
 		},
 
 		signature = {
-			enabled = false,
+			enabled = true,
 			window = {
 				border = 'single',
 			},
@@ -50,7 +50,7 @@ return {
 
 		completion = {
 			documentation = {
-				auto_show = true,
+				auto_show = false,
 				auto_show_delay_ms = 500,
 				window = {
 					border = 'single',

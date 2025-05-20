@@ -17,7 +17,7 @@ opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to space
 opt.autoindent = true -- copy indent from current line when starting a new one
 opt.wrap = false
-opt.laststatus = 3 -- always show status line
+opt.laststatus = 3 -- global statusline 
 
 -- make sure to not open old buffers when presesing escape key
 opt.hidden = true -- allow hidden buffers
