@@ -86,4 +86,4 @@ keymap.set("n", "<S-TAB>", "<CMD>:lua require('nvchad.tabufline').prev()<CR>", {
 keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close current buffer" })
 
 -- trigger codelens actions
-keymap.set("n", "<leader>cl", "<cmd>:lua vim.lsp.codelens.run()<CR>", { desc = "Run Codelens Actions" })
+keymap.set("n", "<leader>col", "<cmd>:lua vim.lsp.codelens.run()<CR>", { desc = "Run Codelens Actions" })

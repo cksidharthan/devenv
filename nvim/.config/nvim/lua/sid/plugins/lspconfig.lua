@@ -23,7 +23,7 @@ return {
 		vim.lsp.enable('sqls')
 		vim.lsp.enable('tailwindcss')
 		vim.lsp.enable('ts_ls')
-		vim.lsp.enable('volar')
+		vim.lsp.enable('vue_ls')
 		vim.lsp.enable('yamlls')
 
     -- show icons in lsp diagnostics
