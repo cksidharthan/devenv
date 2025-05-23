@@ -24,6 +24,7 @@ return {
 		vim.lsp.enable('tailwindcss')
 		vim.lsp.enable('ts_ls')
 		vim.lsp.enable('vue_ls')
+		vim.lsp.enable('buf_ls')
 		vim.lsp.enable('yamlls')
 
     -- show icons in lsp diagnostics
