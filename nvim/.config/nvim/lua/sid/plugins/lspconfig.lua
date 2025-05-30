@@ -43,7 +43,7 @@ return {
 					[vim.diagnostic.severity.HINT] = '󰌶 ',
 				},
 			},
-			update_in_insert = true,
+			update_in_insert = false,
 			virtual_text = false,
 			virtual_lines = { current_line = true },
 		})
