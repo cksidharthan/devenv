@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		'echasnovski/mini.icons',
 	},
-	event = 'VeryLazy',
+  event = "VeryLazy",
 	config = function()
 		-- code companion spinner
 		-- Define the spinner component inline

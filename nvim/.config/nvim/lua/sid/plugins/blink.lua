@@ -1,7 +1,6 @@
 return {
 	'saghen/blink.cmp',
 	version = '*',
-	lazy = true,
 	event = { 'InsertEnter' },
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
@@ -34,7 +33,7 @@ return {
 		},
 
 		signature = {
-			enabled = true,
+			enabled = false,
 			window = {
 				border = 'single',
 			},
@@ -43,7 +42,7 @@ return {
 			enabled = true,
 			completion = {
 				ghost_text = {
-					enabled = true,
+					enabled = false,
 				},
 			},
 		},

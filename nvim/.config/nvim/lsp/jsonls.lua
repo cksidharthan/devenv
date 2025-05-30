@@ -1,6 +1,6 @@
 return {
 	cmd = { 'vscode-json-language-server' },
-	filetypes = { 'json', 'jsonc' },
+	filetypes = { 'jsonv' },
 	settings = {
 		json = {
 			-- Use schemastore catalog for JSON schema completion

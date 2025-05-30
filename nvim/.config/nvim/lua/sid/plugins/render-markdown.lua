@@ -6,7 +6,8 @@ return {
 	---@module 'render-markdown'
 	---@type render.md.UserConfig
 	opts = {},
-	event = 'VeryLazy',
+	lazy = true,
+  ft = { "markdown" },
 	config = function()
 		require('render-markdown').setup({
 			completions = { blink = { enabled = true } },

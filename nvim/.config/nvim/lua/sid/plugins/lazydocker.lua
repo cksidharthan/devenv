@@ -9,6 +9,7 @@ return {
 	config = function()
 		require("lazydocker").setup({})
 	end,
+  lazy = true,
 	keys = {
 		{ "<leader>ld", "<cmd>LazyDocker<cr>", desc = "Toggle LazyDocker" },
 	},
