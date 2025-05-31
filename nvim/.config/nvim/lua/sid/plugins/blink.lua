@@ -40,7 +40,14 @@ return {
 			},
 		},
 		cmdline = {
-			enabled = true,
+			enabled = function()
+				return not vim.tbl_contains({
+					'NvimTree',
+					'Telescope',
+					'TelescopePrompt',
+				}, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
+			end,
+
 			completion = {
 				ghost_text = {
 					enabled = false,
