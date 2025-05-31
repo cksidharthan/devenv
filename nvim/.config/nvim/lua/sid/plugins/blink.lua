@@ -32,6 +32,16 @@ return {
 			nerd_font_variant = 'mono',
 		},
 
+    -- disable completion in nvimtree, telescope etc.,
+		enabled = function()
+			return not vim.tbl_contains({
+				'NvimTree',
+				'Telescope',
+        'DressingInput',
+				'TelescopePrompt',
+			}, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
+		end,
+
 		signature = {
 			enabled = false,
 			window = {
@@ -40,14 +50,7 @@ return {
 			},
 		},
 		cmdline = {
-			enabled = function()
-				return not vim.tbl_contains({
-					'NvimTree',
-					'Telescope',
-					'TelescopePrompt',
-				}, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
-			end,
-
+			enabled = true,
 			completion = {
 				ghost_text = {
 					enabled = false,
