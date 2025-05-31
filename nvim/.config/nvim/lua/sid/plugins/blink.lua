@@ -36,6 +36,7 @@ return {
 			enabled = false,
 			window = {
 				border = 'single',
+				show_documentation = false,
 			},
 		},
 		cmdline = {
@@ -65,7 +66,7 @@ return {
 		},
 
 		sources = {
-			default = { 'lsp', 'path'},
+			default = { 'lsp', 'path' },
 		},
 
 		fuzzy = { implementation = 'prefer_rust_with_warning' },
