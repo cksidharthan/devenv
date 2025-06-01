@@ -31,7 +31,7 @@ return {
 				},
 				signature = {
 					enabled = true,
-					auto_show = true,
+					auto_show = false,
 				},
 				message = {
 					enabled = false,
