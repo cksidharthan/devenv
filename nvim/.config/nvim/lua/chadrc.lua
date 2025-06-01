@@ -1,13 +1,13 @@
 local options = {
 
   base46 = {
-    theme = "material-darker", -- default theme
+    theme = "tokyonight", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "material-darker", "flexoki-light" },
+    theme_toggle = { "tokyonight", "flexoki-light" },
   },
 
   ui = {

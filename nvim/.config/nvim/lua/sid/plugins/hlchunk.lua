@@ -23,7 +23,7 @@ return {
 					'#4c9aa2',
 				},
 			},
-			line_num = { enable = true },
+			line_num = { enable = false },
 			exclude_filetypes = { 'help', 'git', 'markdown', 'snippets', 'text', 'gitconfig', 'alpha', 'dashboard' },
 		})
 	end,
