@@ -5,7 +5,6 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
-keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Save and quit" })
 keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })

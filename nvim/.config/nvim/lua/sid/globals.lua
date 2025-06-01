@@ -1,3 +1,5 @@
+-- some utility functions to be used while developing neovim plugins
+
 P = function(v)
   print(vim.inspect(v))
   return v
