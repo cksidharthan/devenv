@@ -1,13 +1,13 @@
 local options = {
 
   base46 = {
-    theme = "tokyonight", -- default theme
+    theme = "bearded-arc", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "tokyonight", "flexoki-light" },
+    theme_toggle = { "bearded-arc", "flexoki-light" },
   },
 
   ui = {

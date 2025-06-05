@@ -21,7 +21,7 @@ return {
 				pause = '',
 				play = '',
 				step_into = '',
-				step_over = '', -- Updated icon for step over
+				step_over = '',
 				step_out = '',
 				step_back = '',
 				run_last = '',

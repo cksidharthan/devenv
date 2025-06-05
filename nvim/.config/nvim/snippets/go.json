@@ -1,0 +1,391 @@
+{
+  "Anonymous Function": {
+    "prefix": "anon",
+    "body": [
+      "${1:fn} := func() {",
+      "\t${2:$TM_SELECTED_TEXT}",
+      "}",
+      "${0}"
+    ],
+    "description": "fn := func() { ... }"
+  },
+  "Append": {
+    "prefix": "ap",
+    "body": ["append(${1:slice}, ${0:value})"],
+    "description": "append(slice, value)"
+  },
+  "Append Assignment": {
+    "prefix": "ap=",
+    "body": ["${1:slice} = append($1, ${0:value})"],
+    "description": "a = append(a, value)"
+  },
+  "Case": {
+    "prefix": "case",
+    "body": [
+      "case ${1:value}:",
+      "\t${0:$TM_SELECTED_TEXT}"
+    ],
+    "description": "case ...:"
+  },
+  "Constants with Iota": {
+    "prefix": "iota",
+    "body": [
+      "const (",
+      "\t${1:NAME} ${2:Type} = iota",
+      "\t${0}",
+      ")"
+    ],
+    "description": "const ( ... = iota )"
+  },
+  "Default Case": {
+    "prefix": "default",
+    "body": [
+      "default:",
+      "\t${0:$TM_SELECTED_TEXT}"
+    ],
+    "description": "default: ..."
+  },
+  "Defer Function Call": {
+    "prefix": "df",
+    "body": ["defer ${1:func}(${2})", "${0}"],
+    "description": "defer someFunction()"
+  },
+  "Defer Anonymous Function": {
+    "prefix": "def",
+    "body": [
+      "defer func() {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}()"
+    ],
+    "description": "defer func() { ... }"
+  },
+  "Defer Recover": {
+    "prefix": "defr",
+    "body": [
+      "defer func() {",
+      "\tif err := recover(); err != nil {",
+      "\t\t${0:$TM_SELECTED_TEXT}",
+      "\t}",
+      "}()"
+    ],
+    "description": "defer recover"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": [
+      "import (",
+      "\t\"${1:package}\"",
+      ")"
+    ],
+    "description": "import ( ... )"
+  },
+  "Interface": {
+    "prefix": "interface",
+    "body": [
+      "type ${1:Interface} interface {",
+      "\t${2:/* TODO: add methods */}",
+      "}"
+    ],
+    "description": "interface I { ... }"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "if ... { ... }"
+  },
+  "Else Block": {
+    "prefix": "else",
+    "body": [
+      "else {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "else { ... }"
+  },
+  "If with Inline Error": {
+    "prefix": "ife",
+    "body": [
+      "if err := ${1:condition}; err != nil {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "If with inline error"
+  },
+  "Error Return": {
+    "prefix": "errn",
+    "body": [
+      "if err != nil {",
+      "\treturn err",
+      "}",
+      "${0}"
+    ],
+    "description": "Error return"
+  },
+  "Error Return with Two Values": {
+    "prefix": "errn,",
+    "body": [
+      "if err != nil {",
+      "\treturn ${1:nil}, ${2:err}",
+      "}",
+      "${0}"
+    ],
+    "description": "Error return with two return values"
+  },
+  "Error Handle and Return": {
+    "prefix": "errh",
+    "body": [
+      "if err != nil {",
+      "\t${1}",
+      "\treturn",
+      "}",
+      "${0}"
+    ],
+    "description": "Error handle and return"
+  },
+  "JSON Tag": {
+    "prefix": "json",
+    "body": ["`json:\"${1:fieldName}\"`"],
+    "description": "\\`json:key\\`"
+  },
+  "YAML Tag": {
+    "prefix": "yaml",
+    "body": ["`yaml:\"${1:fieldName}\"`"],
+    "description": "\\`yaml:key\\`"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1} {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "for ... { ... }"
+  },
+  "For Integer Loop": {
+    "prefix": "fori",
+    "body": [
+      "for ${1:i} := 0; $1 < ${2:N}; $1++ {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "for 0..N-1 { ... }"
+  },
+  "For Range Loop": {
+    "prefix": "forr",
+    "body": [
+      "for ${2:k}, ${3:v} := range ${1} {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "for k, v := range items { ... }"
+  },
+  "For Select Loop": {
+    "prefix": "forsel",
+    "body": [
+      "for {",
+      "\tselect {",
+      "\t\tcase ${2:${1:result} := }<- ${3:channel}:",
+      "\t\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "for select"
+  },
+  "Select Case": {
+    "prefix": "selc",
+    "body": [
+      "case ${1:${2:var} := }<-${3:channel}:",
+      "  ${0}"
+    ],
+    "description": "select case"
+  },
+  "Fmt Printf Debug": {
+    "prefix": "ff",
+    "body": ["fmt.Printf(\"$1 = %+v\\n\", ${1:$TM_SELECTED_TEXT})"],
+    "description": "fmt.Printf(...)"
+  },
+  "Fmt Println Debug": {
+    "prefix": "fn",
+    "body": ["fmt.Println(\"${1:$TM_SELECTED_TEXT}\")"],
+    "description": "fmt.Println(...)"
+  },
+  "Fmt Errorf Debug": {
+    "prefix": "fe",
+    "body": ["fmt.Errorf(\"${1:$TM_SELECTED_TEXT}\")"],
+    "description": "fmt.Errorf(...)"
+  },
+  "Error Return Fmt Errorf Wrap": {
+    "prefix": "errnfw",
+    "body": [
+      "if ${1:$TM_SELECTED_TEXT:err} != nil {",
+      "\treturn fmt.Errorf(\"${2:message}: %w\", $1)",
+      "}"
+    ],
+    "description": "Error return fmt.Errorf(%w, err)"
+  },
+  "Method": {
+    "prefix": "meth",
+    "body": [
+      "func (${1:receiver} ${2:type}) ${3:name}(${4:params}) ${5:returnType} {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "func (self Type) Method(...) [error] { ... }"
+  },
+  "Not OK Check": {
+    "prefix": "ok",
+    "body": [
+      "if !ok {",
+      "\t${0:$TM_SELECTED_TEXT}",
+      "}"
+    ],
+    "description": "if !ok { ... }"
+  },
+
+  "Select": {
+    "prefix": "select",
+    "body": [
+      "select {",
+      "case ${1:v1} := <-${2:chan1}:",
+      "\t${0}",
+      "}"
+    ],
+    "description": "select { case a := <-chan: ... }"
+  },
+  "Struct": {
+    "prefix": "st",
+    "body": [
+      "type ${1:Type} struct {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "type T struct { ... }"
+  },
+  "Switch": {
+    "prefix": "switch",
+    "body": [
+      "switch ${1:var} {",
+      "case ${2:value1}:",
+      "\t${0}",
+      "}"
+    ],
+    "description": "switch x { ... }"
+  },
+  "Type Switch": {
+    "prefix": "tswitch",
+    "body": [
+      "switch ${2:$1 := }${1:v}.(type) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "type switch x { ... }"
+  },
+  "Sprintf": {
+    "prefix": "sp",
+    "body": ["fmt.Sprintf(\"%${1:s}\", ${2:var})"],
+    "description": "fmt.Sprintf(...)"
+  },
+  "Goroutine Named Function": {
+    "prefix": "go",
+    "body": ["go ${1:funcName}(${0})"],
+    "description": "go someFunc(...)"
+  },
+  "Goroutine Anonymous Function": {
+    "prefix": "gof",
+    "body": [
+      "go func() {",
+      "\t${1:$TM_SELECTED_TEXT}",
+      "}()",
+      "${0}"
+    ],
+    "description": "go func() { ... }()"
+  },
+ },
+  "Test Run": {
+    "prefix": "tr",
+    "body": [
+      "t.Run(\"${0}\", func(t *testing.T){",
+      "",
+      "})"
+    ],
+    "description": "t.Run(XYZ, func(t *testing.T){ ... })"
+  },
+  "Test Table": {
+    "prefix": "tt",
+    "body": [
+      "var tests = []struct {",
+      "\tname string",
+      "\texpected string",
+      "\tgiven string",
+      "}{",
+      "\t{\"${1}\", \"${2}\", \"${3}\",},",
+      "}",
+      "for _, tt := range tests {",
+      "\ttt := tt",
+      "\tt.Run(tt.name, func(t *testing.T){",
+      "\t\tactual := ${0:$TM_SELECTED_TEXT}(tt.given)",
+      "\t\tif actual != tt.expected {",
+      "\t\t\t\tt.Errorf(\"$0(%s): expected %s, actual %s\", tt.given, tt.expected, actual)",
+      "\t\t}",
+      "",
+      "\t})",
+      "}"
+    ],
+    "description": "table test"
+  },
+  "HTTP Test Server": {
+    "prefix": "tsrv",
+    "body": [
+      "ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {",
+      "\tfmt.Fprintln(w, ${1:`response`})",
+      "}))",
+      "defer ts.Close()",
+      "",
+      "${0:someUrl} = ts.URL"
+    ],
+    "description": "httptest.NewServer"
+  },
+  "Benchmark Function": {
+    "prefix": "benchmark",
+    "body": [
+      "func Benchmark${1:Method}(b *testing.B) {",
+      "\tfor i := 0; i < b.N; i++ {",
+      "\t\t${0:$TM_SELECTED_TEXT}",
+      "\t}",
+      "}"
+    ],
+    "description": "func BenchmarkXYZ(b *testing.B) { ... }"
+  },
+  "Variable Declaration": {
+ },
+  "Variables Declaration Block": {
+    "prefix": "vars",
+    "body": [
+      "var (",
+      "\t${1:x} ${2:Type}${3: = ${0:value}}",
+      ")"
+    ],
+    "description": "var ( ... )"
+  },
+  "Go Main File": {
+    "prefix": "gomainfile",
+    "body": [
+      "package main",
+      "",
+      "import (",
+      "\t\"fmt\"",
+      "\t\"log\"",
+      "\t${1:\"os\"}",
+      ")",
+      "",
+      "func main() {",
+      "\t${0:// Your code here}",
+      "}"
+    ],
+    "description": "Basic main file template"
+  },
+}

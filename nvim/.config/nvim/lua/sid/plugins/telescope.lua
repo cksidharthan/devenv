@@ -28,13 +28,14 @@ return {
 						['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
 					},
 				},
-				file_ignore_patterns = { '.git/', 'node_modules/', 'vendor/', '.nuxt/', '.idea', '.vscode' },
+				file_ignore_patterns = { '.git/', 'node_modules/', 'vendor/', '.nuxt/', '.idea', '.vscode', 'venv', '.venv', '__pycache__' },
 			},
 		})
 
 		telescope.load_extension('fzf')
     telescope.load_extension("noice")
     telescope.load_extension('notify')
+    telescope.load_extension('nerdy')
 
 		vim.keymap.set('n', '<leader>fc', '<cmd>Telescope colorscheme<CR>', { desc = 'Change Colorscheme' })
 		vim.keymap.set( 'n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>", { desc = 'Fuzzy find files in Current working directory' })

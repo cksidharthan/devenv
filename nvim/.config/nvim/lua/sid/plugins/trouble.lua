@@ -2,7 +2,7 @@ return {
 	'folke/trouble.nvim',
 	opts = {
 		win = {
-			size = 80,
+			size = 10,
 		},
 	}, -- for default options, refer to the configuration section for custom setup.
 	cmd = 'Trouble',
