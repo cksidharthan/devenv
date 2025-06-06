@@ -25,6 +25,7 @@
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "4c2cdc69d69fe00c15ae8648f7e954d99e5de3ea" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "93a9ff9b34c91c0cb0f7de8d5f7e4abce51d8903" },
   "mason.nvim": { "branch": "main", "commit": "8024d64e1330b86044fed4c8494ef3dcd483a67c" },
+  "mentor.nvim": { "branch": "main", "commit": "54733a923072d57e50f3acc0d850fbd0b3b95f8a" },
   "mini.icons": { "branch": "main", "commit": "397ed3807e96b59709ef3292f0a3e253d5c1dc0a" },
   "minuet-ai.nvim": { "branch": "main", "commit": "d0a501dbc681ae5c0c5b65e786b14152a6bfc31f" },
   "myeyeshurt": { "branch": "main", "commit": "02922e14aeaba6d305ac93b70668774963554938" },
