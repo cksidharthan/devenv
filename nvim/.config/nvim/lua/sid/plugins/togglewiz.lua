@@ -1,7 +1,7 @@
 return {
 	'cksidharthan/togglewiz.nvim',
-	dir = vim.fn.expand('~/dev/cksidharthan/togglewiz.nvim'),
-	dev = true,
+	-- dir = vim.fn.expand('~/dev/cksidharthan/togglewiz.nvim'),
+	-- dev = true,
 	config = function()
 		require('togglewiz').setup({
 			toggles = {
