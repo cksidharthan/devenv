@@ -1,7 +1,7 @@
 return {
 	'cksidharthan/mentor.nvim',
-  dir = vim.fn.expand('~/dev/cksidharthan/mentor.nvim'),
-	dev = true,
+	--  dir = vim.fn.expand('~/dev/cksidharthan/mentor.nvim'),
+	-- dev = true,
 	config = function()
 		-- In your init.lua or other Neovim config file
 		require('mentor').setup({
