@@ -1,0 +1,183 @@
+" .ideavimrc - Working configuration for IntelliJ IDEA IdeaVim
+
+" Basic Vim settings
+set number
+set relativenumber
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set scrolloff=5
+set clipboard=unnamedplus
+
+" Set leader key to space
+let mapleader = " "
+
+" Enable IdeaVim extensions
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
+" ============================================================================
+" CORE NAVIGATION - Your Requested Mappings
+" ============================================================================
+
+" Global file search
+map <leader>ff <Action>(SearchEverywhere)
+
+" File explorer toggle
+map <leader>ee <Action>(SelectInProjectView)
+
+" Buffer navigation (tabs)
+map <C-h> <Action>(PreviousTab)
+map <C-l> <Action>(NextTab)
+
+" Terminal operations
+map <leader>tt <Action>(ActivateTerminalToolWindow)
+map <leader>tv <Action>(Terminal.OpenInTerminal)
+
+" LSP rename
+map <leader>rn <Action>(RenameElement)
+
+" ============================================================================
+" SEARCH AND FILE OPERATIONS
+" ============================================================================
+
+" Find in files (global search)
+map <leader>fg <Action>(FindInPath)
+
+" Recent files
+map <leader>fr <Action>(RecentFiles)
+
+" In search results, Ctrl+V opens in vertical split
+" Note: This needs to be done in the Find tool window context
+autocmd FileType qf nnoremap <buffer> <C-v> <Action>(OpenInRightSplit)
+
+" ============================================================================
+" WINDOW AND SPLIT MANAGEMENT
+" ============================================================================
+
+" Window navigation
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+
+" Create splits
+map <leader>sv <Action>(SplitVertically)
+map <leader>sh <Action>(SplitHorizontally)
+
+" Close split
+map <leader>sc <Action>(Unsplit)
+
+" ============================================================================
+" LSP AND CODE ACTIONS
+" ============================================================================
+
+" Go to definition
+map gd <Action>(GotoDeclaration)
+
+" Go to implementation
+map gi <Action>(GotoImplementation)
+
+" Find usages
+map gr <Action>(FindUsages)
+
+" Show hover documentation
+map K <Action>(QuickJavaDoc)
+
+" Code actions
+map <leader>ca <Action>(ShowIntentionActions)
+
+" Format code
+map <leader>cf <Action>(ReformatCode)
+
+" ============================================================================
+" BUFFER/TAB MANAGEMENT
+" ============================================================================
+
+" Close current buffer/tab
+map <leader>bd <Action>(CloseContent)
+
+" Close all but current
+map <leader>bo <Action>(CloseAllEditorsButActive)
+
+" ============================================================================
+" PROJECT NAVIGATION
+" ============================================================================
+
+" Project structure
+map <leader>1 <Action>(ActivateProjectToolWindow)
+
+" File structure popup
+map <leader>fs <Action>(FileStructurePopup)
+
+" ============================================================================
+" TERMINAL SHORTCUTS
+" ============================================================================
+
+" Focus terminal
+map <leader>2 <Action>(ActivateTerminalToolWindow)
+
+" New terminal tab
+map <leader>tn <Action>(Terminal.OpenInTerminal)
+
+" ============================================================================
+" GIT OPERATIONS
+" ============================================================================
+
+" Git status
+map <leader>gs <Action>(Vcs.Show.Local.Changes)
+
+" Git blame
+map <leader>gb <Action>(Annotate)
+
+" Git log
+map <leader>gl <Action>(Vcs.Show.Log)
+
+" ============================================================================
+" DEBUG OPERATIONS
+" ============================================================================
+
+" Toggle breakpoint
+map <leader>db <Action>(ToggleLineBreakpoint)
+
+" Debug
+map <leader>dd <Action>(Debug)
+
+" Run
+map <leader>dr <Action>(Run)
+
+" ============================================================================
+" MISCELLANEOUS
+" ============================================================================
+
+" Save file
+map <leader>w <Action>(SaveDocument)
+
+" Save all
+map <leader>wa <Action>(SaveAll)
+
+" Clear search highlight
+nnoremap <Esc> :nohlsearch<CR>
+
+" Better line navigation
+nnoremap H ^
+nnoremap L $
+
+" Keep cursor centered
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Better visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Move lines up/down in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" ============================================================================
+" RELOAD CONFIG
+" ============================================================================
+
+" Reload .ideavimrc
+map <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
