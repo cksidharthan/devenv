@@ -8,3 +8,4 @@ stow -v -t ~ wezterm --adopt
 stow -v -t ~ k9s --adopt
 stow -v -t ~ posting --adopt
 stow -v -t ~ ideavimrc --adopt
+stow -v -t ~ kitty --adopt
