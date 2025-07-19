@@ -39,6 +39,7 @@ return {
 				'Telescope',
         'DressingInput',
 				'TelescopePrompt',
+        'grug-far',
 			}, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
 		end,
 
