@@ -1,7 +1,7 @@
 return {
 	'MagicDuck/grug-far.nvim',
   lazy = true,
-  cmds = {
+  cmd = {
     "GrugFar",
     "GrugFarWithin",
   },

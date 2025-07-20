@@ -2,7 +2,7 @@ return {
   'olimorris/codecompanion.nvim',
   opts = {},
   lazy = true,
-  cmds = {
+  cmd = {
     "CodeCompanion",
     "CodeCompanionChat",
     "CodeCompanionCmd",

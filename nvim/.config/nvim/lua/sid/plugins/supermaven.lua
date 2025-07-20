@@ -22,7 +22,7 @@ return {
 			use_free = false,
 		})
 	end,
-	cmds = {
+	cmd = {
 		'SupermavenStart',
 		'SupermavenStop',
 		'SupermavenRestart',
