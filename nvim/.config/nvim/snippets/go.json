@@ -3,7 +3,7 @@
     "prefix": "anon",
     "body": [
       "${1:fn} := func() {",
-      "\t${2:$TM_SELECTED_TEXT}",
+      "\t${2}",
       "}",
       "${0}"
     ],
@@ -16,14 +16,14 @@
   },
   "Append Assignment": {
     "prefix": "ap=",
-    "body": ["${1:slice} = append($1, ${0:value})"],
+    "body": ["${1:slice} = append(${1:slice}, ${0:value})"],
     "description": "a = append(a, value)"
   },
   "Case": {
     "prefix": "case",
     "body": [
       "case ${1:value}:",
-      "\t${0:$TM_SELECTED_TEXT}"
+      "\t${0}"
     ],
     "description": "case ...:"
   },
@@ -41,7 +41,7 @@
     "prefix": "default",
     "body": [
       "default:",
-      "\t${0:$TM_SELECTED_TEXT}"
+      "\t${0}"
     ],
     "description": "default: ..."
   },
@@ -54,7 +54,7 @@
     "prefix": "def",
     "body": [
       "defer func() {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}()"
     ],
     "description": "defer func() { ... }"
@@ -64,7 +64,7 @@
     "body": [
       "defer func() {",
       "\tif err := recover(); err != nil {",
-      "\t\t${0:$TM_SELECTED_TEXT}",
+      "\t\t${0}",
       "\t}",
       "}()"
     ],
@@ -92,7 +92,7 @@
     "prefix": "if",
     "body": [
       "if ${1:condition} {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}"
     ],
     "description": "if ... { ... }"
@@ -101,7 +101,7 @@
     "prefix": "else",
     "body": [
       "else {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}"
     ],
     "description": "else { ... }"
@@ -110,7 +110,7 @@
     "prefix": "ife",
     "body": [
       "if err := ${1:condition}; err != nil {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}"
     ],
     "description": "If with inline error"
@@ -160,7 +160,7 @@
     "prefix": "for",
     "body": [
       "for ${1} {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}"
     ],
     "description": "for ... { ... }"
@@ -168,8 +168,8 @@
   "For Integer Loop": {
     "prefix": "fori",
     "body": [
-      "for ${1:i} := 0; $1 < ${2:N}; $1++ {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "for ${1:i} := 0; ${1:i} < ${2:N}; ${1:i}++ {",
+      "\t${0}",
       "}"
     ],
     "description": "for 0..N-1 { ... }"
@@ -178,7 +178,7 @@
     "prefix": "forr",
     "body": [
       "for ${2:k}, ${3:v} := range ${1} {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}"
     ],
     "description": "for k, v := range items { ... }"
@@ -188,8 +188,8 @@
     "body": [
       "for {",
       "\tselect {",
-      "\t\tcase ${2:${1:result} := }<- ${3:channel}:",
-      "\t\t\t${0}",
+      "\tcase ${1:result} := <-${2:channel}:",
+      "\t\t${0}",
       "\t}",
       "}"
     ],
@@ -198,31 +198,31 @@
   "Select Case": {
     "prefix": "selc",
     "body": [
-      "case ${1:${2:var} := }<-${3:channel}:",
-      "  ${0}"
+      "case ${1:var} := <-${2:channel}:",
+      "\t${0}"
     ],
     "description": "select case"
   },
   "Fmt Printf Debug": {
     "prefix": "ff",
-    "body": ["fmt.Printf(\"$1 = %+v\\n\", ${1:$TM_SELECTED_TEXT})"],
+    "body": ["fmt.Printf(\"${1:variable} = %+v\\n\", ${1:variable})"],
     "description": "fmt.Printf(...)"
   },
   "Fmt Println Debug": {
     "prefix": "fn",
-    "body": ["fmt.Println(\"${1:$TM_SELECTED_TEXT}\")"],
+    "body": ["fmt.Println(\"${1:message}\")"],
     "description": "fmt.Println(...)"
   },
   "Fmt Errorf Debug": {
     "prefix": "fe",
-    "body": ["fmt.Errorf(\"${1:$TM_SELECTED_TEXT}\")"],
+    "body": ["fmt.Errorf(\"${1:error message}\")"],
     "description": "fmt.Errorf(...)"
   },
   "Error Return Fmt Errorf Wrap": {
     "prefix": "errnfw",
     "body": [
-      "if ${1:$TM_SELECTED_TEXT:err} != nil {",
-      "\treturn fmt.Errorf(\"${2:message}: %w\", $1)",
+      "if ${1:err} != nil {",
+      "\treturn fmt.Errorf(\"${2:message}: %w\", ${1:err})",
       "}"
     ],
     "description": "Error return fmt.Errorf(%w, err)"
@@ -231,7 +231,7 @@
     "prefix": "meth",
     "body": [
       "func (${1:receiver} ${2:type}) ${3:name}(${4:params}) ${5:returnType} {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}"
     ],
     "description": "func (self Type) Method(...) [error] { ... }"
@@ -240,12 +240,11 @@
     "prefix": "ok",
     "body": [
       "if !ok {",
-      "\t${0:$TM_SELECTED_TEXT}",
+      "\t${0}",
       "}"
     ],
     "description": "if !ok { ... }"
   },
-
   "Select": {
     "prefix": "select",
     "body": [
@@ -278,7 +277,7 @@
   "Type Switch": {
     "prefix": "tswitch",
     "body": [
-      "switch ${2:$1 := }${1:v}.(type) {",
+      "switch ${1:v} := ${2:v}.(type) {",
       "\t${0}",
       "}"
     ],
@@ -298,18 +297,17 @@
     "prefix": "gof",
     "body": [
       "go func() {",
-      "\t${1:$TM_SELECTED_TEXT}",
+      "\t${1}",
       "}()",
       "${0}"
     ],
     "description": "go func() { ... }()"
   },
- },
   "Test Run": {
     "prefix": "tr",
     "body": [
-      "t.Run(\"${0}\", func(t *testing.T){",
-      "",
+      "t.Run(\"${1:test name}\", func(t *testing.T){",
+      "\t${0}",
       "})"
     ],
     "description": "t.Run(XYZ, func(t *testing.T){ ... })"
@@ -322,16 +320,15 @@
       "\texpected string",
       "\tgiven string",
       "}{",
-      "\t{\"${1}\", \"${2}\", \"${3}\",},",
+      "\t{\"${1:test case}\", \"${2:expected}\", \"${3:input}\"},",
       "}",
       "for _, tt := range tests {",
       "\ttt := tt",
       "\tt.Run(tt.name, func(t *testing.T){",
-      "\t\tactual := ${0:$TM_SELECTED_TEXT}(tt.given)",
+      "\t\tactual := ${4:function}(tt.given)",
       "\t\tif actual != tt.expected {",
-      "\t\t\t\tt.Errorf(\"$0(%s): expected %s, actual %s\", tt.given, tt.expected, actual)",
+      "\t\t\tt.Errorf(\"${4:function}(%s): expected %s, actual %s\", tt.given, tt.expected, actual)",
       "\t\t}",
-      "",
       "\t})",
       "}"
     ],
@@ -341,11 +338,11 @@
     "prefix": "tsrv",
     "body": [
       "ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {",
-      "\tfmt.Fprintln(w, ${1:`response`})",
+      "\tfmt.Fprintln(w, \"${1:response}\")",
       "}))",
       "defer ts.Close()",
       "",
-      "${0:someUrl} = ts.URL"
+      "${0:someUrl} := ts.URL"
     ],
     "description": "httptest.NewServer"
   },
@@ -354,14 +351,17 @@
     "body": [
       "func Benchmark${1:Method}(b *testing.B) {",
       "\tfor i := 0; i < b.N; i++ {",
-      "\t\t${0:$TM_SELECTED_TEXT}",
+      "\t\t${0}",
       "\t}",
       "}"
     ],
     "description": "func BenchmarkXYZ(b *testing.B) { ... }"
   },
   "Variable Declaration": {
- },
+    "prefix": "var",
+    "body": ["var ${1:name} ${2:type}${3: = ${0:value}}"],
+    "description": "var name type = value"
+  },
   "Variables Declaration Block": {
     "prefix": "vars",
     "body": [
@@ -379,7 +379,7 @@
       "import (",
       "\t\"fmt\"",
       "\t\"log\"",
-      "\t${1:\"os\"}",
+      "\t\"${1:os}\"",
       ")",
       "",
       "func main() {",
@@ -387,5 +387,5 @@
       "}"
     ],
     "description": "Basic main file template"
-  },
+  }
 }
