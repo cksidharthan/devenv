@@ -1,6 +1,6 @@
 {
   "Bash Script Header": {
-    "prefix": "bashheader",
+    "prefix": "header",
     "body": [
       "#!/usr/bin/env bash",
       "",
@@ -12,7 +12,7 @@
   },
 
   "Bash Function": {
-    "prefix": "bashfunction",
+    "prefix": "func",
     "body": [
       "${1:function_name}() {",
       "  local ${2:param1}=\"\\${1:-${3:default}}\"",
@@ -24,7 +24,7 @@
   },
 
   "Bash Argument Parser": {
-    "prefix": "bashargs",
+    "prefix": "while",
     "body": [
       "# Parse command line arguments",
       "while [[ \\$# -gt 0 ]]; do",
@@ -52,7 +52,7 @@
   },
 
   "Bash Error Handling": {
-    "prefix": "basherror",
+    "prefix": "error",
     "body": [
       "error() {",
       "  echo \"[ERROR] \\$1\" >&2",
@@ -71,7 +71,7 @@
   },
 
   "Bash Check Command": {
-    "prefix": "bashcheck",
+    "prefix": "check",
     "body": [
       "if ! command -v ${1:command} &> /dev/null; then",
       "  echo \"${1:command} is not installed. Please install it first.\"",
