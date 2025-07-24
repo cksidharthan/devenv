@@ -1,7 +1,11 @@
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = "echasnovski/mini.icons",
-  event = "VeryLazy",
+  lazy = true,
+  cmd = {
+    "NvimTreeToggle",
+  },
+  -- enabled = false,
   config = function()
     local nvimtree = require("nvim-tree")
 
@@ -75,16 +79,9 @@ return {
     })
 
     -- set keymaps
-    local keymap = vim.keymap
-
-    keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-    keymap.set(
-      "n",
-      "<leader>ef",
-      "<cmd>NvimTreeFindFileToggle<CR>",
-      { desc = "Toggle file explorer in current folder" }
-    )
-    keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
-    keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
   end,
+  keys = {
+    { "<leader>ee", "<cmd>NvimTreeToggle<cr>", desc = "Toggle Nvim Tree" },
+    { "<leader>en", "<cmd>NvimTreeRefresh<cr>", desc = "Refresh file explorer" },
+  },
 }
