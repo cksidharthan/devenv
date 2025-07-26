@@ -31,10 +31,10 @@ return {
 			-- mason-nvim-dap is loaded when nvim-dap loads
 			config = function() end,
 		},
-		{
-			'theHamsta/nvim-dap-virtual-text',
-			opts = {},
-		},
+		-- {
+		-- 	'theHamsta/nvim-dap-virtual-text',
+		-- 	opts = {},
+		-- },
 		-- Add your own debuggers here
 		'leoluz/nvim-dap-go',
 	},

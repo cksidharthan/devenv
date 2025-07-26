@@ -1,6 +1,8 @@
 return {
 	'saghen/blink.cmp',
 	version = '*',
+	enabled = true,
+  dependencies = { "rcarriga/cmp-dap" },
 	event = { 'InsertEnter' },
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
@@ -32,15 +34,16 @@ return {
 			nerd_font_variant = 'mono',
 		},
 
-    -- disable completion in nvimtree, telescope etc.,
+		-- disable completion in nvimtree, telescope etc.,
 		enabled = function()
 			return not vim.tbl_contains({
 				'NvimTree',
 				'Telescope',
-        'DressingInput',
+				'DressingInput',
 				'TelescopePrompt',
-        'grug-far',
-			}, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
+				'grug-far',
+				-- }, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
+			}, vim.bo.filetype) and vim.bo.buftype ~= 'prompt'
 		end,
 
 		signature = {
@@ -67,6 +70,7 @@ return {
 					border = 'single',
 				},
 			},
+			accept = { auto_brackets = { enabled = true } },
 			menu = {
 				border = 'single',
 				draw = {
@@ -77,7 +81,10 @@ return {
 		},
 
 		sources = {
-			default = { 'lsp', 'path', 'snippets', 'buffer' },
+			default = { 'dap', 'lsp', 'path', 'snippets', 'buffer'},
+			providers = {
+				dap = { name = 'dap', module = 'blink.compat.source' },
+			},
 		},
 
 		fuzzy = { implementation = 'prefer_rust_with_warning' },
