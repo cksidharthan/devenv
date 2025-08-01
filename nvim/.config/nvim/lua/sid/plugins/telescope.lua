@@ -44,7 +44,6 @@ return {
     { "<leader>fs", "<cmd>Telescope live_grep<CR>", desc = 'Fuzzy string in Current working directory' },
     { "<leader>fn", "<cmd>Telescope notify<CR>", desc = 'Fuzzy search in notifications' },
     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = 'Fuzzy find open buffers' },
-    { "<leader>en", "<cmd>Telescope frecency CWD=~/.config/nvim<CR>", desc = 'Fuzzy find filetypes in Current working directory' },
     { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = 'Fuzzy find help tags' },
     { "<leader>fib", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending<CR>", desc = 'Fuzzy find in current buffer' },
     { "<leader>fk", "<cmd>Telescope keymaps<CR>", desc = 'Fuzzy find keymaps' },

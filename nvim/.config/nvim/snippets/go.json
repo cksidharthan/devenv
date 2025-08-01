@@ -19,6 +19,15 @@
     "body": ["${1:slice} = append(${1:slice}, ${0:value})"],
     "description": "a = append(a, value)"
   },
+  "ContextWithCancelAndDefer": {
+    "prefix": "ctxc",
+    "body": [
+      "ctx, cancel := context.WithCancel(context.Background())",
+      "defer cancel()",
+      "${0}"
+    ],
+    "description": "context.WithCancel(context.Background())"
+  },
   "Case": {
     "prefix": "case",
     "body": [
