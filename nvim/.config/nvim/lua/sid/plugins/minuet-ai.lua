@@ -1,5 +1,6 @@
 return {
 	'milanglacier/minuet-ai.nvim',
+  -- I am not using this plugin since I switched to code comapnion. In future I might use it.
   enabled = false,
 	config = function()
 		require('minuet').setup({
@@ -34,7 +35,7 @@ return {
 					api_key = 'TERM',
 					name = 'Ollama',
 					end_point = 'http://localhost:11434/v1/completions',
-					model = 'qwen2.5-coder:7b',
+					model = 'zdolny/qwen3-coder58k-tools:latest',
 					optional = {
 						max_tokens = 56,
 						top_p = 0.9,
