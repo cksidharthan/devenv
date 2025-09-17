@@ -2,7 +2,6 @@ return {
 	'saghen/blink.cmp',
 	version = '*',
 	enabled = true,
-  dependencies = { "rcarriga/cmp-dap" },
 	event = { 'InsertEnter' },
 	opts = {
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)

@@ -1,7 +1,7 @@
 return {
   'olimorris/codecompanion.nvim',
   opts = {},
-  lazy = true,
+  event = "BufReadPre",
   cmd = {
     "CodeCompanion",
     "CodeCompanionChat",

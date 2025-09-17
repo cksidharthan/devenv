@@ -1,9 +1,10 @@
 return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = {
+		'AndreM222/copilot-lualine',
 		'echasnovski/mini.icons',
 	},
-  event = "VeryLazy",
+	event = 'VeryLazy',
 	config = function()
 		-- code companion spinner
 		-- Define the spinner component inline
@@ -65,7 +66,8 @@ return {
 			sections = {
 				lualine_x = {
 					{ CodeCompanionSpinner },
-          -- for showing the recording messages
+					{ 'copilot', color = { fg = '#6CC644' } },
+					-- for showing the recording messages
 					{
 						require('noice').api.statusline.mode.get,
 						cond = require('noice').api.statusline.mode.has,
