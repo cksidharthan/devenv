@@ -15,6 +15,7 @@ brew upgrade
 brew tap homebrew/cask
 brew tap oven-sh/bun
 brew tap homebrew/cask-fonts
+brew tap cksidharthan/homebrew-tap
 
 # Development tool casks
 casks=(
