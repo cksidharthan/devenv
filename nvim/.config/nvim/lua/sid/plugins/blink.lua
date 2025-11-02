@@ -1,6 +1,7 @@
 return {
 	'saghen/blink.cmp',
 	version = '*',
+  dependencies = { 'fang2hou/blink-copilot' },
 	enabled = true,
 	event = { 'InsertEnter' },
 	opts = {
@@ -80,9 +81,10 @@ return {
 		},
 
 		sources = {
-			default = { 'dap', 'lsp', 'path', 'snippets', 'buffer'},
+			default = { 'copilot', 'dap', 'lsp', 'path', 'snippets', 'buffer'},
 			providers = {
 				dap = { name = 'dap', module = 'blink.compat.source' },
+        copilot = { name = 'copilot', module = 'blink-copilot', score_offset = 100, async = true, },
 			},
 		},
 
