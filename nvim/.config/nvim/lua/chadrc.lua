@@ -1,13 +1,13 @@
 local options = {
 
   base46 = {
-    theme = "bearded-arc", -- default theme
+    theme = "catppuccin", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "bearded-arc", "flexoki-light" },
+    theme_toggle = { "catppuccin", "flexoki-light" },
   },
 
   ui = {

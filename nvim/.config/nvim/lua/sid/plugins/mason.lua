@@ -57,6 +57,7 @@ return {
 				'sqls',
         'rust_analyzer', -- rust analyzer
 				'jsonls', -- Add JSON language server
+        'regal',
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -76,6 +77,7 @@ return {
 				'yamllint', -- yaml linter
 				'shellcheck', -- shell script linter
 				'shfmt', -- shell script formatter
+        'opa',
 			},
 		})
 	end,

@@ -26,6 +26,7 @@ return {
 		vim.lsp.enable('vue_ls')
 		vim.lsp.enable('buf_ls')
 		vim.lsp.enable('yamlls')
+		vim.lsp.enable('regal')
 
     -- show icons in lsp diagnostics
 		vim.diagnostic.config({
