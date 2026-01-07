@@ -28,7 +28,7 @@ return {
 						['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
 					},
 				},
-				file_ignore_patterns = { '^./.git/', '^node_modules/', '^vendor/', '^.nuxt/', '^.vscode/', '^venv/', '^.venv/', '^__pycache__/', '^.idea/' },
+				file_ignore_patterns = { '^./.git/', '^*/node_modules/', '^vendor/', '^.nuxt/', '^.vscode/', '^venv/', '^.venv/', '^__pycache__/', '^.idea/' },
 			},
 		})
 
@@ -39,7 +39,8 @@ return {
   keys = {
     -- File navigation
     { "<leader>fc", "<cmd>Telescope colorscheme<CR>", desc = 'Change Colorscheme' },
-    { "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }})<CR>", desc = 'Fuzzy find files in Current working directory' },
+    { "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-g', '!vendor', '-g', '!node_modules', '-u' }})<CR>", desc = 'Fuzzy find files in Current working directory' },
+    { "<leader>fg", "<cmd>Telescope git_files<CR>", desc = 'Fuzzy find files that are tracked by git' },
     { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = 'Fuzzy find files in Recent files' },
     { "<leader>fs", "<cmd>Telescope live_grep<CR>", desc = 'Fuzzy string in Current working directory' },
     { "<leader>fn", "<cmd>Telescope notify<CR>", desc = 'Fuzzy search in notifications' },
