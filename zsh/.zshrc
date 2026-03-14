@@ -113,7 +113,7 @@ alias clearctx="kubectx -u"
 alias ld="lazydocker"
 alias lg="lazygit"
 alias nz="nvim ~/.zshrc"
-alias nw="nvim ~/.wezterm.lua"
+alias nw="nvim ~/.config/wezterm/wezterm.lua"
 
 # Created by `pipx` on 2024-07-25 20:24:33
 export PATH="$PATH:$HOME/.local/bin"

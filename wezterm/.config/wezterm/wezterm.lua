@@ -8,8 +8,8 @@ config.font = wezterm.font_with_fallback({
 -- General settings
 config.color_scheme = "Andromeda"
 config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = false
-config.window_background_opacity = 1
+config.hide_tab_bar_if_only_one_tab = true
+config.window_background_opacity = 0.92
 config.macos_window_background_blur = 95
 config.bold_brightens_ansi_colors = true
 config.freetype_load_flags = "NO_HINTING"
@@ -24,7 +24,7 @@ config.window_padding = {
 	bottom = 0,
 	left = 4,
 	right = 4,
-	top = 10,
+	top = 5,
 }
 config.animation_fps = 1
 config.cursor_blink_rate = 0
@@ -69,9 +69,15 @@ end
 
 -- Key bindings
 config.keys = {
-	-- remove ctrl+p keymap to use in posting
+	-- remove ctrl+P keymap to use in posting
 	{
 		key = "P",
+		mods = "CTRL",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	-- remove ctrl+p keymap to use in opencode
+	{
+		key = "p",
 		mods = "CTRL",
 		action = wezterm.action.DisableDefaultAssignment,
 	},
@@ -97,9 +103,7 @@ config.keys = {
 	{ key = "-", mods = "CTRL", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
 	-- Show the selector, using the quick_select_alphabet
 	{ key = "o", mods = "CTRL", action = wezterm.action({ PaneSelect = {} }) },
-	-- Show the selector, using your own alphabet
-	{ key = "p", mods = "CTRL", action = wezterm.action({ PaneSelect = { alphabet = "0123456789" } }) },
-	-- Use cmd + t to open a new tab
+-- Use cmd + t to open a new tab
 	{ key = "t", mods = "CMD", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
 	-- ctrl +b to create a horizontal split at the bottom
 	{ key = "b", mods = "CTRL", action = wezterm.action.SplitPane({ direction = "Down", size = { Percent = 25 } }) },

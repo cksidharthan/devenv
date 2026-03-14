@@ -1,13 +1,13 @@
 local options = {
 
   base46 = {
-    theme = "catppuccin", -- default theme
+    theme = "ayu_dark", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
     changed_themes = {},
-    transparency = false,
-    theme_toggle = { "catppuccin", "flexoki-light" },
+    transparency = true,
+    theme_toggle = { "ayu_dark", "flexoki-light" },
   },
 
   ui = {
@@ -38,46 +38,6 @@ local options = {
       order = { "treeOffset", "buffers", "tabs", "btns" },
       modules = nil,
       bufwidth = 21,
-    },
-  },
-
-  nvdash = {
-    load_on_startup = false,
-    header = {
-      "                            ",
-      "     ▄▄         ▄ ▄▄▄▄▄▄▄   ",
-      "   ▄▀███▄     ▄██ █████▀    ",
-      "   ██▄▀███▄   ███           ",
-      "   ███  ▀███▄ ███           ",
-      "   ███    ▀██ ███           ",
-      "   ███      ▀ ███           ",
-      "   ▀██ █████▄▀█▀▄██████▄    ",
-      "     ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀   ",
-      "                            ",
-      "     Powered By  eovim    ",
-      "                            ",
-    },
-
-    buttons = {
-      { txt = "  Find File", keys = "ff", cmd = "Telescope find_files" },
-      { txt = "  Recent Files", keys = "fo", cmd = "Telescope oldfiles" },
-      { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
-      { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
-      { txt = "  Mappings", keys = "ch", cmd = "NvCheatsheet" },
-
-      { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
-
-      {
-        txt = function()
-          local stats = require("lazy").stats()
-          local ms = math.floor(stats.startuptime) .. " ms"
-          return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
-        end,
-        hl = "NvDashFooter",
-        no_gap = true,
-      },
-
-      { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
     },
   },
 

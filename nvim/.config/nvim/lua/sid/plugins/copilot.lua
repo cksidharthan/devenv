@@ -12,7 +12,7 @@ return {
 		suggestion = {
       enabled = false,
 		},
-    copilot_model = "gpt-4o-copilot",
+    copilot_model = "gpt-41-copilot",
     panel = {
       enabled = false,
     },
