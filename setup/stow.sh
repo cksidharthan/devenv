@@ -2,10 +2,11 @@
 
 stow -v -t ~ zsh --adopt
 stow -v -t ~ nvim --adopt
-stow -v -t ~ tmux --adopt
 stow -v -t ~ starship --adopt
 stow -v -t ~ wezterm --adopt
 stow -v -t ~ k9s --adopt
 stow -v -t ~ posting --adopt
 stow -v -t ~ ideavimrc --adopt
-stow -v -t ~ kitty --adopt
+stow -v -t ~ claude --adopt
+stow -v -t ~ copilot --adopt
+stow -v -t ~ opencode --adopt

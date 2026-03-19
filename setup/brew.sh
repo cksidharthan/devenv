@@ -25,7 +25,6 @@ casks=(
     github
     docker
     brave-browser
-    arc
     postman
     google-chrome
     appcleaner
@@ -34,9 +33,9 @@ casks=(
     wezterm
     font-jetbrains-mono-nerd-font
     font-martian-mono-nerd-font
-    ticktick
     logi-options+
     bruno
+    claude-code
 )
 
 # Install casks
@@ -79,19 +78,15 @@ tools=(
     go
     starship
     azure-cli
-    k6
     fzf
     zoxide
     bun
     go-task
     lazygit
-    gnu-sed
     stow
     helm-ls
-    tmux
     golang-migrate
     silicon
-    styrainc/packages/eopa
     styrainc/packages/regal
     lua-language-server
     yaml-language-server
@@ -99,6 +94,8 @@ tools=(
     golangci-lint
     mockery
     tree
+    copilot-cli
+    opencode
 )
 
 # Install tools

@@ -12,17 +12,14 @@ fi
 go_packages=(
     golang.org/x/tools/cmd/goimports
     github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen
-    go.uber.org/mock/mockgen
     github.com/nikolaydubina/go-cover-treemap
     github.com/securego/gosec/v2/cmd/gosec
     github.com/go-delve/delve/cmd/dlv
-    github.com/peterh/liner
     github.com/derailed/k9s
     github.com/jesseduffield/lazydocker
     github.com/jesseduffield/lazygit
-    github.com/vmware/govmomi/govc
     github.com/sqlc-dev/sqlc/cmd/sqlc
-    github.com/air-verse/air
+    github.com/cksidharthan/recovercheck/cmd/recovercheck
 )
 
 # Install Golang packages
