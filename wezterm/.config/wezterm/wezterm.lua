@@ -31,15 +31,21 @@ config.cursor_blink_rate = 0
 
 -- Function to check if the pane is running Neovim
 local function is_vim(pane)
-	return pane:get_user_vars().IS_NVIM == "true"
+	if pane:get_user_vars().IS_NVIM == "true" then
+		return true
+	end
+
+	local process_name = pane:get_foreground_process_name()
+	if not process_name or #process_name == 0 then
+		return false
+	end
+
+	process_name = process_name:gsub("(.*[/\\])(.*)", "%2")
+	return process_name == "nvim" or process_name == "vim"
 end
 
 -- Direction keys mapping
-local direction_keys = {
-	Left = "h",
-	Down = "j",
-	Up = "k",
-	Right = "l",
+local pane_directions = {
 	h = "Left",
 	j = "Down",
 	k = "Up",
@@ -48,19 +54,24 @@ local direction_keys = {
 
 -- Function to handle split navigation
 local function split_nav(resize_or_move, key)
+	local mods = resize_or_move == "resize" and "META" or "CTRL"
+	local direction = pane_directions[key]
+
 	return {
 		key = key,
-		mods = resize_or_move == "resize" and "META" or "CTRL",
+		mods = mods,
 		action = wezterm.action_callback(function(win, pane)
-			if is_vim(pane) then
+			local has_single_pane = #win:active_tab():panes() == 1
+
+			if is_vim(pane) or has_single_pane then
 				-- Pass the keys through to vim/nvim
 				win:perform_action({
-					SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
+					SendKey = { key = key, mods = mods },
 				}, pane)
 			else
 				-- Adjust pane size or activate pane direction based on the action
-				local action = resize_or_move == "resize" and { AdjustPaneSize = { direction_keys[key], 3 } }
-					or { ActivatePaneDirection = direction_keys[key] }
+				local action = resize_or_move == "resize" and { AdjustPaneSize = { direction, 3 } }
+					or { ActivatePaneDirection = direction }
 				win:perform_action(action, pane)
 			end
 		end),
