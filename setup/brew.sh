@@ -96,6 +96,7 @@ tools=(
     tree
     copilot-cli
     opencode
+    television
 )
 
 # Install tools
