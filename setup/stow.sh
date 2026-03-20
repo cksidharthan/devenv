@@ -8,5 +8,6 @@ stow -v -t ~ k9s --adopt
 stow -v -t ~ posting --adopt
 stow -v -t ~ ideavimrc --adopt
 stow -v -t ~ claude --adopt
+stow -v -t ~ kitty --adopt
 stow -v -t ~ copilot --adopt
 stow -v -t ~ opencode --adopt
