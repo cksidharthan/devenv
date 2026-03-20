@@ -1,9 +1,11 @@
 return {
   'mrjones2014/smart-splits.nvim',
-  event = "VeryLazy",
+  build = './kitty/install-kittens.bash',
   dependencies = {
     'kwkarlwang/bufresize.nvim',
   },
+  -- we cant lazy load this plugin as navigation between kitty and nvim buffer is not working properly
+  lazy = false,
   config = function()
     vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
     vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
