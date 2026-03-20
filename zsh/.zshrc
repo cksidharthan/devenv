@@ -28,7 +28,7 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
   export EDITOR='nvim'
 fi
@@ -43,20 +43,8 @@ alias lastcommit="git rev-parse HEAD | tr -d '\n' | pbcopy"
 alias python="python3"
 alias cd="z"
 alias nuke="nvim"
-alias nuk="nvim"
 alias n="nvim"
 alias sz="source ~/.zshrc"
-
-# tmux alpases
-alias tn="tmux new -s"
-alias ta="tmux attach -t"
-alias tl="tmux ls"
-alias td="tmux detach"
-alias tk="tmux kill-session -t"
-alias tka="tmux kill-session -a"
-alias tks="tmux kill-session -a"
-# alias tnew to create a new tmux session with the name ing (short for ING) only if it doesn't exist already, if it exists, it will attach to the existing session
-alias sn="tmux new -s ing || tmux attach -t ing"
 
 # IP
 alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
@@ -69,16 +57,8 @@ export GIT_TERMINAL_PROMPT=1
 export GOSUMDB=off
 export K9S_CONFIG_DIR=~/.config/k9s
 
-# go Project commands
-alias golint="go vet ./..."
-alias gotest="go test --count=1 -coverprofile=coverage.out ./pkg/..."
-
 export HELM_EXPERIMENTAL_OCI=1
 
-alias keyRepeatOn="defaults write -g ApplePressAndHoldEnabled -bool false"
-alias keyRepeatOff="defaults write -g ApplePressAndHoldEnabled -bool true"
-alias startupSoundOff="sudo nvram StartupMute=%01"
-alias startupSoundOn="sudo nvram StartupMute=%00"
 alias :wq="exit"
 alias :q="exit"
 alias :qa="exit"
@@ -86,18 +66,13 @@ alias :QA="exit"
 alias qa="exit"
 alias sc="silicon --from-clipboard -l bash --to-clipboard -f 'JetbrainsMono Nerd Font Mono' --window-title "
 
-# Kubernetes Autocompletions - Uncomment if you want to use it - Have commented it out because it slows down the shell startup
-# autoload -Uz compinit
-# compinit
-# source <(kubectl completion zsh)
-
 # Go
 alias makedeps="go mod download && go mod tidy && go mod verify && go mod vendor"
 alias findbyport="sudo lsof -i -P | grep LISTEN | grep :$PORT"
 
 # Startship Config
-eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
@@ -122,8 +97,3 @@ export PATH="$PATH:$HOME/.local/bin"
 if [ -f ~/.custom.sh ]; then
   source ~/.custom.sh
 fi
-
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-alias lazy="NVIM_APPNAME=lazyvim nvim"
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

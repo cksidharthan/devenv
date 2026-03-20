@@ -1,5 +1,6 @@
 return {
 	'DanilaMihailov/beacon.nvim',
+	event = 'VeryLazy',
 	config = function()
 		require('beacon').setup({
 			enabled = true, --- (boolean | fun():boolean) check if enabled
