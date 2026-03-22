@@ -130,7 +130,7 @@ down = "select_next_entry"
 ctrl-n = "select_next_entry"
 ctrl-j = "select_next_entry"
 up = "select_prev_entry"
-ctrl-p = "select_prev_entry"
+# ctrl-p = "select_prev_entry"
 ctrl-k = "select_prev_entry"
 
 # History navigation
@@ -161,23 +161,28 @@ ctrl-s = "cycle_sources"
 ctrl-t = "toggle_remote_control"
 ctrl-x = "toggle_action_picker"
 ctrl-o = "toggle_preview"
-ctrl-h = "toggle_help"
-f12 = "toggle_status_bar"
-ctrl-l = "toggle_layout"
-
-# Input field actions
-# ----------------------------------------
-backspace = "delete_prev_char"
-ctrl-w = "delete_prev_word"
-ctrl-u = "delete_line"
-delete = "delete_next_char"
-left = "go_to_prev_char"
-right = "go_to_next_char"
-home = "go_to_input_start"
-ctrl-a = "go_to_input_start"
-end = "go_to_input_end"
-ctrl-e = "go_to_input_end"
-
+ctrl-p = "toggle_help"
+# # [keybindings]
+# scroll_preview_half_page_down = "alt-v"
+# scroll_preview_half_page_up = "ctrl-v"
+# toggle_remote_control = "alt-x" # Like execute-extended-command
+# toggle_help = "ctrl-H"
+# f12 = "toggle_status_bar"
+# ctrl-l = "toggle_layout"
+#
+# # Input field actions
+# # ----------------------------------------
+# backspace = "delete_prev_char"
+# ctrl-w = "delete_prev_word"
+# ctrl-u = "delete_line"
+# delete = "delete_next_char"
+# left = "go_to_prev_char"
+# right = "go_to_next_char"
+# home = "go_to_input_start"
+# ctrl-a = "go_to_input_start"
+# end = "go_to_input_end"
+# ctrl-e = "go_to_input_end"
+#
 # Shell integration
 # ----------------------------------------------------------------------------
 #
@@ -252,3 +257,4 @@ fallback_channel = "files"
 # controls which keybinding should trigger tv
 # for command history
 "command_history" = "ctrl-r"
+
