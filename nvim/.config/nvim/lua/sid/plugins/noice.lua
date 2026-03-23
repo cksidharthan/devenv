@@ -37,6 +37,12 @@ return {
 					enabled = false,
 				},
 			},
+			cmdline = {
+				format = {
+					cmdline = { icon = "❯" }, -- Change this icon to whatever you want
+				},
+			},
+
 			-- you can enable a preset for easier configuration
 			presets = {
 				bottom_search = true, -- use a classic bottom cmdline for search
