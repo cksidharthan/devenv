@@ -34,13 +34,6 @@ map('n', 'bn', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', 'bp', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
 
 map('n', '<C-[>', '<C-t>', { desc = 'Jump back in tag stack' })
-map('n', 'K', vim.lsp.buf.hover, { desc = 'Hover documentation' })
-map('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto declaration' })
-map({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
-map('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
-map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Line diagnostics' })
-map('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
-map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
 
 map('n', 'n', 'nzz', { silent = true })
 map('n', 'N', 'Nzz', { silent = true })

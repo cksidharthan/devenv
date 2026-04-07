@@ -55,6 +55,18 @@ local function configure_lsp()
 	end
 end
 
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover documentation' })
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto declaration' })
+vim.keymap.set({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Line diagnostics' })
+vim.keymap.set('n', ']d', function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '[d', function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = 'Previous diagnostic' })
+
 return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'lsp', {
 	'https://github.com/neovim/nvim-lspconfig',
 	'https://github.com/folke/lazydev.nvim',

@@ -1,7 +1,7 @@
 return {
 	cmd = { 'gopls' },
 	filetypes = { 'go' },
-  root_markers = { 'go.mod', 'go.work', 'go.sum' },
+	root_markers = { 'go.mod', 'go.work', 'go.sum' },
 	settings = {
 		gopls = {
 			codelenses = {
@@ -34,8 +34,8 @@ return {
 			},
 			completeUnimported = true,
 			staticcheck = true,
-      symbolMatcher = 'fuzzy',
-      matcher = 'fuzzy',
+			symbolMatcher = 'fuzzy',
+			matcher = 'fuzzy',
 			directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
 			semanticTokens = true,
 		},
