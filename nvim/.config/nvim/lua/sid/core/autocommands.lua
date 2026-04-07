@@ -49,6 +49,7 @@ end
 
 set_filetype({ "docker-compose.yml", "docker-compose.yaml" }, "yaml.docker-compose")
 
+set_filetype({"code.sid"}, "sid")
 
 -- LSP Log Autocommands
 local group = vim.api.nvim_create_augroup("LSPLogLevel", { clear = true })
