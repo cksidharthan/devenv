@@ -1,0 +1,41 @@
+return {
+	root_markers = { 'go.mod', 'go.work', 'go.sum' },
+	settings = {
+		gopls = {
+			codelenses = {
+				gc_details = true,
+				generate = true,
+				regenerate_cgo = true,
+				run_govulncheck = true,
+				test = true,
+				tidy = true,
+				upgrade_dependency = true,
+				vendor = true,
+			},
+			hints = {
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				constantValues = true,
+				functionTypeParameters = true,
+				parameterNames = true,
+				rangeVariableTypes = true,
+			},
+			analyses = {
+				deprecated = true,
+				nilness = true,
+				shadow = true,
+				unreachable = true,
+				unused = true,
+				unusedparams = true,
+				unusedwrite = true,
+			},
+			completeUnimported = true,
+			staticcheck = true,
+			symbolMatcher = 'fuzzy',
+			matcher = 'fuzzy',
+			directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+			semanticTokens = true,
+		},
+	},
+}
