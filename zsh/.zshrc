@@ -44,6 +44,7 @@ alias python="python3"
 alias cd="z"
 alias nuke="nvim"
 alias n="nvim"
+alias nv="NVIM_APPNAME="nvimpack" nvim ."
 alias sz="source ~/.zshrc"
 
 # IP
