@@ -97,6 +97,8 @@ tools=(
     copilot-cli
     opencode
     television
+    ## required for neovim 0.12+
+    tree-sitter-cli
 )
 
 # Install tools
