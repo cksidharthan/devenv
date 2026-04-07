@@ -1,6 +1,6 @@
+-- gopls overrides: root detection, code lenses, hints, and stricter analyses.
+
 return {
-	cmd = { 'gopls' },
-	filetypes = { 'go' },
 	root_markers = { 'go.mod', 'go.work', 'go.sum' },
 	settings = {
 		gopls = {
@@ -24,13 +24,13 @@ return {
 				rangeVariableTypes = true,
 			},
 			analyses = {
+				deprecated = true,
 				nilness = true,
+				shadow = true,
+				unreachable = true,
+				unused = true,
 				unusedparams = true,
 				unusedwrite = true,
-				deprecated = true,
-				shadow = true,
-				unused = true,
-				unreachable = true,
 			},
 			completeUnimported = true,
 			staticcheck = true,
