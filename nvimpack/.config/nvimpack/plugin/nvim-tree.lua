@@ -4,6 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.pack.add({
 	"https://github.com/nvim-tree/nvim-tree.lua",
+	"https://github.com/echanovski/mini.icons",
 })
 
 vim.keymap.set("n", "<leader>ee", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
@@ -31,26 +32,26 @@ require("nvim-tree").setup({
 		},
 		icons = {
 			glyphs = {
-				default = "󰈚",
-				symlink = "",
+				default = "󰈚 ",
+				symlink = " ",
 				folder = {
-					default = "",
-					empty = "",
-					empty_open = "",
-					open = "",
-					symlink = "",
-					symlink_open = "",
-					arrow_open = "",
-					arrow_closed = "",
+					default = " ",
+					empty = " ",
+					empty_open = " ",
+					open = " ",
+					symlink = " ",
+					symlink_open = " ",
+					arrow_open = "▼ ",
+					arrow_closed = "▶ ",
 				},
 				git = {
-					unstaged = "✗",
-					staged = "✓",
-					unmerged = "",
+					unstaged = "✗ ",
+					staged = "✓ ",
+					unmerged = " ",
 					renamed = "➜",
-					untracked = "★",
-					deleted = "",
-					ignored = "◌",
+					untracked = "★ ",
+					deleted = "  ",
+					ignored = " ◌ ",
 				},
 			},
 		},
