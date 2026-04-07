@@ -1,5 +1,21 @@
 local pack = require('sid.pack')
 
+vim.api.nvim_create_autocmd('PackChanged', {
+	callback = function(event)
+		local data = event.data
+		if data.spec.name ~= 'blink.cmp' then
+			return
+		end
+		if data.kind ~= 'install' and data.kind ~= 'update' then
+			return
+		end
+		local result = vim.system({ 'cargo', 'build', '--release' }, { cwd = data.path }):wait()
+		if result.code ~= 0 then
+			vim.notify('Failed to build blink.cmp fuzzy matcher', vim.log.levels.WARN)
+		end
+	end,
+})
+
 return pack.on_event('InsertEnter', 'blink', {
 	'https://github.com/saghen/blink.cmp',
 }, function()
