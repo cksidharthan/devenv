@@ -16,15 +16,11 @@ return {
 			order = { 'mode', 'file', 'git', '%=', 'lsp_msg', '%=', 'diagnostics', 'copilot', 'cwd', 'cursor' },
 			modules = {
 				copilot = function()
-					-- Multi-state copilot indicator. Mirrors copilot-lualine's branching:
-					--   disabled  → globally disabled via :Copilot disable
-					--   unknown   → loaded but not attached to this buffer
-					--   warning   → copilot.status reports 'Warning'
-					--   enabled   → attached and healthy
+					-- Multi-state copilot indicator: disabled / unknown / warning / enabled.
 					-- copilot.lua loads on InsertEnter, so before that we render nothing.
-					-- Icon is nf-md-github (U+F1928), which is present in every standard
-					-- NerdFont build (the codicon-copilot glyph U+EBCB is not).
-					if not package.loaded['copilot'] then
+					-- Icon is nf-md-github (U+F1928), present in every standard NerdFont build.
+					local rok, cc = pcall(require, 'copilot.client')
+					if not package.loaded['copilot'] or not rok then
 						return ''
 					end
 
@@ -35,33 +31,19 @@ return {
 						warning = ' ',
 						unknown = ' ',
 					}
-					local function render(state)
-						return '%#St_Copilot_' .. state .. '#' .. icons[state] .. ' '
-					end
 
-					local rok, cc = pcall(require, 'copilot.client')
-					if not rok then
-						return ''
-					end
+					local state
 					if cc.is_disabled() then
-						return render('disabled')
-					end
-					if not cc.id then
-						return render('unknown')
-					end
-
-					local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
-					if not cc.buf_is_attached(bufnr) then
-						return render('unknown')
+						state = 'disabled'
+					elseif not cc.id or not cc.buf_is_attached(vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)) then
+						state = 'unknown'
+					else
+						local sok, status = pcall(require, 'copilot.status')
+						local data_status = sok and status.data and status.data.status
+						state = data_status == 'Warning' and 'warning' or 'enabled'
 					end
 
-					local sok, status = pcall(require, 'copilot.status')
-					local data_status = sok and status.data and status.data.status or nil
-					if data_status == 'Warning' then
-						return render('warning')
-					end
-
-					return render('enabled')
+					return '%#St_Copilot_' .. state .. '#' .. icons[state] .. ' '
 				end,
 			},
 		},
