@@ -16,6 +16,7 @@ require('sid.plugins.flash')
 require('sid.plugins.conform')
 require('sid.plugins.todo-comments')
 require('sid.plugins.blink')
+require('sid.plugins.copilot')
 require('sid.plugins.mini-pairs')
 
 -- UI helpers that can wait until startup settles.
