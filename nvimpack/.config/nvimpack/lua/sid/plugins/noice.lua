@@ -24,6 +24,9 @@ local load_noice = pack.later('noice', {
 			message = {
 				enabled = false,
 			},
+			progress = {
+				enabled = false,
+			},
 		},
 		cmdline = {
 			format = {

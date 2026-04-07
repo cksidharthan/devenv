@@ -20,8 +20,8 @@ This is the `vim.pack` version of my Neovim config. It is intentionally smaller 
 - Uses `mini.pairs` instead of `nvim-autopairs`.
 - Removes `myeyeshurt`, `pathclip`, `garbage-day`, and `lualine`.
 - Removes plugin duplication:
-  - `oil.nvim` was dropped because `nvim-tree` is the file explorer here.
   - standalone `mini.icons` was dropped because `mini.nvim` already ships `mini.icons`.
+- Keeps `oil.nvim` alongside `nvim-tree` (oil for buffer-style directory editing, nvim-tree as the sidebar).
 
 ## Layout
 
@@ -56,6 +56,7 @@ This config keeps lazy-loading simple on purpose:
   - `noice`
 - on demand:
   - `nvim-tree`
+  - `oil.nvim`
   - `telescope`
   - `lazygit`
 
