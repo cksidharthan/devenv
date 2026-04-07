@@ -1,3 +1,6 @@
+-- Local floating terminal helper.
+-- The terminal buffer is reused, while the floating window itself is created/destroyed.
+
 vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>', { desc = 'Exit terminal mode' })
 
 local state = {
@@ -12,6 +15,7 @@ local function open_window()
 	local row = math.floor((vim.o.lines - height) / 2)
 
 	if not (state.buf and vim.api.nvim_buf_is_valid(state.buf)) then
+		-- Create the terminal buffer once and hide it when the window closes.
 		state.buf = vim.api.nvim_create_buf(false, true)
 		vim.bo[state.buf].bufhidden = 'hide'
 	end
@@ -29,6 +33,7 @@ end
 
 local function toggle_terminal()
 	if state.win and vim.api.nvim_win_is_valid(state.win) then
+		-- Hide the window but keep the terminal job/buffer alive for the next toggle.
 		vim.api.nvim_win_hide(state.win)
 		state.win = nil
 		return
@@ -37,9 +42,11 @@ local function toggle_terminal()
 	open_window()
 
 	if vim.bo[state.buf].buftype ~= 'terminal' then
+		-- First open creates the terminal job inside the reusable buffer.
 		vim.cmd('terminal')
 	end
 
+	-- Jump straight back into terminal input mode after opening the float.
 	vim.cmd('startinsert')
 end
 

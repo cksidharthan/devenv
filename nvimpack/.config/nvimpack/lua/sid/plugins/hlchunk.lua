@@ -1,3 +1,5 @@
+-- hlchunk adds indent guides and scope/chunk lines after the first file open.
+
 local pack = require('sid.pack')
 
 return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'hlchunk', {

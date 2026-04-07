@@ -1,6 +1,11 @@
+-- Telescope is loaded on demand because it is mostly picker-driven.
+-- Read this file as: helper functions first, setup second, then keymaps.
+
 local pack = require('sid.pack')
 
 local function find_all_files()
+	-- Fall back to ripgrep directly so hidden files are included and common large
+	-- directories are excluded even outside a git repo.
 	require('telescope.builtin').find_files({
 		find_command = {
 			'rg',
@@ -56,6 +61,7 @@ end)
 
 local function builtin(name, opts)
 	return function()
+		-- Small wrapper so every picker map can be lazy-loaded the same way.
 		load_telescope()
 		require('telescope.builtin')[name](opts)
 	end
@@ -69,6 +75,7 @@ end, { desc = 'Find files' })
 vim.keymap.set('n', '<leader>fg', function()
 	load_telescope()
 	local builtin_mod = require('telescope.builtin')
+	-- Prefer git_files inside repos because it is faster and follows gitignore.
 	local ok = pcall(builtin_mod.git_files)
 	if not ok then
 		find_all_files()
@@ -87,6 +94,7 @@ end, { desc = 'Search current buffer' })
 vim.keymap.set('n', '<leader>fk', builtin('keymaps'), { desc = 'Search keymaps' })
 vim.keymap.set('n', '<leader>ft', builtin('lsp_document_symbols'), { desc = 'Document symbols' })
 vim.keymap.set('n', '<leader>fn', function()
+	-- noice owns the notification history, but telescope provides the searchable UI.
 	require('sid.plugins.noice').load()
 	load_telescope()
 	pcall(function()

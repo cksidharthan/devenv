@@ -1,3 +1,6 @@
+-- oil is the "edit directories like buffers" explorer.
+-- It is kept alongside nvim-tree because the workflows are different.
+
 local pack = require('sid.pack')
 
 local load_oil = pack.loader('oil', {

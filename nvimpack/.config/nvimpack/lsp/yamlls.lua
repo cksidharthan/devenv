@@ -1,3 +1,5 @@
+-- yamlls override with explicit schema mappings for common project YAML files.
+
 return {
 	filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.azure-pipelines' },
 	settings = {

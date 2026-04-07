@@ -1,3 +1,5 @@
+-- Helm charts are YAML-with-templates, so this narrows filetypes and schema hints.
+
 return {
 	filetypes = { 'helm' },
 	settings = {

@@ -33,6 +33,32 @@ This is the `vim.pack` version of my Neovim config. It is intentionally smaller 
 - `after/ftplugin`: filetype-local indentation tweaks.
 - `plugin`: small local helper plugins that do not need external dependencies.
 
+## How To Read This Config
+
+If you are new to the config, read it in this order:
+
+1. `init.lua`
+   - Shows the startup order at a glance.
+   - Loads globals first, then core behavior, then the pack helpers, then plugins.
+2. `lua/sid/core/*`
+   - `options.lua` is the baseline editor behavior.
+   - `autocmds.lua` is where one-off filetype behavior and helper commands live.
+   - `keymaps.lua` is the shared keymap layer before plugin-specific mappings.
+3. `lua/sid/pack.lua`
+   - This is the main "how does lazy loading work here?" file.
+   - Most plugin files use these helpers instead of calling `vim.pack.add()` directly.
+4. `lua/sid/plugins/init.lua`
+   - This is the plugin index.
+   - It tells you which modules are expected to load at startup, on first file open, on insert, or on demand.
+5. `lua/sid/plugins/*`
+   - One file per plugin or feature area.
+   - Read these when you want to understand Telescope, LSP, the file tree, and similar features.
+6. `lsp/*`, `after/ftplugin/*`, and `plugin/*`
+   - These are leaf files.
+   - Read them last because they fine-tune behavior rather than defining the main structure.
+
+In general, start with the files that explain structure and loading, then move to the files that only contain overrides.
+
 ## Lazy Loading
 
 This config keeps lazy-loading simple on purpose:

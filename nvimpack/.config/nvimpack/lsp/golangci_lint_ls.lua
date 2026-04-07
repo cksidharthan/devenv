@@ -1,3 +1,5 @@
+-- Use golangci-lint as an LSP-style diagnostics source for Go projects.
+
 return {
 	filetypes = { 'go', 'gomod' },
 	init_options = {

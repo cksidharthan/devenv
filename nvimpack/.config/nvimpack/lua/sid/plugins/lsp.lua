@@ -1,12 +1,17 @@
+-- This file owns shared LSP behavior: diagnostics, common keymaps, and server enablement.
+-- Per-server overrides live in ../lsp/*.lua.
+
 local pack = require('sid.pack')
 
 local function configure_lsp()
+	-- lazydev improves Lua completion for Neovim config/plugin development.
 	require('lazydev').setup({
 		library = {
 			{ path = '${3rd}/luv/library', words = { 'vim%.uv' } },
 		},
 	})
 
+	-- Keep diagnostics informative without flooding the screen with virtual text.
 	vim.diagnostic.config({
 		signs = {
 			text = {
@@ -27,6 +32,7 @@ local function configure_lsp()
 		virtual_lines = false,
 	})
 
+	-- Enable the servers that this config expects to have installed externally.
 	local servers = {
 		'docker_compose_language_service',
 		'dockerls',
@@ -50,11 +56,13 @@ local function configure_lsp()
 		vim.lsp.enable(server)
 	end
 
+	-- Local custom language server used only when the binary exists on this machine.
 	if vim.uv.fs_stat('/Users/sid/dev/cksidharthan/educationlsp/main') then
 		vim.lsp.enable('educationlsp')
 	end
 end
 
+-- These are set up eagerly because they are safe even before a server attaches.
 vim.keymap.set('n', 'K', function()
 	vim.lsp.buf.hover()
 end, { desc = 'Hover documentation' })

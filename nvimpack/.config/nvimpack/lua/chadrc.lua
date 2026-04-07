@@ -1,3 +1,6 @@
+-- chadrc is only for NvChad-provided UI pieces.
+-- Keep editor behavior in lua/sid/* and use this file for theme/statusline/cmp UI knobs.
+
 return {
 	base46 = {
 		theme = 'bearded-arc',
@@ -9,14 +12,14 @@ return {
 			theme = 'default',
 			separator_style = 'default',
 		},
-    cmp = {
-      icons_left = false, -- only for non-atom styles!
-      style = "default", -- default/flat_light/flat_dark/atom/atom_colored
-      abbr_maxwidth = 60,
-      -- for tailwind, css lsp etc
-      format_colors = { lsp = true, icon = "󱓻" },
-    },
-    telescope = { style = "borderless" }, -- borderless / bordered
+		cmp = {
+			icons_left = false, -- only for non-atom styles!
+			style = 'default', -- default/flat_light/flat_dark/atom/atom_colored
+			abbr_maxwidth = 60,
+			-- Enable inline color chips for CSS/Tailwind style completion items.
+			format_colors = { lsp = true, icon = '󱓻' },
+		},
+		telescope = { style = 'borderless' }, -- borderless / bordered
 		tabufline = {
 			enabled = true,
 			lazyload = true,

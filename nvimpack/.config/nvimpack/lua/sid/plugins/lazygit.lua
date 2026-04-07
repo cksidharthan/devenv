@@ -1,3 +1,6 @@
+-- lazygit is completely on demand.
+-- Commands and the <leader>lg map all share the same loader.
+
 local pack = require('sid.pack')
 
 local load_lazygit = pack.loader('lazygit', {

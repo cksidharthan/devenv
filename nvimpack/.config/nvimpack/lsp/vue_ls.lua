@@ -1,3 +1,6 @@
+-- vue_ls handles Vue-specific language features.
+-- If mason's bundled TypeScript SDK exists, point vue_ls at it for consistent behavior.
+
 local tsdk_path = vim.fs.joinpath(
 	vim.fn.stdpath('data'),
 	'mason',
@@ -11,6 +14,7 @@ local tsdk_path = vim.fs.joinpath(
 return {
 	filetypes = { 'vue' },
 	init_options = {
+		-- Passing tsdk is optional; when absent, vue_ls falls back to its default resolution.
 		typescript = vim.uv.fs_stat(tsdk_path) and { tsdk = tsdk_path } or nil,
 		preferences = {
 			disableSuggestions = false,

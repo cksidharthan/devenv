@@ -1,3 +1,6 @@
+-- blink.cmp is completion for insert mode.
+-- It loads on the first InsertEnter so startup stays cheap.
+
 local pack = require('sid.pack')
 
 vim.api.nvim_create_autocmd('PackChanged', {
@@ -9,6 +12,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
 		if data.kind ~= 'install' and data.kind ~= 'update' then
 			return
 		end
+		-- blink can use a Rust fuzzy matcher; build it after installs/updates when possible.
 		local result = vim.system({ 'cargo', 'build', '--release' }, { cwd = data.path }):wait()
 		if result.code ~= 0 then
 			vim.notify('Failed to build blink.cmp fuzzy matcher', vim.log.levels.WARN)
@@ -33,6 +37,7 @@ return pack.on_event('InsertEnter', 'blink', {
 			['<C-Space>'] = { 'show', 'fallback' },
 		},
 		enabled = function()
+			-- Disable completion UI in prompt-style buffers where it gets in the way.
 			return not vim.tbl_contains({
 				'NvimTree',
 				'TelescopePrompt',

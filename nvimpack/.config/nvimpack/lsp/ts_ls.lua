@@ -1,3 +1,7 @@
+-- ts_ls powers JavaScript/TypeScript editing.
+-- When Vue's language server is installed via mason, add its TS plugin so *.vue
+-- files get better TS-aware intelligence from ts_ls too.
+
 local vue_plugin_path = vim.fs.joinpath(
 	vim.fn.stdpath('data'),
 	'mason',

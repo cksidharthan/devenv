@@ -1,3 +1,5 @@
+-- gitsigns adds gutter markers once a real file is opened.
+
 local pack = require('sid.pack')
 
 return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'gitsigns', {

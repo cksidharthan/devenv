@@ -1,3 +1,6 @@
+-- Local helper for renaming the current file from inside Neovim.
+-- This keeps the buffer path and window state in sync after the filesystem rename.
+
 local function rename_file()
 	local old_path = vim.api.nvim_buf_get_name(0)
 
@@ -7,6 +10,7 @@ local function rename_file()
 	end
 
 	if vim.bo.modified then
+		-- Save first so the rename operates on the latest file contents.
 		vim.cmd('write')
 	end
 
@@ -26,6 +30,7 @@ local function rename_file()
 		return
 	end
 
+	-- Point the current buffer at the new path, then reload from disk under the new name.
 	vim.cmd('keepalt file ' .. vim.fn.fnameescape(new_path))
 	vim.cmd('edit')
 	vim.notify('Renamed to ' .. new_name, vim.log.levels.INFO)

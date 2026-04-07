@@ -1,3 +1,5 @@
+-- which-key is pure UI sugar, so it can load after startup settles.
+
 local pack = require('sid.pack')
 
 return pack.later('which-key', {

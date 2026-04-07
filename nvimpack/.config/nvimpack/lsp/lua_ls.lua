@@ -1,3 +1,5 @@
+-- lua_ls needs to know about the Neovim runtime so 'vim' is treated as a known global.
+
 return {
 	settings = {
 		Lua = {

@@ -1,5 +1,9 @@
+-- Treesitter is loaded on first file open.
+-- The job of this file is: make sure parsers exist, then start treesitter for current/future buffers.
+
 local pack = require('sid.pack')
 
+-- Keep the parser list explicit so this config stays predictable across machines.
 local parsers = {
 	'bash',
 	'cmake',

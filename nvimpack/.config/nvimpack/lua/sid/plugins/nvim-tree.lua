@@ -1,3 +1,6 @@
+-- nvim-tree is command/keymap-driven rather than startup-loaded.
+-- This file defines a loader plus the commands/maps that trigger it.
+
 local pack = require('sid.pack')
 
 local load_tree = pack.loader('nvim-tree', {
@@ -12,6 +15,7 @@ local load_tree = pack.loader('nvim-tree', {
 		hijack_netrw = true,
 		hijack_cursor = true,
 		hijack_unnamed_buffer_when_opening = false,
+		-- Keep the tree rooted to the current project while still following the active file.
 		sync_root_with_cwd = true,
 		update_focused_file = {
 			enable = true,
@@ -65,6 +69,7 @@ local load_tree = pack.loader('nvim-tree', {
 	})
 end)
 
+-- These placeholder commands lazy-load the plugin on first use.
 pack.command('NvimTreeToggle', load_tree, { nargs = 0, desc = 'Toggle NvimTree' })
 pack.command('NvimTreeRefresh', load_tree, { nargs = 0, desc = 'Refresh NvimTree' })
 

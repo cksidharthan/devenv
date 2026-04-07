@@ -1,3 +1,5 @@
+-- statuscol customizes the sign/fold/number column layout.
+
 local pack = require('sid.pack')
 
 return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'statuscol', {
@@ -6,7 +8,7 @@ return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'statuscol', {
 	local builtin = require('statuscol.builtin')
 	require('statuscol').setup({
 		setopt = true,
-		-- number-less fold indicator, then signs, then line number & separator
+		-- Column order: fold marker, signs, then line number.
 		segments = {
 			{ text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
 			{ text = { '%s' }, click = 'v:lua.ScSa' },

@@ -1,3 +1,5 @@
+-- gopls overrides: root detection, code lenses, hints, and stricter analyses.
+
 return {
 	root_markers = { 'go.mod', 'go.work', 'go.sum' },
 	settings = {

@@ -1,3 +1,5 @@
+-- flash is handy, but not startup-critical, so schedule it after startup.
+
 local pack = require('sid.pack')
 
 return pack.later('flash', {

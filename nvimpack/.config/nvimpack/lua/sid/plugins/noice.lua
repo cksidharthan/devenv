@@ -1,3 +1,6 @@
+-- noice reorganizes command-line/messages/notifications.
+-- It is scheduled after startup because the editor works fine without it for the first moment.
+
 local pack = require('sid.pack')
 
 local load_noice = pack.later('noice', {
@@ -41,6 +44,7 @@ local load_noice = pack.later('noice', {
 		},
 		routes = {
 			{
+				-- Skip common "no signature help" noise that would otherwise spam notifications.
 				filter = { event = 'notify', find = 'No signature help available' },
 				opts = { skip = true },
 			},

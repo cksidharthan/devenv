@@ -1,3 +1,5 @@
+-- jsonls uses SchemaStore so JSON files pick up schema-aware validation/completion.
+
 return {
 	filetypes = { 'json', 'jsonc' },
 	settings = {
