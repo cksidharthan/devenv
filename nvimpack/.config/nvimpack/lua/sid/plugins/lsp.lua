@@ -90,12 +90,95 @@ end, { desc = 'Previous diagnostic' })
 --   :LspInfo        -> clients attached to the current buffer
 --   :LspInfoActive  -> all clients in the current Neovim session
 --   :LspInfoAll     -> full :checkhealth vim.lsp report
+--
+-- LspInfo / LspInfoActive render into a floating window with one block per
+-- client (name, id, root, filetypes, cmd, attached buffers) so the output is
+-- skimmable instead of a raw vim.inspect dump.
+local function format_client(client)
+	local lines = {}
+	table.insert(lines, string.format('▎ %s  (id: %d)', client.name, client.id))
+
+	local root = client.root_dir
+		or (client.config and client.config.root_dir)
+		or '-'
+	table.insert(lines, '   root:       ' .. root)
+
+	local filetypes = (client.config and client.config.filetypes) or {}
+	if #filetypes > 0 then
+		table.insert(lines, '   filetypes:  ' .. table.concat(filetypes, ', '))
+	end
+
+	local cmd = client.config and client.config.cmd
+	if type(cmd) == 'table' then
+		table.insert(lines, '   cmd:        ' .. table.concat(cmd, ' '))
+	elseif type(cmd) == 'string' then
+		table.insert(lines, '   cmd:        ' .. cmd)
+	end
+
+	local bufs = vim.lsp.get_buffers_by_client_id(client.id)
+	if #bufs > 0 then
+		local names = {}
+		for _, b in ipairs(bufs) do
+			local name = vim.api.nvim_buf_get_name(b)
+			table.insert(names, name == '' and ('[buf ' .. b .. ']') or vim.fn.fnamemodify(name, ':~:.'))
+		end
+		table.insert(lines, '   buffers:    ' .. table.concat(names, ', '))
+	end
+
+	return lines
+end
+
+local function show_lsp_info(title, clients)
+	local lines = { title, string.rep('─', vim.fn.strdisplaywidth(title)), '' }
+	if #clients == 0 then
+		table.insert(lines, '  (no LSP clients)')
+	else
+		for i, client in ipairs(clients) do
+			vim.list_extend(lines, format_client(client))
+			if i < #clients then
+				table.insert(lines, '')
+			end
+		end
+	end
+
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+	vim.bo[buf].modifiable = false
+	vim.bo[buf].bufhidden = 'wipe'
+	vim.bo[buf].filetype = 'lspinfo'
+
+	local width = 0
+	for _, line in ipairs(lines) do
+		local w = vim.fn.strdisplaywidth(line)
+		if w > width then
+			width = w
+		end
+	end
+	width = math.min(width + 4, vim.o.columns - 4)
+	local height = math.min(#lines, vim.o.lines - 4)
+
+	vim.api.nvim_open_win(buf, true, {
+		relative = 'editor',
+		width = width,
+		height = height,
+		row = math.floor((vim.o.lines - height) / 2),
+		col = math.floor((vim.o.columns - width) / 2),
+		style = 'minimal',
+		border = 'rounded',
+		title = ' LSP Info ',
+		title_pos = 'center',
+	})
+
+	vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = buf, nowait = true, silent = true })
+	vim.keymap.set('n', '<esc>', '<cmd>close<cr>', { buffer = buf, nowait = true, silent = true })
+end
+
 vim.api.nvim_create_user_command('LspInfo', function()
-	print(vim.inspect(vim.lsp.get_clients({ bufnr = 0 })))
+	show_lsp_info('LSP Clients (current buffer)', vim.lsp.get_clients({ bufnr = 0 }))
 end, { desc = 'LSP clients attached to current buffer' })
 
 vim.api.nvim_create_user_command('LspInfoActive', function()
-	print(vim.inspect(vim.lsp.get_clients()))
+	show_lsp_info('LSP Clients (all active)', vim.lsp.get_clients())
 end, { desc = 'All active LSP clients in this session' })
 
 vim.api.nvim_create_user_command('LspInfoAll', function()
