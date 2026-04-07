@@ -85,6 +85,23 @@ vim.keymap.set('n', '[d', function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = 'Previous diagnostic' })
 
+-- :LspInfo and friends were removed from nvim-lspconfig when the native
+-- vim.lsp.config API landed. These shims restore the muscle memory:
+--   :LspInfo        -> clients attached to the current buffer
+--   :LspInfoActive  -> all clients in the current Neovim session
+--   :LspInfoAll     -> full :checkhealth vim.lsp report
+vim.api.nvim_create_user_command('LspInfo', function()
+	print(vim.inspect(vim.lsp.get_clients({ bufnr = 0 })))
+end, { desc = 'LSP clients attached to current buffer' })
+
+vim.api.nvim_create_user_command('LspInfoActive', function()
+	print(vim.inspect(vim.lsp.get_clients()))
+end, { desc = 'All active LSP clients in this session' })
+
+vim.api.nvim_create_user_command('LspInfoAll', function()
+	vim.cmd('checkhealth vim.lsp')
+end, { desc = 'Full vim.lsp checkhealth report' })
+
 local load_lsp = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'lsp', {
 	'https://github.com/neovim/nvim-lspconfig',
 	'https://github.com/folke/lazydev.nvim',

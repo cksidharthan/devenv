@@ -1,4 +1,6 @@
--- lua_ls needs to know about the Neovim runtime so 'vim' is treated as a known global.
+-- lazydev.nvim manages workspace.library on demand, so we intentionally do not
+-- preload the entire Neovim runtime here. That avoids re-indexing each time a
+-- new lua buffer is opened.
 
 return {
 	settings = {
@@ -7,7 +9,6 @@ return {
 				globals = { 'vim' },
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file('', true),
 				checkThirdParty = false,
 			},
 		},

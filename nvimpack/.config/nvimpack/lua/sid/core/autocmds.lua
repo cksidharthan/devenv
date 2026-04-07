@@ -55,6 +55,54 @@ vim.api.nvim_create_autocmd('VimEnter', {
 	end,
 })
 
+-- Highlight groups used by the chadrc statusline copilot module. Colors are
+-- copied from copilot-lualine's defaults so the indicator reads the same way:
+-- enabled (green), sleep (gray-blue), disabled (muted blue), warning (orange),
+-- unknown (red). Re-applied on ColorScheme so base46 reloads cannot wipe them.
+local copilot_colors = {
+	enabled = '#50FA7B',
+	sleep = '#AEB7D0',
+	disabled = '#6272A4',
+	warning = '#FFB86C',
+	unknown = '#FF5555',
+}
+local function set_copilot_hl()
+	for state, fg in pairs(copilot_colors) do
+		vim.api.nvim_set_hl(0, 'St_Copilot_' .. state, { fg = fg, bg = 'NONE' })
+	end
+end
+vim.api.nvim_create_autocmd('ColorScheme', { group = group, callback = set_copilot_hl })
+set_copilot_hl()
+
+-- Force a statusline redraw whenever copilot.lua's state changes so the chadrc
+-- copilot module flips between hidden/visible without waiting for the next
+-- cursor move. Two hooks, mirroring copilot-lualine's approach:
+--   1. LspAttach for the 'copilot' client → triggers the first redraw and lets
+--      us register the status notification handler exactly once.
+--   2. status notification handler → keeps the bar in sync with later state
+--      transitions (Normal/InProgress/Warning/Disabled).
+local copilot_status_hooked = false
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = group,
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if not (client and client.name == 'copilot') then
+			return
+		end
+		vim.cmd.redrawstatus()
+		if copilot_status_hooked then
+			return
+		end
+		local ok, status = pcall(require, 'copilot.status')
+		if ok and status.register_status_notification_handler then
+			status.register_status_notification_handler(function()
+				vim.cmd.redrawstatus()
+			end)
+			copilot_status_hooked = true
+		end
+	end,
+})
+
 -- Convenience commands for temporarily changing LSP log verbosity.
 vim.api.nvim_create_user_command('LspLogOff', function()
 	vim.lsp.log.set_level('off')
