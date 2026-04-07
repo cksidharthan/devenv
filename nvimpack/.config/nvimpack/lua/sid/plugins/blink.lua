@@ -20,9 +20,15 @@ vim.api.nvim_create_autocmd('PackChanged', {
 	end,
 })
 
-return pack.on_event('InsertEnter', 'blink', {
+local load_blink = pack.on_event('InsertEnter', 'blink', {
 	'https://github.com/saghen/blink.cmp',
+	'https://github.com/fang2hou/blink-copilot',
 }, function()
+	local default_sources = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' }
+	local providers = {
+		copilot = { name = 'copilot', module = 'blink-copilot', score_offset = 100, async = true },
+	}
+
 	require('blink.cmp').setup({
 		appearance = {
 			nerd_font_variant = 'mono',
@@ -80,8 +86,10 @@ return pack.on_event('InsertEnter', 'blink', {
 			},
 		},
 		sources = {
-			default = { 'lsp', 'path', 'snippets', 'buffer' },
+			default = default_sources,
+			providers = providers,
 		},
+
 		fuzzy = {
 			implementation = 'prefer_rust_with_warning',
 		},

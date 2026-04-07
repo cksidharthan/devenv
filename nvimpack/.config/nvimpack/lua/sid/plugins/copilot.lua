@@ -3,7 +3,7 @@
 
 local pack = require('sid.pack')
 
-local load = pack.on_event('InsertEnter', 'copilot', {
+local load_copilot = pack.on_event('InsertEnter', 'copilot', {
 	'https://github.com/zbirenbaum/copilot.lua',
 	'https://github.com/copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
 }, function()
@@ -34,13 +34,17 @@ local load = pack.on_event('InsertEnter', 'copilot', {
 	})
 end)
 
--- Keymaps trigger the loader on first use, then run the real Copilot command.
+pack.command('Copilot', load_copilot, { nargs = '*', desc = 'Run a Copilot command' })
+
+local function run_copilot(args)
+	vim.cmd('Copilot ' .. args)
+end
+
+-- Keymaps route through the placeholder command, so both maps and :Copilot are lazy-safe.
 vim.keymap.set('n', '<leader>cod', function()
-	load()
-	vim.cmd('Copilot disable')
+	run_copilot('disable')
 end, { desc = 'Copilot disable' })
 
 vim.keymap.set('n', '<leader>coe', function()
-	load()
-	vim.cmd('Copilot enable')
+	run_copilot('enable')
 end, { desc = 'Copilot enable' })

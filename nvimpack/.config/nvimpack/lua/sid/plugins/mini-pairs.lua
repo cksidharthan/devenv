@@ -3,20 +3,7 @@
 
 local configured = false
 
-vim.api.nvim_create_autocmd('InsertEnter', {
-	once = true,
-	callback = function()
-		if configured then
-			return
-		end
-
-		-- Defer pair insertion behavior until the user actually starts typing.
-		configured = true
-		require('mini.pairs').setup()
-	end,
-})
-
-return function()
+local function load_mini_pairs()
 	if configured then
 		return
 	end
@@ -24,3 +11,11 @@ return function()
 	configured = true
 	require('mini.pairs').setup()
 end
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+	once = true,
+	callback = function()
+		-- Defer pair insertion behavior until the user actually starts typing.
+		load_mini_pairs()
+	end,
+})

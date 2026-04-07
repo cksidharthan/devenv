@@ -1,8 +1,20 @@
 -- This module is the glue around Neovim 0.12's vim.pack API.
--- Start here if you want to understand when plugins load.
+-- It defines the small loader API that every plugin file in this config uses.
+--
+-- Preferred patterns:
+--   pack.add(...)                  startup-critical plugins
+--   pack.on_event(...)             load on first matching editor event
+--   pack.later(...)                schedule after startup settles
+--   local load_x = pack.loader(...)    reusable lazy loader
+--   pack.command('Cmd', load_x)        lazy-safe user commands
+--
+-- Plugin files are expected to work by side effect when required from
+-- sid.plugins.init. Prefer command shims over cross-module `require(...).load()`
+-- calls so the file shape stays simple and uniform.
 
 local M = {}
 -- Track whether a lazy plugin has already been added/configured in this session.
+-- Shape: state[id] = { configured = boolean }
 local state = {}
 
 local function plugin_changed(kind)
@@ -45,12 +57,35 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 function M.add(specs, opts)
-	-- Most callers want immediate loading and no interactive confirmation.
+	-- Add one or more plugin specs immediately.
+	--
+	-- specs:
+	--   The same list/table you would pass to vim.pack.add().
+	-- opts:
+	--   Additional vim.pack.add() options. They are merged with:
+	--     { confirm = false, load = true }
+	--
+	-- Use this when a plugin must exist right now during startup.
 	local defaults = { confirm = false, load = true }
 	vim.pack.add(specs, vim.tbl_extend('force', defaults, opts or {}))
 end
 
 function M.loader(id, specs, setup, opts)
+	-- Create a stable one-shot loader function.
+	--
+	-- id:
+	--   Unique cache key for this logical plugin group. Reuse the same id everywhere
+	--   that should share one loaded/configured instance.
+	-- specs:
+	--   Plugin specs forwarded to M.add() the first time the loader is called.
+	-- setup:
+	--   Optional callback that runs once after the specs have been added.
+	-- opts:
+	--   Optional M.add()/vim.pack.add() options used only on the first load.
+	--
+	-- Returns:
+	--   A function with no arguments. Calling it repeatedly is safe; plugin fetch/add
+	--   happens once per session and setup() also runs at most once.
 	return function()
 		local plugin = state[id]
 		if not plugin then
@@ -69,7 +104,18 @@ function M.loader(id, specs, setup, opts)
 end
 
 function M.on_event(events, id, specs, setup, autocmd)
-	-- Lazy-load a plugin the first time one of these editor events fires.
+	-- Register an autocmd-backed lazy loader.
+	--
+	-- events:
+	--   Event name or list of event names passed to nvim_create_autocmd().
+	-- id/specs/setup:
+	--   Same meaning as M.loader().
+	-- autocmd:
+	--   Extra autocmd options. By default this helper uses { once = true } so the
+	--   triggering event only needs to happen once.
+	--
+	-- Returns:
+	--   The underlying loader function, so callers can also force-load manually.
 	local load = M.loader(id, specs, setup)
 	local options = vim.tbl_extend('force', { once = true }, autocmd or {})
 	options.callback = load
@@ -78,14 +124,34 @@ function M.on_event(events, id, specs, setup, autocmd)
 end
 
 function M.later(id, specs, setup)
-	-- Use this for plugins that are useful, but not important to startup time.
+	-- Schedule a lazy loader to run on the next event loop tick.
+	--
+	-- This is useful for non-essential UI/helpers that should load shortly after
+	-- startup without blocking init.lua.
+	--
+	-- Returns:
+	--   The same one-shot loader function returned by M.loader().
 	local load = M.loader(id, specs, setup)
 	vim.schedule(load)
 	return load
 end
 
 function M.command(name, load, opts)
-	-- Define a placeholder command that loads the plugin, then re-runs the real command.
+	-- Define a placeholder user command that bootstraps a lazy plugin.
+	--
+	-- name:
+	--   Exact command name to stub before the real plugin command exists.
+	-- load:
+	--   Loader function, usually returned by M.loader()/M.on_event()/M.later().
+	-- opts:
+	--   User-command options. They are merged with { nargs = '*', bang = true }.
+	--
+	-- Behavior:
+	--   1. Delete the placeholder command.
+	--   2. Call load().
+	--   3. Re-run the original command line so the plugin's real command handles it.
+	--
+	-- This keeps both keymaps and :Commands lazy-safe without duplicating load logic.
 	local user_opts = vim.tbl_extend('force', { nargs = '*', bang = true }, opts or {})
 
 	vim.api.nvim_create_user_command(name, function(ctx)

@@ -42,7 +42,3 @@ end
 
 vim.keymap.set({ 'n', 'v' }, '<leader>cf', format, { desc = 'Format file or selection' })
 vim.keymap.set({ 'n', 'v' }, '<leader>mp', format, { desc = 'Format file or selection' })
-
-return {
-	load = load_conform,
-}

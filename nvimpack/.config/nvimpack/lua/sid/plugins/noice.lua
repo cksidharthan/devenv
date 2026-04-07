@@ -64,11 +64,8 @@ local load_noice = pack.later('noice', {
 	end)
 end)
 
-vim.keymap.set('n', '<leader>nd', function()
-	load_noice()
-	vim.cmd('NoiceDismiss')
-end, { desc = 'Dismiss notifications' })
+pack.command('Noice', load_noice, { nargs = '*', desc = 'Run a Noice command' })
 
-return {
-	load = load_noice,
-}
+vim.keymap.set('n', '<leader>nd', function()
+	vim.cmd('Noice dismiss')
+end, { desc = 'Dismiss notifications' })

@@ -2,7 +2,7 @@
 
 local pack = require('sid.pack')
 
-return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'gitsigns', {
+local load_gitsigns = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'gitsigns', {
 	'https://github.com/lewis6991/gitsigns.nvim',
 }, function()
 	require('gitsigns').setup({

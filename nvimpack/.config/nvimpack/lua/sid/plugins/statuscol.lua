@@ -2,7 +2,7 @@
 
 local pack = require('sid.pack')
 
-return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'statuscol', {
+local load_statuscol = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'statuscol', {
 	'https://github.com/luukvbaal/statuscol.nvim',
 }, function()
 	local builtin = require('statuscol.builtin')

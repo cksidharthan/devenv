@@ -2,7 +2,7 @@
 
 local pack = require('sid.pack')
 
-return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'hlchunk', {
+local load_hlchunk = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'hlchunk', {
 	'https://github.com/shellRaining/hlchunk.nvim',
 }, function()
 	require('hlchunk').setup({

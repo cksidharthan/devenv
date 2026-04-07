@@ -16,12 +16,8 @@ local load_todo_comments = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'todo-c
 end)
 
 vim.keymap.set('n', '<leader>fo', function()
-	-- This path is demand-driven: load todo-comments, then telescope, then run the picker.
+	-- This path is demand-driven: load todo-comments, then let its command route
+	-- through Telescope's lazy placeholder command.
 	load_todo_comments()
-	require('sid.plugins.telescope').load()
 	vim.cmd('TodoTelescope')
 end, { desc = 'Search TODOs' })
-
-return {
-	load = load_todo_comments,
-}

@@ -85,7 +85,7 @@ vim.keymap.set('n', '[d', function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = 'Previous diagnostic' })
 
-return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'lsp', {
+local load_lsp = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'lsp', {
 	'https://github.com/neovim/nvim-lspconfig',
 	'https://github.com/folke/lazydev.nvim',
 	'https://github.com/b0o/SchemaStore.nvim',

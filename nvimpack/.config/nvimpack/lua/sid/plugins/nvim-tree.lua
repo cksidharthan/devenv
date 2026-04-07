@@ -82,7 +82,3 @@ vim.keymap.set('n', '<leader>en', function()
 	load_tree()
 	vim.cmd('NvimTreeRefresh')
 end, { desc = 'Refresh file tree' })
-
-return {
-	load = load_tree,
-}

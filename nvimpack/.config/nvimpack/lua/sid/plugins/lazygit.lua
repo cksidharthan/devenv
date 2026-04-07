@@ -21,7 +21,3 @@ vim.keymap.set('n', '<leader>lg', function()
 	load_lazygit()
 	vim.cmd('LazyGit')
 end, { desc = 'LazyGit' })
-
-return {
-	load = load_lazygit,
-}

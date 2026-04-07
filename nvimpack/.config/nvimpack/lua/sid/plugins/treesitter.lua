@@ -34,7 +34,7 @@ local parsers = {
 	'yaml',
 }
 
-return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'treesitter', {
+local load_treesitter = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'treesitter', {
 	'https://github.com/nvim-treesitter/nvim-treesitter',
 	'https://github.com/windwp/nvim-ts-autotag',
 }, function()
