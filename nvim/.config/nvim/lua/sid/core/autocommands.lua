@@ -58,17 +58,17 @@ local group = vim.api.nvim_create_augroup("LSPLogLevel", { clear = true })
 vim.api.nvim_create_autocmd("VimEnter", {
   group = group,
   callback = function()
-    vim.lsp.set_log_level("off")
+    vim.lsp.log.set_level("off")
   end,
 })
 
 vim.api.nvim_create_user_command("LSPLogOff", function()
-  vim.lsp.set_log_level("off")
+  vim.lsp.log.set_level("off")
   print("LSP log level set to 'off'")
 end, {})
 
 vim.api.nvim_create_user_command("LSPLogOn", function()
-  vim.lsp.set_log_level("debug")
+  vim.lsp.log.set_level("debug")
   print("LSP log level set to 'debug'")
 end, {})
 
