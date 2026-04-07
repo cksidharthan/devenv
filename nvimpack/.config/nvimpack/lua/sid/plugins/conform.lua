@@ -1,11 +1,9 @@
 local pack = require('sid.pack')
 
-return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'conform', {
+local load_conform = pack.loader('conform', {
 	'https://github.com/stevearc/conform.nvim',
 }, function()
-	local conform = require('conform')
-
-	conform.setup({
+	require('conform').setup({
 		formatters_by_ft = {
 			bash = { 'shfmt' },
 			css = { 'prettier' },
@@ -27,15 +25,20 @@ return pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'conform', {
 			yaml = { 'prettier' },
 		},
 	})
-
-	local format = function()
-		conform.format({
-			lsp_fallback = true,
-			async = false,
-			timeout_ms = 1000,
-		})
-	end
-
-	vim.keymap.set({ 'n', 'v' }, '<leader>cf', format, { desc = 'Format file or selection' })
-	vim.keymap.set({ 'n', 'v' }, '<leader>mp', format, { desc = 'Format file or selection' })
 end)
+
+local function format()
+	load_conform()
+	require('conform').format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 1000,
+	})
+end
+
+vim.keymap.set({ 'n', 'v' }, '<leader>cf', format, { desc = 'Format file or selection' })
+vim.keymap.set({ 'n', 'v' }, '<leader>mp', format, { desc = 'Format file or selection' })
+
+return {
+	load = load_conform,
+}

@@ -7,4 +7,7 @@ pack.add({
 
 require('mini.icons').setup()
 require('mini.icons').mock_nvim_web_devicons()
-require('mini.surround').setup()
+
+vim.schedule(function()
+	require('mini.surround').setup()
+end)
