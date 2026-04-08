@@ -52,6 +52,15 @@ vim.api.nvim_create_autocmd('VimEnter', {
 	callback = function()
 		-- LSP debug logs are noisy; keep them off unless actively debugging a server.
 		vim.lsp.log.set_level('off')
+
+		-- Load nvdash on startup if configured
+		local config = require('chadrc')
+		if config.ui and config.ui.nvdash and config.ui.nvdash.load_on_startup then
+			-- Only show nvdash if nvim was opened without file arguments
+			if vim.fn.argc() == 0 and vim.fn.line2byte('$') == -1 then
+				require('nvchad.nvdash')
+			end
+		end
 	end,
 })
 
