@@ -13,8 +13,26 @@ return {
 			separator_style = 'default',
 			-- Default order plus our custom 'copilot' module just before 'cwd'.
 			-- order = { 'mode', 'file', 'git', '%=', 'lsp_msg', '%=', 'diagnostics', 'lsp', 'copilot', 'cwd', 'cursor' },
-			order = { 'mode', 'file', 'git', '%=', 'lsp_msg', '%=', 'diagnostics', 'copilot', 'cwd', 'cursor' },
+			order = { 'mode', 'file', 'git', '%=', 'lsp_msg', '%=', 'diagnostics', 'copilot', 'cwd', 'filetype', 'cursor' },
 			modules = {
+				filetype = function()
+					local ft = vim.bo.filetype
+					if ft == '' then
+						return ''
+					end
+
+					local stl = require('nvchad.stl.utils')
+					local sep_l = stl.separators['default'].left
+
+					-- Get filetype icon from mini.icons
+					local icon = '󰈙 ' -- fallback icon
+					local ok, mini_icons = pcall(require, 'mini.icons')
+					if ok then
+						icon = mini_icons.get('filetype', ft)
+					end
+
+					return '%#St_pos_sep#' .. sep_l .. '%#St_pos_icon#' .. icon .. ' %#St_pos_text# ' .. ft .. ' '
+				end,
 				copilot = function()
 					-- Multi-state copilot indicator: disabled / unknown / warning / enabled.
 					-- copilot.lua loads on InsertEnter, so before that we render nothing.
@@ -73,6 +91,45 @@ return {
 				width = 0.5,
 				height = 0.4,
 				border = 'single',
+			},
+		},
+		nvdash = {
+			load_on_startup = true,
+			header = {
+				'                            ',
+				'     ▄▄         ▄ ▄▄▄▄▄▄▄   ',
+				'   ▄▀███▄     ▄██ █████▀    ',
+				'   ██▄▀███▄   ███           ',
+				'   ███  ▀███▄ ███           ',
+				'   ███    ▀██ ███           ',
+				'   ███      ▀ ███           ',
+				'   ▀██ █████▄▀█▀▄██████▄    ',
+				'     ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀   ',
+				'                            ',
+				'     Powered By  eovim    ',
+				'                            ',
+			},
+
+			buttons = {
+				{ txt = '  Find File', keys = 'ff', cmd = 'Telescope find_files' },
+				{ txt = '  Recent Files', keys = 'fo', cmd = 'Telescope oldfiles' },
+				{ txt = '󰈭  Find Word', keys = 'fw', cmd = 'Telescope live_grep' },
+				{ txt = '󱥚  Themes', keys = 'th', cmd = ":lua require('nvchad.themes').open()" },
+				{ txt = '  Mappings', keys = 'ch', cmd = 'NvCheatsheet' },
+
+				{ txt = '─', hl = 'NvDashFooter', no_gap = true, rep = true },
+
+				{
+					txt = function()
+						local stats = require('lazy').stats()
+						local ms = math.floor(stats.startuptime) .. ' ms'
+						return '  Loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms
+					end,
+					hl = 'NvDashFooter',
+					no_gap = true,
+				},
+
+				{ txt = '─', hl = 'NvDashFooter', no_gap = true, rep = true },
 			},
 		},
 		colorify = {
