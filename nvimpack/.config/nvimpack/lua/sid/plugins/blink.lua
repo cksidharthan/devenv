@@ -78,12 +78,7 @@ local load_blink = pack.on_event('InsertEnter', 'blink', {
 			},
 		},
 		cmdline = {
-			enabled = true,
-			completion = {
-				ghost_text = {
-					enabled = false,
-				},
-			},
+			enabled = false,
 		},
 		sources = {
 			default = default_sources,

@@ -41,5 +41,14 @@ pack.add({
 	'https://github.com/NvChad/ui',
 })
 
+local load_nvchad_theme_switcher = pack.loader('nvchad-theme-switcher', {
+	'https://github.com/nvchad/volt',
+})
+
+vim.api.nvim_create_user_command('NvChadThemes', function()
+	load_nvchad_theme_switcher()
+	require('nvchad.themes').open()
+end, { nargs = 0, desc = 'Open the NvChad theme switcher' })
+
 load_base46_cache()
 require('nvchad')
