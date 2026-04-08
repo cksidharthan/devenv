@@ -31,7 +31,7 @@ local load_telescope = pack.loader('telescope', {
 
 	telescope.setup({
 		defaults = {
-			prompt_prefix = ' 🚀 ',
+			prompt_prefix = '   ',
 			layout_strategy = 'horizontal',
 			path_display = { 'truncate' },
 			mappings = {
