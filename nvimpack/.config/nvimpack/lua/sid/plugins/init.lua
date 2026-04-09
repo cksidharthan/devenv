@@ -6,6 +6,7 @@
 require('sid.plugins.mini')
 require('sid.plugins.ui')
 require('sid.plugins.pack-ui')
+require('sid.plugins.smart-splits')
 
 -- Load on first real editing activity.
 require('sid.plugins.treesitter')

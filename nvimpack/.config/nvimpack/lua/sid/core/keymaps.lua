@@ -26,6 +26,11 @@ map('n', '<leader>sh', '<C-w>s', { desc = 'Split horizontally' })
 map('n', '<leader>se', '<C-w>=', { desc = 'Equalize splits' })
 map('n', '<leader>sx', '<cmd>close<cr>', { desc = 'Close split' })
 map('n', '<leader>so', '<cmd>only<cr>', { desc = 'Close other splits' })
+map('n', '<C-h>', '<C-w>h', { desc = 'Focus left split' })
+map('n', '<C-j>', '<C-w>j', { desc = 'Focus lower split' })
+map('n', '<C-k>', '<C-w>k', { desc = 'Focus upper split' })
+map('n', '<C-l>', '<C-w>l', { desc = 'Focus right split' })
+map('n', '<C-\\>', '<C-w>p', { desc = 'Focus previous split' })
 
 -- Tab pages are used sparingly, but these keep them easy to manage.
 map('n', '<leader>to', '<cmd>tabnew<cr>', { desc = 'New tab' })
