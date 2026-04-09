@@ -41,6 +41,10 @@
       "rev": "944ef13cc8d8fe8b846c91f36041c8dfb85ca000",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "grug-far.nvim": {
+      "rev": "37d0eafc6a2dcf8641aa19fc2a8db5e391b7f16b",
+      "src": "https://github.com/MagicDuck/grug-far.nvim"
+    },
     "hlchunk.nvim": {
       "rev": "3bc2bd7aef28fbed6643534a0fdd0f19966544bc",
       "src": "https://github.com/shellRaining/hlchunk.nvim"
@@ -53,6 +57,10 @@
       "rev": "a04ad0dbc725134edbee3a5eea29290976695357",
       "src": "https://github.com/kdheepak/lazygit.nvim"
     },
+    "mini.icons": {
+      "rev": "7fdae2443a0e2910015ca39ad74b50524ee682d3",
+      "src": "https://github.com/echasnovski/mini.icons"
+    },
     "mini.nvim": {
       "rev": "402ee6c6ec8ea44b22330446c8fb4e615fd3953e",
       "src": "https://github.com/nvim-mini/mini.nvim"
@@ -64,6 +72,10 @@
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-autopairs": {
+      "rev": "59bce2eef357189c3305e25bc6dd2d138c1683f5",
+      "src": "ssh://git@github.com/windwp/nvim-autopairs"
     },
     "nvim-lspconfig": {
       "rev": "9ccd58a7949091c0cc2777d4e92a45a209c808c1",
@@ -112,6 +124,10 @@
     "ui": {
       "rev": "ebf58649bc5c759ee6c730c87d8d2d4dd4124c0d",
       "src": "https://github.com/NvChad/ui"
+    },
+    "volt": {
+      "rev": "620de1321f275ec9d80028c68d1b88b409c0c8b1",
+      "src": "https://github.com/nvchad/volt"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
