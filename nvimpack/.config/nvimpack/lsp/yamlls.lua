@@ -26,7 +26,7 @@ return {
 					['https://taskfile.dev/schema.json'] = 'Taskfile.{yml,yaml}',
 				}
 			),
-			validate = true,
+			validate = false,
 		},
 	},
 }
