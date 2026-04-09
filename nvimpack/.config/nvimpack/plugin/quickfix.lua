@@ -129,7 +129,7 @@ local function scroll_above_first_line()
 		return
 	end
 
-	local row = table.unpack(vim.api.nvim_win_get_cursor(0))
+	local row = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
 	if row == 1 then
 		-- Simulate half-page-up so you can reveal the virtual filename header above line 1.
 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-u>', true, false, true), 'm', true)
