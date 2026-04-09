@@ -1,7 +1,7 @@
 local pack = require('sid.pack')
 
 -- mini.nvim covers icons, surround, and pairs in one place.
-pack.add({
+pack.startup({
 	'https://github.com/nvim-mini/mini.nvim',
 })
 

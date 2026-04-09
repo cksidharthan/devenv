@@ -97,9 +97,12 @@ NVIM_APPNAME=nvimpack nvim
 Useful pack commands:
 
 ```vim
+:Pack
 :lua vim.pack.update()
 :lua vim.pack.update(nil, { offline = true })
 ```
+
+`:Pack` opens the local plugin dashboard for this config: loaded/idle/stale plugins, their lazy-load trigger, and quick actions for refresh, update, and stale-plugin cleanup.
 
 ## Notes
 

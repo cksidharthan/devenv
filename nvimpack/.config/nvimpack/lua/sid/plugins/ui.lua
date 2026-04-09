@@ -35,7 +35,7 @@ local function load_base46_cache()
 end
 
 -- These are startup-critical because other UI pieces assume the theme is available.
-pack.add({
+pack.startup({
 	'https://github.com/nvim-lua/plenary.nvim',
 	'https://github.com/NvChad/base46',
 	'https://github.com/NvChad/ui',
@@ -44,10 +44,15 @@ pack.add({
 local load_nvchad_theme_switcher = pack.loader('nvchad-theme-switcher', {
 	'https://github.com/nvchad/volt',
 })
+pack.hint(load_nvchad_theme_switcher, {
+	commands = { 'NvChadThemes' },
+})
 
 vim.api.nvim_create_user_command('NvChadThemes', function()
 	load_nvchad_theme_switcher()
-	require('nvchad.themes').open()
+	require('nvchad.themes').open({
+		style = 'compact',
+	})
 end, { nargs = 0, desc = 'Open the NvChad theme switcher' })
 
 load_base46_cache()

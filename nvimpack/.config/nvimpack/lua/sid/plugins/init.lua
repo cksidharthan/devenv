@@ -5,6 +5,7 @@
 -- Always-on foundation: icons, theme, and UI shell.
 require('sid.plugins.mini')
 require('sid.plugins.ui')
+require('sid.plugins.pack-ui')
 
 -- Load on first real editing activity.
 require('sid.plugins.treesitter')

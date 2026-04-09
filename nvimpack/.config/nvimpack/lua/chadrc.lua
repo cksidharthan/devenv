@@ -1,6 +1,32 @@
 -- chadrc is only for NvChad-provided UI pieces.
 -- Keep editor behavior in lua/sid/* and use this file for theme/statusline/cmp UI knobs.
 
+local function pack_dashboard_stats()
+	local ok_plugins, plugins = pcall(vim.pack.get, nil, { info = false })
+	if not ok_plugins then
+		return '  vim.pack plugins unavailable'
+	end
+
+	local ok_registry, registry = pcall(function()
+		return require('sid.pack').registry()
+	end)
+
+	local loaded = 0
+	local stale = 0
+	for _, plugin in ipairs(plugins) do
+		if plugin.active then
+			loaded = loaded + 1
+		end
+		if ok_registry and not registry[plugin.spec.name] then
+			stale = stale + 1
+		end
+	end
+
+	local configured = ok_registry and vim.tbl_count(registry) or #plugins
+	local suffix = stale > 0 and ('  (%d stale)'):format(stale) or ''
+	return ('  Loaded %d/%d configured plugins%s'):format(loaded, configured, suffix)
+end
+
 return {
 	base46 = {
 		theme = 'bearded-arc',
@@ -114,17 +140,14 @@ return {
 				{ txt = '  Find File', keys = 'ff', cmd = 'Telescope find_files' },
 				{ txt = '  Recent Files', keys = 'fo', cmd = 'Telescope oldfiles' },
 				{ txt = '󰈭  Find Word', keys = 'fw', cmd = 'Telescope live_grep' },
-				{ txt = '󱥚  Themes', keys = 'th', cmd = ":lua require('nvchad.themes').open()" },
+				{ txt = '󰒲  Plugins', keys = 'pk', cmd = 'Pack' },
+				{ txt = '󱥚  Themes', keys = 'th', cmd = 'NvChadThemes' },
 				{ txt = '  Mappings', keys = 'ch', cmd = 'NvCheatsheet' },
 
 				{ txt = '─', hl = 'NvDashFooter', no_gap = true, rep = true },
 
 				{
-					txt = function()
-						local stats = require('lazy').stats()
-						local ms = math.floor(stats.startuptime) .. ' ms'
-						return '  Loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms
-					end,
+					txt = pack_dashboard_stats,
 					hl = 'NvDashFooter',
 					no_gap = true,
 				},
