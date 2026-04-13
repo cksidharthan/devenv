@@ -185,6 +185,8 @@ vim.api.nvim_create_user_command('LspInfoAll', function()
 	vim.cmd('checkhealth vim.lsp')
 end, { desc = 'Full vim.lsp checkhealth report' })
 
+vim.lsp.codelens.enable(true)
+
 local load_lsp = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'lsp', {
 	'https://github.com/neovim/nvim-lspconfig',
 	'https://github.com/folke/lazydev.nvim',
