@@ -41,9 +41,17 @@
       "rev": "944ef13cc8d8fe8b846c91f36041c8dfb85ca000",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "go.nvim": {
+      "rev": "ed77921e3f0bdf9e52cf9fab2e0f4c69ef2a7e04",
+      "src": "https://github.com/ray-x/go.nvim"
+    },
     "grug-far.nvim": {
       "rev": "37d0eafc6a2dcf8641aa19fc2a8db5e391b7f16b",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
+    },
+    "guihua.lua": {
+      "rev": "d178056728548ed8a99cce94de47b7500bd6889a",
+      "src": "https://github.com/ray-x/guihua.lua"
     },
     "hlchunk.nvim": {
       "rev": "3bc2bd7aef28fbed6643534a0fdd0f19966544bc",
