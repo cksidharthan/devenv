@@ -27,6 +27,23 @@ local function pack_dashboard_stats()
 	return ('  Loaded %d/%d configured plugins%s'):format(loaded, configured, suffix)
 end
 
+local function statusline_file()
+	local stl = require('nvchad.stl.utils')
+	local sep_style = require('nvconfig').ui.statusline.separator_style
+	local separators = type(sep_style) == 'table' and sep_style or stl.separators[sep_style]
+	local path = vim.api.nvim_buf_get_name(stl.stbufnr())
+	local icon = '󰈚'
+	local ok, mini_icons = pcall(require, 'mini.icons')
+	if ok then
+		icon = mini_icons.get('file', path ~= '' and path or 'file')
+	end
+
+	local label = path == '' and '[No Name]' or vim.fn.fnamemodify(path, ':~:.')
+	label = label:gsub('%%', '%%%%')
+
+	return '%#St_file# ' .. icon .. ' %<' .. label .. ' %#St_file_sep#' .. separators.right
+end
+
 return {
 	base46 = {
 		theme = 'bearded-arc',
@@ -41,6 +58,7 @@ return {
 			-- order = { 'mode', 'file', 'git', '%=', 'lsp_msg', '%=', 'diagnostics', 'lsp', 'copilot', 'cwd', 'cursor' },
 			order = { 'mode', 'file', 'git', '%=', 'lsp_msg', '%=', 'diagnostics', 'copilot', 'cwd', 'filetype', 'cursor' },
 			modules = {
+				file = statusline_file,
 				filetype = function()
 					local ft = vim.bo.filetype
 					if ft == '' then
