@@ -27,6 +27,20 @@ local function pack_dashboard_stats()
 	return ('  Loaded %d/%d configured plugins%s'):format(loaded, configured, suffix)
 end
 
+local function statusline_path_label(path)
+	local label = vim.fn.fnamemodify(path, ':~:.')
+	if vim.fn.strdisplaywidth(label) <= 50 then
+		return label
+	end
+
+	local tail = label:match('([^/]+/[^/]+/[^/]+/[^/]+)$')
+	if tail then
+		return '.../' .. tail
+	end
+
+	return label
+end
+
 local function statusline_file()
 	local stl = require('nvchad.stl.utils')
 	local sep_style = require('nvconfig').ui.statusline.separator_style
@@ -38,7 +52,7 @@ local function statusline_file()
 		icon = mini_icons.get('file', path ~= '' and path or 'file')
 	end
 
-	local label = path == '' and '[No Name]' or vim.fn.fnamemodify(path, ':~:.')
+	local label = path == '' and '[No Name]' or statusline_path_label(path)
 	label = label:gsub('%%', '%%%%')
 
 	return '%#St_file# ' .. icon .. ' %<' .. label .. ' %#St_file_sep#' .. separators.right
