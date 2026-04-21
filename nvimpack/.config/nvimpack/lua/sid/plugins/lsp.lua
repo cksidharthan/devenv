@@ -34,6 +34,7 @@ local function configure_lsp()
 
 	-- Enable the servers that this config expects to have installed externally.
 	local servers = {
+		'cssls',
 		'docker_compose_language_service',
 		'dockerls',
 		'gopls',
@@ -57,7 +58,7 @@ local function configure_lsp()
 	end
 
 	-- Local custom language server used only when the binary exists on this machine.
-	if vim.uv.fs_stat('/Users/sid/dev/cksidharthan/educationlsp/main') then
+	if vim.uv.fs_stat(vim.fn.expand('~/dev/cksidharthan/educationlsp/main')) then
 		vim.lsp.enable('educationlsp')
 	end
 end
@@ -115,7 +116,7 @@ local function format_client(client)
 		table.insert(lines, '   cmd:        ' .. cmd)
 	end
 
-	local bufs = vim.lsp.get_buffers_by_client_id(client.id)
+	local bufs = vim.lsp.get_buffers({ client_id = client.id })
 	if #bufs > 0 then
 		local names = {}
 		for _, b in ipairs(bufs) do

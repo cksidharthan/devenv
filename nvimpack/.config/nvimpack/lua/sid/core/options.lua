@@ -50,7 +50,10 @@ opt.scrolloff = 4
 opt.sidescrolloff = 8
 
 -- Keep folds available, but open, so they behave more like navigation hints.
-opt.foldmethod = 'indent'
+-- Treesitter provides language-aware folds where a parser is installed; the
+-- foldexpr silently falls back to 0 for buffers without one.
+opt.foldmethod = 'expr'
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldcolumn = '1'
 opt.foldlevel = 99
 opt.foldlevelstart = 99

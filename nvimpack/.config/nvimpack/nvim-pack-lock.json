@@ -65,6 +65,18 @@
       "rev": "a04ad0dbc725134edbee3a5eea29290976695357",
       "src": "https://github.com/kdheepak/lazygit.nvim"
     },
+    "mason-lspconfig.nvim": {
+      "rev": "0a3b42c3e503df87aef6d6513e13148381495c3a",
+      "src": "https://github.com/williamboman/mason-lspconfig.nvim"
+    },
+    "mason-tool-installer.nvim": {
+      "rev": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc",
+      "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
+    },
+    "mason.nvim": {
+      "rev": "12ddd182d9efbdc848b540f16484a583d52da0fb",
+      "src": "https://github.com/williamboman/mason.nvim"
+    },
     "mini.icons": {
       "rev": "7fdae2443a0e2910015ca39ad74b50524ee682d3",
       "src": "https://github.com/echasnovski/mini.icons"
@@ -84,6 +96,10 @@
     "nvim-autopairs": {
       "rev": "59bce2eef357189c3305e25bc6dd2d138c1683f5",
       "src": "ssh://git@github.com/windwp/nvim-autopairs"
+    },
+    "nvim-colorizer.lua": {
+      "rev": "5cfe7fffbd01e17b3c1e14af85d5febdef88bd8c",
+      "src": "https://github.com/NvChad/nvim-colorizer.lua"
     },
     "nvim-lspconfig": {
       "rev": "9ccd58a7949091c0cc2777d4e92a45a209c808c1",

@@ -8,8 +8,10 @@ require('sid.plugins.ui')
 require('sid.plugins.pack-ui')
 require('sid.plugins.smart-splits')
 
--- Load on first real editing activity.
+-- Editor features: most self-lazy-load on BufReadPre / InsertEnter / FileType
+-- via sid.pack. Requiring them here just registers their triggers.
 require('sid.plugins.treesitter')
+require('sid.plugins.render-markdown')
 require('sid.plugins.lsp')
 require('sid.plugins.gitsigns')
 require('sid.plugins.statuscol')
@@ -21,6 +23,7 @@ require('sid.plugins.todo-comments')
 require('sid.plugins.blink')
 require('sid.plugins.copilot')
 require('sid.plugins.mini-pairs')
+require('sid.plugins.colorizer')
 
 -- UI helpers that can wait until startup settles.
 require('sid.plugins.which-key')
@@ -32,3 +35,6 @@ require('sid.plugins.oil')
 require('sid.plugins.telescope')
 require('sid.plugins.trouble')
 require('sid.plugins.lazygit')
+require('sid.plugins.dap')
+require('sid.plugins.dap-ui')
+require('sid.plugins.mason')
