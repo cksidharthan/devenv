@@ -7,6 +7,11 @@ local load_conform = pack.loader('conform', {
 	'https://github.com/stevearc/conform.nvim',
 }, function()
 	require('conform').setup({
+		formatters = {
+			black = {
+				prepend_args = { '--fast' },
+			},
+		},
 		formatters_by_ft = {
 			bash = { 'shfmt' },
 			css = { 'prettier' },
@@ -36,7 +41,7 @@ local function format()
 	require('conform').format({
 		lsp_fallback = true,
 		async = false,
-		timeout_ms = 1000,
+		timeout_ms = 5000,
 	})
 end
 
