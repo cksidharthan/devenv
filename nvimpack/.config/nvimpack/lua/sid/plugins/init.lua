@@ -23,7 +23,6 @@ require('sid.plugins.todo-comments')
 require('sid.plugins.blink')
 require('sid.plugins.blink-compat')
 require('sid.plugins.copilot')
-require('sid.plugins.mini-pairs')
 require('sid.plugins.colorizer')
 
 -- UI helpers that can wait until startup settles.

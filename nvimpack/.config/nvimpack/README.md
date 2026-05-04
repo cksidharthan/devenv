@@ -17,7 +17,6 @@ This is the `vim.pack` version of my Neovim config. It is intentionally smaller 
   - `todo-comments`
   - `which-key`
   - `noice`
-- Uses `mini.pairs` instead of `nvim-autopairs`.
 - Removes `myeyeshurt`, `pathclip`, `garbage-day`, and `lualine`.
 - Removes plugin duplication:
   - standalone `mini.icons` was dropped because `mini.nvim` already ships `mini.icons`.
@@ -76,7 +75,6 @@ This config keeps lazy-loading simple on purpose:
   - todo-comments
 - first insert:
   - `blink.cmp`
-  - `mini.pairs`
 - after startup:
   - `which-key`
   - `noice`

@@ -42,9 +42,10 @@ alias mk="minikube"
 alias lastcommit="git rev-parse HEAD | tr -d '\n' | pbcopy"
 alias python="python3"
 alias cd="z"
-alias nuke="nvim"
-alias n="nvim"
-alias nv="NVIM_APPNAME="nvimpack" nvim ."
+alias nuke="NVIM_APPNAME="nvimpack" nvim"
+alias no="nvim"
+alias nv="NVIM_APPNAME="nvimpack" nvim"
+alias n="NVIM_APPNAME="nvimpack" nvim"
 alias sz="source ~/.zshrc"
 
 # IP
@@ -88,8 +89,8 @@ alias view='fzf -m --preview="bat --color=always {}"'
 alias clearctx="kubectx -u"
 alias ld="lazydocker"
 alias lg="lazygit"
-alias nz="nvim ~/.zshrc"
-alias nw="nvim ~/.config/wezterm/wezterm.lua"
+alias nz="n ~/.zshrc"
+alias nw="n ~/.config/wezterm/wezterm.lua"
 
 # Created by `pipx` on 2024-07-25 20:24:33
 export PATH="$PATH:$HOME/.local/bin"
