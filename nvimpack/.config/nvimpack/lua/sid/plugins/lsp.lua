@@ -61,6 +61,12 @@ local function configure_lsp()
 	if vim.uv.fs_stat(vim.fn.expand('~/dev/cksidharthan/educationlsp/main')) then
 		vim.lsp.enable('educationlsp')
 	end
+
+	vim.api.nvim_create_autocmd('LspAttach', {
+		callback = function()
+			vim.lsp.codelens.enable()
+		end,
+	})
 end
 
 -- These are set up eagerly because they are safe even before a server attaches.
@@ -185,8 +191,6 @@ end, { desc = 'All active LSP clients in this session' })
 vim.api.nvim_create_user_command('LspInfoAll', function()
 	vim.cmd('checkhealth vim.lsp')
 end, { desc = 'Full vim.lsp checkhealth report' })
-
-vim.lsp.codelens.enable(true)
 
 local load_lsp = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'lsp', {
 	'https://github.com/neovim/nvim-lspconfig',

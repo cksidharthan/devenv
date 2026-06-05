@@ -11,7 +11,7 @@ local load_copilot = pack.on_event('InsertEnter', 'copilot', {
 		suggestion = {
 			enabled = false,
 		},
-		copilot_model = 'gpt-41-copilot',
+		-- copilot_model = 'gpt-41-copilot',
 		panel = {
 			enabled = false,
 		},

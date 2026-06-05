@@ -10,6 +10,7 @@ stow -v -t ~ ideavimrc --adopt
 stow -v -t ~ claude --adopt
 stow -v -t ~ kitty --adopt
 stow -v -t ~ copilot --adopt
+stow -v -t ~ utils --adopt
 stow -v -t ~ opencode --adopt
 stow -v -t ~ television --adopt
 stow -v -t ~ nvimpack --adopt

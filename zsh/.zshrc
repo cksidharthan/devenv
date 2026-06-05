@@ -89,6 +89,7 @@ alias view='fzf -m --preview="bat --color=always {}"'
 alias clearctx="kubectx -u"
 alias ld="lazydocker"
 alias lg="lazygit"
+alias sg="sh ~/gitswitch.sh"
 alias nz="n ~/.zshrc"
 alias nw="n ~/.config/wezterm/wezterm.lua"
 
