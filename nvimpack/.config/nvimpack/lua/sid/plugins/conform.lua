@@ -20,7 +20,6 @@ local load_conform = pack.loader('conform', {
 			javascript = { 'prettier' },
 			javascriptreact = { 'prettier' },
 			json = { 'prettier' },
-			jsonc = { 'prettier' },
 			lua = { 'stylua' },
 			markdown = { 'prettier' },
 			proto = { 'buf' },
