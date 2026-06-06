@@ -29,3 +29,8 @@ require('mini.pick').setup({
 		config = mini_pick_window_config,
 	},
 })
+
+-- surround is useful everywhere, but not important enough to block startup.
+vim.schedule(function()
+	require('mini.surround').setup()
+end)

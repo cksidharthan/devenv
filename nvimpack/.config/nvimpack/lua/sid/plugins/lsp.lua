@@ -62,11 +62,11 @@ local function configure_lsp()
 		vim.lsp.enable('educationlsp')
 	end
 
-	vim.api.nvim_create_autocmd('LspAttach', {
-		callback = function()
-			vim.lsp.codelens.enable()
-		end,
-	})
+	-- vim.api.nvim_create_autocmd('LspAttach', {
+	-- 	callback = function()
+	-- 		vim.lsp.codelens.enable()
+	-- 	end,
+	-- })
 end
 
 -- These are set up eagerly because they are safe even before a server attaches.
@@ -122,7 +122,7 @@ local function format_client(client)
 		table.insert(lines, '   cmd:        ' .. cmd)
 	end
 
-	local bufs = vim.lsp.get_buffers({ client_id = client.id })
+	local bufs = client:get_buffers()
 	if #bufs > 0 then
 		local names = {}
 		for _, b in ipairs(bufs) do
