@@ -50,17 +50,21 @@ pack.startup({
 	'https://github.com/mrjones2014/smart-splits.nvim',
 })
 
-local smart_splits = require('smart-splits')
+-- Pane navigation is not needed in the first rendered frame, so defer the
+-- require/setup and keymaps one tick to keep them off the blocking startup path.
+vim.schedule(function()
+	local smart_splits = require('smart-splits')
 
-smart_splits.setup()
+	smart_splits.setup()
 
-vim.keymap.set('n', '<A-h>', smart_splits.resize_left, { desc = 'Resize split left' })
-vim.keymap.set('n', '<A-j>', smart_splits.resize_down, { desc = 'Resize split down' })
-vim.keymap.set('n', '<A-k>', smart_splits.resize_up, { desc = 'Resize split up' })
-vim.keymap.set('n', '<A-l>', smart_splits.resize_right, { desc = 'Resize split right' })
+	vim.keymap.set('n', '<A-h>', smart_splits.resize_left, { desc = 'Resize split left' })
+	vim.keymap.set('n', '<A-j>', smart_splits.resize_down, { desc = 'Resize split down' })
+	vim.keymap.set('n', '<A-k>', smart_splits.resize_up, { desc = 'Resize split up' })
+	vim.keymap.set('n', '<A-l>', smart_splits.resize_right, { desc = 'Resize split right' })
 
-vim.keymap.set('n', '<C-h>', smart_splits.move_cursor_left, { desc = 'Focus left split or pane' })
-vim.keymap.set('n', '<C-j>', smart_splits.move_cursor_down, { desc = 'Focus lower split or pane' })
-vim.keymap.set('n', '<C-k>', smart_splits.move_cursor_up, { desc = 'Focus upper split or pane' })
-vim.keymap.set('n', '<C-l>', smart_splits.move_cursor_right, { desc = 'Focus right split or pane' })
-vim.keymap.set('n', '<C-\\>', smart_splits.move_cursor_previous, { desc = 'Focus previous split or pane' })
+	vim.keymap.set('n', '<C-h>', smart_splits.move_cursor_left, { desc = 'Focus left split or pane' })
+	vim.keymap.set('n', '<C-j>', smart_splits.move_cursor_down, { desc = 'Focus lower split or pane' })
+	vim.keymap.set('n', '<C-k>', smart_splits.move_cursor_up, { desc = 'Focus upper split or pane' })
+	vim.keymap.set('n', '<C-l>', smart_splits.move_cursor_right, { desc = 'Focus right split or pane' })
+	vim.keymap.set('n', '<C-\\>', smart_splits.move_cursor_previous, { desc = 'Focus previous split or pane' })
+end)

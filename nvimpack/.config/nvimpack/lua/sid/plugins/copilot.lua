@@ -1,9 +1,11 @@
 -- GitHub Copilot suggestions via copilot.lua.
--- Loads on the first InsertEnter so it doesn't slow down startup.
+-- Does NOT load on startup or InsertEnter: it is only pulled in the first time
+-- Copilot is actually used, i.e. via :Copilot (or the <leader>coe enable keymap,
+-- which routes through that command shim).
 
 local pack = require('sid.pack')
 
-local load_copilot = pack.on_event('InsertEnter', 'copilot', {
+local load_copilot = pack.loader('copilot', {
 	'https://github.com/zbirenbaum/copilot.lua',
 	'https://github.com/copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
 }, function()

@@ -33,6 +33,9 @@ local function configure_lsp()
 	})
 
 	-- Enable the servers that this config expects to have installed externally.
+	-- jsonls and yamlls are intentionally absent here: their config overrides pull
+	-- in SchemaStore.nvim, so they are enabled lazily on their own filetypes below
+	-- to keep SchemaStore off every other buffer.
 	local servers = {
 		'cssls',
 		'docker_compose_language_service',
@@ -41,7 +44,6 @@ local function configure_lsp()
 		'golangci_lint_ls',
 		'helm_ls',
 		'html',
-		'jsonls',
 		'lua_ls',
 		'pyright',
 		'regal',
@@ -50,7 +52,6 @@ local function configure_lsp()
 		'tailwindcss',
 		'ts_ls',
 		'vue_ls',
-		'yamlls',
 	}
 
 	for _, server in ipairs(servers) do
@@ -195,5 +196,36 @@ end, { desc = 'Full vim.lsp checkhealth report' })
 local load_lsp = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'lsp', {
 	'https://github.com/neovim/nvim-lspconfig',
 	'https://github.com/folke/lazydev.nvim',
-	'https://github.com/b0o/SchemaStore.nvim',
 }, configure_lsp)
+
+-- SchemaStore.nvim is only consumed by the yamlls and jsonls config overrides
+-- (lsp/yamlls.lua, lsp/jsonls.lua). vim.lsp.enable() evaluates a server's config
+-- eagerly, so enabling those two servers also requires SchemaStore. To keep it off
+-- every other buffer, enable jsonls/yamlls only on their filetypes and make sure
+-- SchemaStore is on the runtimepath first.
+local load_schemastore = pack.loader('schemastore', {
+	'https://github.com/b0o/SchemaStore.nvim',
+})
+
+local function enable_schema_server(server)
+	return function()
+		-- Ensure nvim-lspconfig (base server config) and SchemaStore are present
+		-- before vim.lsp.enable() reads the override and requires schemastore.
+		load_lsp()
+		load_schemastore()
+		vim.lsp.enable(server)
+	end
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = { 'json', 'jsonc' },
+	once = true,
+	callback = enable_schema_server('jsonls'),
+	desc = 'Enable jsonls (and load SchemaStore) on first json buffer',
+})
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = 'yaml',
+	once = true,
+	callback = enable_schema_server('yamlls'),
+	desc = 'Enable yamlls (and load SchemaStore) on first yaml buffer',
+})
