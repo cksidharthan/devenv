@@ -10,6 +10,8 @@ local load_tree = pack.loader('nvim-tree', {
 		view = {
 			width = 35,
 			relativenumber = false,
+			-- Keep a one-column signcolumn as a blank left margin.
+			signcolumn = 'yes',
 		},
 		disable_netrw = true,
 		hijack_netrw = true,
@@ -68,6 +70,32 @@ local load_tree = pack.loader('nvim-tree', {
 		},
 	})
 end)
+
+-- The signcolumn is our blank left margin, but on the cursor line the theme paints
+-- that cell with the green CursorLineSign background. nvim-tree sets statuscolumn/
+-- winhighlight when it opens its window, so schedule our overrides to run afterwards
+-- (and on every open, since BufWinEnter fires each time the tree is shown):
+--   - clear the statuscolumn that statuscol.nvim sets globally
+--   - remap CursorLineSign to the tree's cursor-line bg so the gutter stays blank
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	callback = function(args)
+		if vim.bo[args.buf].filetype ~= 'NvimTree' then
+			return
+		end
+		local win = vim.api.nvim_get_current_win()
+		vim.schedule(function()
+			if not vim.api.nvim_win_is_valid(win) then
+				return
+			end
+			vim.wo[win].statuscolumn = ''
+			vim.api.nvim_set_option_value(
+				'winhighlight',
+				vim.wo[win].winhighlight .. ',CursorLineSign:NvimTreeCursorLine',
+				{ win = win }
+			)
+		end)
+	end,
+})
 
 -- These placeholder commands lazy-load the plugin on first use.
 pack.command('NvimTreeToggle', load_tree, { nargs = 0, desc = 'Toggle NvimTree' })

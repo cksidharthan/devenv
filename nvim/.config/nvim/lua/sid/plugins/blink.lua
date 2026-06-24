@@ -21,6 +21,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 local load_blink = pack.on_event('InsertEnter', 'blink', {
+	-- blink.cmp v2 split its shared library out into blink.lib; it must be on the
+	-- runtimepath before blink.cmp loads.
+	'https://github.com/saghen/blink.lib',
 	'https://github.com/saghen/blink.cmp',
 	'https://github.com/fang2hou/blink-copilot',
 }, function()
