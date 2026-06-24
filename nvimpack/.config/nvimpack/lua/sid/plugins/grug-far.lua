@@ -17,7 +17,7 @@ local load_grug_far = pack.loader('grug-far', {
 	})
 end)
 
-pack.command('GrugFar', load_grug_far(), { nargs = '*', desc = 'Open Grug Far to Search and Replace' })
+pack.command('GrugFar', load_grug_far, { nargs = '*', desc = 'Open Grug Far to Search and Replace' })
 
 vim.keymap.set('n', '<leader>sr', function()
 	load_grug_far()

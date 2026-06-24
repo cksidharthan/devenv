@@ -2,7 +2,7 @@
 
 local pack = require('sid.pack')
 
-local load_which_key = pack.later('which-key', {
+local load_which_key = pack.on_event('VimEnter', 'which-key', {
 	'https://github.com/folke/which-key.nvim',
 }, function()
 	require('which-key').setup()

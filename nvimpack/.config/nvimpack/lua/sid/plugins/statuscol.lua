@@ -8,15 +8,15 @@ local load_statuscol = pack.on_event({ 'BufReadPre', 'BufNewFile' }, 'statuscol'
 	local builtin = require('statuscol.builtin')
 	require('statuscol').setup({
 		setopt = true,
-		-- Column order: fold marker, signs, then line number.
+		-- Column order
 		segments = {
-			{ text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
-			{ text = { '%s' }, click = 'v:lua.ScSa' },
+			{ text = { '%s' }, click = 'v:lua.ScSa' }, -- signs column (like newly added but not commited to git, etc.,)
 			{
-				text = { builtin.lnumfunc, ' ' },
+				text = { builtin.lnumfunc, ' ' }, -- line number
 				condition = { true, builtin.not_empty },
 				click = 'v:lua.ScLa',
 			},
+			{ text = { builtin.foldfunc, ' ' }, click = 'v:lua.ScFa' }, ---- code folds
 		},
 	})
 end)

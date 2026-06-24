@@ -8,7 +8,7 @@ BAT_THEME="Dracula"
 
 # Golang Env
 export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin:~/.config/emacs/bin"
 
 # Mason env
 export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"

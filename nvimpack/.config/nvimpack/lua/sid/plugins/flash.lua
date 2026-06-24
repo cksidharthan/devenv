@@ -2,7 +2,7 @@
 
 local pack = require('sid.pack')
 
-local load_flash = pack.later('flash', {
+local load_flash = pack.on_event('BufReadPost', 'flash', {
 	'https://github.com/folke/flash.nvim',
 }, function()
 	require('flash').setup({

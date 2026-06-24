@@ -53,8 +53,8 @@ opt.sidescrolloff = 8
 -- Treesitter provides language-aware folds where a parser is installed; the
 -- foldexpr silently falls back to 0 for buffers without one.
 opt.foldmethod = 'expr'
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldcolumn = '1'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldcolumn = '0'
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
@@ -82,6 +82,9 @@ local function apply_ui_highlights()
 	vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#51B3EC', bold = true })
 	vim.api.nvim_set_hl(0, 'LineNr', { fg = 'white', bold = true })
 	vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FB508F', bold = true })
+	vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#2a2e38' })
+	vim.api.nvim_set_hl(0, 'CursorLineSign', { bg = '#3a5a40' })
+	vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ffcc00', bg = '#3a5a40', bold = true })
 end
 
 vim.api.nvim_create_autocmd('ColorScheme', {
