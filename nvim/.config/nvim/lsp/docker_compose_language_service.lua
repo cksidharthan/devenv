@@ -1,5 +1,7 @@
+-- Per-server override for docker compose YAML files.
+-- Neovim picks this up when vim.lsp.enable('docker_compose_language_service') runs.
+
 return {
-  cmd = { "docker-compose-langserver" },
 	filetypes = { 'yaml.docker-compose' },
 	settings = {
 		docker = {

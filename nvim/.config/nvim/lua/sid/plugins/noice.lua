@@ -1,82 +1,71 @@
--- lazy.nvim
-return {
-	'folke/noice.nvim',
-	event = 'VeryLazy',
-	opts = {
-		-- add any options here
-	},
-	dependencies = {
-		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-		'MunifTanjim/nui.nvim',
-		-- OPTIONAL:
-		--   `nvim-notify` is only needed, if you want to use the notification view.
-		--   If not available, we use `mini` as the fallback
-		{
-			'rcarriga/nvim-notify',
-			opts = {
-				render = 'compact',
-				stages = 'slide',
-				fps = 120,
+-- noice reorganizes command-line/messages/notifications.
+-- It is scheduled after startup because the editor works fine without it for the first moment.
+
+local pack = require('sid.pack')
+
+local load_noice = pack.later('noice', {
+	'https://github.com/MunifTanjim/nui.nvim',
+	'https://github.com/rcarriga/nvim-notify',
+	'https://github.com/folke/noice.nvim',
+}, function()
+	require('notify').setup({
+		render = 'compact',
+		stages = 'slide',
+		fps = 120,
+	})
+
+	require('noice').setup({
+		lsp = {
+			override = {
+				['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+				['vim.lsp.util.stylize_markdown'] = true,
+			},
+			signature = {
+				enabled = true,
+				auto_show = false,
+			},
+			message = {
+				enabled = false,
+			},
+			progress = {
+				enabled = false,
 			},
 		},
-	},
-	config = function()
-		require('noice').setup({
-			lsp = {
-				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-				override = {
-					['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-					['vim.lsp.util.stylize_markdown'] = true,
-					['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
-				},
-				signature = {
-					enabled = true,
-					auto_show = false,
-				},
-				message = {
-					enabled = false,
-				},
+		cmdline = {
+			format = {
+				cmdline = { icon = '❯' },
 			},
-			cmdline = {
-				format = {
-					cmdline = { icon = "❯" }, -- Change this icon to whatever you want
-				},
+		},
+		presets = {
+			bottom_search = true,
+			command_palette = true,
+			long_message_to_split = true,
+			lsp_doc_border = true,
+		},
+		routes = {
+			{
+				-- Skip common "no signature help" noise that would otherwise spam notifications.
+				filter = { event = 'notify', find = 'No signature help available' },
+				opts = { skip = true },
 			},
+			{
+				filter = { event = 'lsp', find = 'signature help not available' },
+				opts = { skip = true },
+			},
+			{
+				filter = { event = 'lsp', kind = 'signature', find = 'signature_help' },
+				opts = { skip = true },
+			},
+		},
+	})
 
-			-- you can enable a preset for easier configuration
-			presets = {
-				bottom_search = true, -- use a classic bottom cmdline for search
-				command_palette = true, -- position the cmdline and popupmenu together
-				long_message_to_split = true, -- long messages will be sent to a split
-				inc_rename = false, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = true, -- add a border to hover docs and signature help
-			},
+	pcall(function()
+		require('telescope').load_extension('noice')
+	end)
+end)
 
-      -- I added these routes as i was bombarded with Notify messages as "LSP Signature not available" which was annoying and was not needed for me.
-			routes = {
-				{
-					filter = {
-						event = 'notify',
-						find = 'No signature help available',
-					},
-					opts = { skip = true },
-				},
-				{
-					filter = {
-						event = 'lsp',
-						find = 'signature help not available', -- Alternative message format
-					},
-					opts = { skip = true },
-				},
-				{
-					filter = {
-						event = 'lsp',
-						find = 'signature_help', -- Catch other signature help related messages
-						kind = 'signature',
-					},
-					opts = { skip = true },
-				},
-			},
-		})
-	end,
-}
+pack.command('Noice', load_noice, { nargs = '*', desc = 'Run a Noice command' })
+
+vim.keymap.set('n', '<leader>nd', function()
+	vim.cmd('Noice dismiss')
+end, { desc = 'Dismiss notifications' })

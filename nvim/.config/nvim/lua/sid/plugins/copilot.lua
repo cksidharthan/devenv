@@ -1,25 +1,26 @@
-return {
-	"zbirenbaum/copilot.lua",
-	event = "InsertEnter",
-  dependencies = {
-    "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-  },
-	keys = {
-		{ "<leader>cod", "<cmd>Copilot disable<CR>", desc = "Copilot disable" },
-		{ "<leader>coe", "<cmd>Copilot enable<CR>", desc = "Copilot enable" },
-	},
-	opts = {
+-- GitHub Copilot suggestions via copilot.lua.
+-- Does NOT load on startup or InsertEnter: it is only pulled in the first time
+-- Copilot is actually used, i.e. via :Copilot (or the <leader>coe enable keymap,
+-- which routes through that command shim).
+
+local pack = require('sid.pack')
+
+local load_copilot = pack.loader('copilot', {
+	'https://github.com/zbirenbaum/copilot.lua',
+	'https://github.com/copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
+}, function()
+	require('copilot').setup({
 		suggestion = {
-      enabled = false,
+			enabled = false,
 		},
-    copilot_model = "gpt-41-copilot",
-    panel = {
-      enabled = false,
-    },
+		-- copilot_model = 'gpt-41-copilot',
+		panel = {
+			enabled = false,
+		},
 		filetypes = {
-			["."] = true,
+			['.'] = true,
 			md = true,
-      markdown = true,
+			markdown = true,
 			go = true,
 			yaml = true,
 			json = true,
@@ -32,5 +33,20 @@ return {
 			typescript = true,
 		},
 		server_opts_overrides = {},
-	},
-}
+	})
+end)
+
+pack.command('Copilot', load_copilot, { nargs = '*', desc = 'Run a Copilot command' })
+
+local function run_copilot(args)
+	vim.cmd('Copilot ' .. args)
+end
+
+-- Keymaps route through the placeholder command, so both maps and :Copilot are lazy-safe.
+vim.keymap.set('n', '<leader>cod', function()
+	run_copilot('disable')
+end, { desc = 'Copilot disable' })
+
+vim.keymap.set('n', '<leader>coe', function()
+	run_copilot('enable')
+end, { desc = 'Copilot enable' })

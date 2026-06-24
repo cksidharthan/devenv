@@ -1,12 +1,9 @@
--- this plugin helps you to remember the keybindings in neovim by showing a popup with the possible keybindings after pressing a keybinding
-return {
-	"folke/which-key.nvim",
-  event = "VeryLazy",
-	init = function()
-		vim.o.timeout = true
-		vim.o.timeoutlen = 500
-	end,
-  config = function()
-    require("which-key").setup({})
-  end
-}
+-- which-key is pure UI sugar, so it can load after startup settles.
+
+local pack = require('sid.pack')
+
+local load_which_key = pack.on_event('VimEnter', 'which-key', {
+	'https://github.com/folke/which-key.nvim',
+}, function()
+	require('which-key').setup()
+end)

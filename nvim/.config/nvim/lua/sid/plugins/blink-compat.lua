@@ -1,9 +1,12 @@
-return {
-	'saghen/blink.compat',
-	-- use v2.* for blink.cmp v1.*
-	version = '2.*',
-	-- lazy.nvim will automatically load the plugin when it's required by blink.cmp
-	lazy = true,
-	-- make sure to set opts so that lazy.nvim calls blink.compat's setup
-	opts = {},
-}
+-- blink.compat bridges nvim-cmp sources into blink.cmp.
+-- Keep it on the 2.x line for blink.cmp v1.x.
+local pack = require('sid.pack')
+
+local load_blink_compat = pack.on_event('InsertEnter', 'blink-compat', {
+	{
+		src = 'https://github.com/saghen/blink.compat',
+		version = vim.version.range('2'),
+	},
+}, function()
+	require('blink.compat').setup()
+end)

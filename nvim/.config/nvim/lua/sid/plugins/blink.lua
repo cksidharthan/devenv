@@ -1,51 +1,55 @@
-return {
-	'saghen/blink.cmp',
-	version = '*',
-  dependencies = { 'fang2hou/blink-copilot' },
-	enabled = true,
-	event = { 'InsertEnter' },
-	opts = {
-		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-		-- 'super-tab' for mappings similar to vscode (tab to accept)
-		-- 'enter' for enter to accept
-		-- 'none' for no mappings
-		--
-		-- All presets have the following mappings:
-		-- C-space: Open menu or open docs if already open
-		-- C-n/C-p or Up/Down: Select next/previous item
-		-- C-e: Hide menu
-		-- C-k: Toggle signature help (if signature.enabled = true)
-		--
-		-- See :h blink-cmp-config-keymap for defining your own keymap
+-- blink.cmp is completion for insert mode.
+-- It loads on the first InsertEnter so startup stays cheap.
+
+local pack = require('sid.pack')
+
+vim.api.nvim_create_autocmd('PackChanged', {
+	callback = function(event)
+		local data = event.data
+		if data.spec.name ~= 'blink.cmp' then
+			return
+		end
+		if data.kind ~= 'install' and data.kind ~= 'update' then
+			return
+		end
+		-- blink can use a Rust fuzzy matcher; build it after installs/updates when possible.
+		local result = vim.system({ 'cargo', 'build', '--release' }, { cwd = data.path }):wait()
+		if result.code ~= 0 then
+			vim.notify('Failed to build blink.cmp fuzzy matcher', vim.log.levels.WARN)
+		end
+	end,
+})
+
+local load_blink = pack.on_event('InsertEnter', 'blink', {
+	'https://github.com/saghen/blink.cmp',
+	'https://github.com/fang2hou/blink-copilot',
+}, function()
+	local default_sources = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' }
+	local providers = {
+		copilot = { name = 'copilot', module = 'blink-copilot', score_offset = 100, async = true },
+	}
+
+	require('blink.cmp').setup({
+		appearance = {
+			nerd_font_variant = 'mono',
+		},
 		keymap = {
 			preset = 'none',
 			['<C-j>'] = { 'select_next', 'fallback' },
 			['<C-k>'] = { 'select_prev', 'fallback' },
-			-- accept down arrow and up arrow
 			['<Down>'] = { 'select_next', 'fallback' },
 			['<Up>'] = { 'select_prev', 'fallback' },
-			-- press enter to confirm completion
 			['<CR>'] = { 'select_and_accept', 'fallback' },
-			-- press ctrl + space to trigger completion
 			['<C-Space>'] = { 'show', 'fallback' },
 		},
-
-		appearance = {
-			nerd_font_variant = 'mono',
-		},
-
-		-- disable completion in nvimtree, telescope etc.,
 		enabled = function()
+			-- Disable completion UI in prompt-style buffers where it gets in the way.
 			return not vim.tbl_contains({
 				'NvimTree',
-				'Telescope',
-				'DressingInput',
 				'TelescopePrompt',
-				'grug-far',
-				-- }, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
+				'noice',
 			}, vim.bo.filetype) and vim.bo.buftype ~= 'prompt'
 		end,
-
 		signature = {
 			enabled = false,
 			window = {
@@ -53,19 +57,10 @@ return {
 				show_documentation = false,
 			},
 		},
-		cmdline = {
-			enabled = true,
-			completion = {
-				ghost_text = {
-					enabled = false,
-				},
-			},
-		},
-
 		completion = {
 			documentation = {
 				auto_show = true,
-				auto_show_delay_ms = 500,
+				auto_show_delay_ms = 300,
 				window = {
 					border = 'single',
 				},
@@ -75,20 +70,23 @@ return {
 				border = 'single',
 				draw = {
 					treesitter = { 'lsp' },
-					columns = { { 'kind_icon', 'label', 'label_description', gap = 1 }, { 'kind' } },
+					columns = {
+						{ 'kind_icon', 'label', 'label_description', gap = 1 },
+						{ 'kind' },
+					},
 				},
 			},
 		},
-
+		cmdline = {
+			enabled = false,
+		},
 		sources = {
-			default = { 'copilot', 'dap', 'lsp', 'path', 'snippets', 'buffer'},
-			providers = {
-				dap = { name = 'dap', module = 'blink.compat.source' },
-        copilot = { name = 'copilot', module = 'blink-copilot', score_offset = 100, async = true, },
-			},
+			default = default_sources,
+			providers = providers,
 		},
 
-		fuzzy = { implementation = 'prefer_rust_with_warning' },
-	},
-	opts_extend = { 'sources.default' },
-}
+		fuzzy = {
+			implementation = 'prefer_rust_with_warning',
+		},
+	})
+end)

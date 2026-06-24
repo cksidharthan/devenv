@@ -1,9 +1,9 @@
+-- jsonls uses SchemaStore so JSON files pick up schema-aware validation/completion.
+
 return {
-	cmd = { 'vscode-json-language-server' },
-	filetypes = { 'jsonv' },
+	filetypes = { 'json' },
 	settings = {
 		json = {
-			-- Use schemastore catalog for JSON schema completion
 			schemas = require('schemastore').json.schemas(),
 			validate = { enable = true },
 		},

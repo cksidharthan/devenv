@@ -1,88 +1,54 @@
--- Remap space as leader key
--- Must be before lazy
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Shared non-plugin keymaps live here.
+-- Plugin-specific maps stay next to the plugin so this file remains the editing baseline.
 
-local keymap = vim.keymap -- for conciseness
+local map = vim.keymap.set
 
-keymap.set("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Save and quit" })
-keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
-keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-keymap.set("n", "<leader><leader>x", "<CMD>source %<CR>", { desc = "Source the current file" })
+-- Clear highlight after a search without leaving normal mode.
+map('n', '<Esc>', function()
+	vim.cmd.nohlsearch()
+end, { desc = 'Clear search highlight' })
 
--- to escape insert mode instead of pressing escape
-keymap.set("i", "jk", "<ESC>", { desc = "Exit Insert mode with jk" })
+map('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 
--- to clear search highlights that we do with /
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear Search highlights" })
+-- File and buffer lifecycle.
+map('n', '<leader>w', '<cmd>write<cr>', { desc = 'Write file' })
+map('n', '<leader>wq', '<cmd>wq<cr>', { desc = 'Write and quit' })
+map('n', '<leader>q', '<cmd>quit<cr>', { desc = 'Quit window' })
+map('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' })
+map('n', '<leader><leader>x', '<cmd>source %<cr>', { desc = 'Source current file' })
+map('n', '<leader>re', '<cmd>edit!<cr>', { desc = 'Reload current file' })
 
--- make yaf to copy the whole function 
-keymap.set("n", "yaf", "va{Vy", { desc = "Copy the whole function" })
+-- Window management.
+map('n', '<leader>sv', '<C-w>v', { desc = 'Split vertically' })
+map('n', '<leader>sh', '<C-w>s', { desc = 'Split horizontally' })
+map('n', '<leader>se', '<C-w>=', { desc = 'Equalize splits' })
+map('n', '<leader>sx', '<cmd>close<cr>', { desc = 'Close split' })
+map('n', '<leader>so', '<cmd>only<cr>', { desc = 'Close other splits' })
+map('n', '<C-h>', '<C-w>h', { desc = 'Focus left split' })
+map('n', '<C-j>', '<C-w>j', { desc = 'Focus lower split' })
+map('n', '<C-k>', '<C-w>k', { desc = 'Focus upper split' })
+map('n', '<C-l>', '<C-w>l', { desc = 'Focus right split' })
+map('n', '<C-\\>', '<C-w>p', { desc = 'Focus previous split' })
 
--- Lazy plugin manager management
-keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-keymap.set("n", "<leader>li", "<cmd>Lazy install<cr>")
-keymap.set("n", "<leader>ls", "<cmd>Lazy sync<cr>")
-keymap.set("n", "<leader>lu", "<cmd>Lazy update<cr>")
-keymap.set("n", "<leader>lp", "<cmd>Lazy profile<cr>")
+-- Tab pages are used sparingly, but these keep them easy to manage.
+map('n', '<leader>to', '<cmd>tabnew<cr>', { desc = 'New tab' })
+map('n', '<leader>tx', '<cmd>tabclose<cr>', { desc = 'Close tab' })
+map('n', '<leader>tn', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+map('n', '<leader>tp', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
+map('n', '<leader>tf', '<cmd>tabnew %<cr>', { desc = 'Current buffer in new tab' })
 
--- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make the size of the splits to be equal" })
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
-keymap.set("n", "<leader>so", "<cmd>only<CR>", { desc = "Close all splits except the current one" })
+-- Fast buffer cycling without reaching for commands.
+map('n', '<Tab>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
+map('n', '<S-Tab>', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
+map('n', 'bx', '<cmd>bdelete<cr>', { desc = 'Delete buffer' })
+map('n', 'bn', '<cmd>bnext<cr>', { desc = 'Next buffer' })
+map('n', 'bp', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
 
--- tab management
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
--- switch tabs by <leader>X where x is number from 1 to 9
-keymap.set("n", "<leader>1", "<cmd>tabnext 1<CR>", { desc = "Switch to tab 1" })
-keymap.set("n", "<leader>2", "<cmd>tabnext 2<CR>", { desc = "Switch to tab 2" })
-keymap.set("n", "<leader>3", "<cmd>tabnext 3<CR>", { desc = "Switch to tab 3" })
-keymap.set("n", "<leader>4", "<cmd>tabnext 4<CR>", { desc = "Switch to tab 4" })
-keymap.set("n", "<leader>5", "<cmd>tabnext 5<CR>", { desc = "Switch to tab 5" })
-keymap.set("n", "<leader>6", "<cmd>tabnext 6<CR>", { desc = "Switch to tab 6" })
-keymap.set("n", "<leader>7", "<cmd>tabnext 7<CR>", { desc = "Switch to tab 7" })
-keymap.set("n", "<leader>8", "<cmd>tabnext 8<CR>", { desc = "Switch to tab 8" })
-keymap.set("n", "<leader>9", "<cmd>tabnext 9<CR>", { desc = "Switch to tab 9" })
+map('n', '<C-[>', '<C-t>', { desc = 'Jump back in tag stack' })
 
--- buffer management
-keymap.set("n", "bx", "<cmd>bd<CR>", { desc = "Close current buffer" })
-keymap.set("n", "bn", "<cmd>bn<CR>", { desc = "Go to next buffer" })
-keymap.set("n", "bp", "<cmd>bp<CR>", { desc = "Go to previous buffer" })
-
--- code navigation
-keymap.set("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
--- when i press <C-[> it should go back to the previous location in the tag list and override any <C-[> mappings
-keymap.set("n", "<C-[>", "<C-t>", { desc = "Go back to the previous location" })
-keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration" })
-keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Go to references" })
-keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Go to implementation" })
-keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover information" })
-
-keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
-keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
-keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format code" })
-keymap.set( "n", "<leader>cd", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", { desc = "Show line diagnostics" })
-keymap.set("n", "<leader>cn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { desc = "Go to next diagnostic" })
-
-keymap.set("n", "<leader>re", ":e!<CR>", { desc = "Reload current window" })
-keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice notifications" })
-keymap.set("n", "<leader>cb", "<cmd>%bd|enew<CR>", { desc = "Close all buffers except NvimTree" })
-
-keymap.set('n', 'n', 'nzz', { silent = true })
-keymap.set('n', 'p', 'pzz', { silent = true })
-
--- set a keymap <tab> to go to next buffer
-keymap.set("n", "<TAB>", "<cmd>:lua require('nvchad.tabufline').next()<CR>", { desc = "Go to next buffer" })
-keymap.set("n", "<leader>co", "<cmd>:lua require('nvchad.tabufline').closeAllBufs(false)<CR>", { desc = "Close Other Buffers" })
-keymap.set("n", "<S-TAB>", "<CMD>:lua require('nvchad.tabufline').prev()<CR>", { desc = "Go to previous buffer" })
-keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close current buffer" })
-
--- trigger codelens actions
-keymap.set("n", "<leader>col", "<cmd>:lua vim.lsp.codelens.run()<CR>", { desc = "Run Codelens Actions" })
+-- Keep motion/search centered so repeated navigation is easier to follow.
+map('n', 'n', 'nzz', { silent = true })
+map('n', 'N', 'Nzz', { silent = true })
+map('n', 'yaf', 'va{Vy', { desc = 'Yank around function block' })

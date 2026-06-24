@@ -42,10 +42,10 @@ alias mk="minikube"
 alias lastcommit="git rev-parse HEAD | tr -d '\n' | pbcopy"
 alias python="python3"
 alias cd="z"
-alias nuke="NVIM_APPNAME="nvimpack" nvim"
+alias nuke="nvim"
 alias no="nvim"
-alias nv="NVIM_APPNAME="nvimpack" nvim"
-alias n="NVIM_APPNAME="nvimpack" nvim"
+alias nv="nvim"
+alias n="nvim"
 alias sz="source ~/.zshrc"
 
 # IP

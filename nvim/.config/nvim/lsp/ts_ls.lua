@@ -1,5 +1,29 @@
+-- ts_ls powers JavaScript/TypeScript editing.
+-- When Vue's language server is installed via mason, add its TS plugin so *.vue
+-- files get better TS-aware intelligence from ts_ls too.
+
+local vue_plugin_path = vim.fs.joinpath(
+	vim.fn.stdpath('data'),
+	'mason',
+	'packages',
+	'vue-language-server',
+	'node_modules',
+	'@vue',
+	'language-server'
+)
+
+local plugins = {}
+if vim.uv.fs_stat(vue_plugin_path) then
+	plugins = {
+		{
+			name = '@vue/typescript-plugin',
+			location = vue_plugin_path,
+			languages = { 'vue' },
+		},
+	}
+end
+
 return {
-	cmd = { 'typescript-language-server', '--stdio' },
 	filetypes = {
 		'javascript',
 		'javascriptreact',
@@ -10,13 +34,7 @@ return {
 		'vue',
 	},
 	init_options = {
-		plugins = {
-			{
-				name = '@vue/typescript-plugin',
-				location = vim.fn.stdpath('data') .. '/mason/packages/vue-language-server/node_modules/@vue/language-server',
-				languages = { 'vue' },
-			},
-		},
+		plugins = plugins,
 	},
 	root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
 	single_file_support = true,

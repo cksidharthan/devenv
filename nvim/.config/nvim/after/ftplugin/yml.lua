@@ -1,5 +1,5 @@
-local set = vim.opt
+-- Mirror the YAML settings for *.yml files.
 
-set.softtabstop = 2
-set.tabstop = 2
-set.shiftwidth = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.tabstop = 2
+vim.opt_local.shiftwidth = 2

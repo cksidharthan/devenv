@@ -1,36 +1,48 @@
-return {
-	'stevearc/conform.nvim',
-	event = { 'BufReadPre', 'BufNewFile' },
-	config = function()
-		local conform = require('conform')
+-- Formatting is loaded on demand the first time a format map is used.
+-- This keeps formatter setup out of startup while still making the keymaps always available.
 
-		conform.setup({
-			formatters_by_ft = {
-				lua = { 'stylua' },
-				javascript = { 'prettier' },
-				typescript = { 'prettier' },
-				javascriptreact = { 'prettier' },
-				typescriptreact = { 'prettier' },
-				json = { 'prettier' },
-				markdown = { 'prettier' },
-				go = { 'gofmt' },
-				html = { 'prettier' },
-				bash = { 'beautysh' },
-				proto = { 'buf' },
-				yaml = { 'prettier' },
-				toml = { 'taplo' },
-				css = { 'prettier' },
-				scss = { 'prettier' },
-				sh = { 'shellcheck' },
+local pack = require('sid.pack')
+
+local load_conform = pack.loader('conform', {
+	'https://github.com/stevearc/conform.nvim',
+}, function()
+	require('conform').setup({
+		formatters = {
+			black = {
+				prepend_args = { '--fast' },
 			},
-		})
+		},
+		formatters_by_ft = {
+			bash = { 'shfmt' },
+			css = { 'prettier' },
+			go = { 'goimports', 'gofmt' },
+			html = { 'prettier' },
+			javascript = { 'prettier' },
+			javascriptreact = { 'prettier' },
+			json = { 'prettier' },
+			lua = { 'stylua' },
+			markdown = { 'prettier' },
+			proto = { 'buf' },
+			python = { 'black' },
+			scss = { 'prettier' },
+			sh = { 'shfmt' },
+			toml = { 'taplo' },
+			typescript = { 'prettier' },
+			typescriptreact = { 'prettier' },
+			yaml = { 'prettier' },
+		},
+	})
+end)
 
-		vim.keymap.set({ 'n', 'v' }, '<leader>mp', function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
-			})
-		end, { desc = 'Format file or range (in visual mode)' })
-	end,
-}
+local function format()
+	load_conform()
+	-- Synchronous formatting keeps the command predictable when chained with save/other actions.
+	require('conform').format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 5000,
+	})
+end
+
+vim.keymap.set({ 'n', 'v' }, '<leader>cf', format, { desc = 'Format file or selection' })
+vim.keymap.set({ 'n', 'v' }, '<leader>mp', format, { desc = 'Format file or selection' })

@@ -1,51 +1,21 @@
-return {
-	'rcarriga/nvim-dap-ui',
-	lazy = true,
-	dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
-	opts = {
-		mappings = { expand = { '<CR>', '<2-LeftMouse>' }, open = 'o', remove = 'd', edit = 'e', repl = 'r' },
-		force_buffers = false,
-		element_mappings = { close = { 'q', '<Esc>' } },
-		floating = {
-			width = 50,
-			height = 50,
-			mappings = { close = { 'q', '<Esc>' } },
-			border = { enable = true, focusable = true, highlight = 'Normal' },
-		},
-		render = { show_on = 'never', indent = 2 },
-		border = { enable = true, focusable = true, highlight = 'Normal' },
-		controls = {
-			enabled = true,
-			element = 'repl',
-			icons = {
-				pause = '',
-				play = '',
-				step_into = '',
-				step_over = '',
-				step_out = '',
-				step_back = '',
-				run_last = '',
-				terminate = '',
-				disconnect = '',
-			},
-		},
-		expand_lines = false,
-	},
-  keys = {
-    { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-    { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-  },
-	config = function(_, opts)
-		local dapui = require('dapui')
-		dapui.setup(opts)
-		-- dap.listeners.after.event_initialized['dapui_config'] = function()
-		-- 	dapui.open({})
-		-- end
-		-- dap.listeners.before.event_terminated['dapui_config'] = function()
-		-- 	dapui.close({})
-		-- end
-		-- dap.listeners.before.event_exited['dapui_config'] = function()
-		-- 	dapui.close({})
-		-- end
-	end,
-}
+-- Keep the debug UI dormant until it is explicitly opened.
+
+local pack = require('sid.pack')
+
+local load_dap_ui = pack.loader('dap-ui', {
+	'https://github.com/rcarriga/nvim-dap-ui',
+	'https://github.com/nvim-neotest/nvim-nio',
+	'https://github.com/mfussenegger/nvim-dap',
+}, function()
+	require('dapui').setup()
+end)
+
+vim.keymap.set('n', '<leader>du', function()
+	load_dap_ui()
+	require('dapui').toggle({})
+end, { desc = 'Toggle DAP UI' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>de', function()
+	load_dap_ui()
+	require('dapui').eval()
+end, { desc = 'Evaluate expression' })

@@ -1,16 +1,17 @@
-return {
-	'MeanderingProgrammer/render-markdown.nvim',
-	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-	dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-	---@module 'render-markdown'
-	---@type render.md.UserConfig
-	opts = {},
-	lazy = true,
-  ft = { "markdown" },
-	config = function()
-		require('render-markdown').setup({
-			completions = { blink = { enabled = true } },
-		})
-	end,
-}
+-- Markdown rendering should only load for markdown buffers.
+
+local pack = require('sid.pack')
+
+pack.on_event('FileType', 'render-markdown', {
+	'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+}, function()
+	require('render-markdown').setup({
+		completions = {
+			blink = {
+				enabled = true,
+			},
+		},
+	})
+end, {
+	pattern = 'markdown',
+})

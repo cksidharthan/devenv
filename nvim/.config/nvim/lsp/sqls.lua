@@ -1,4 +1,5 @@
+-- Minimal sqls override: just declare the filetypes that should attach.
+
 return {
-	cmd = { 'sqls' },
 	filetypes = { 'sql', 'mysql' },
 }

@@ -1,5 +1,5 @@
-local set = vim.opt
+-- Keep YAML indentation explicit at 2 spaces even if other tools tweak local options.
 
-set.softtabstop = 2
-set.tabstop = 2
-set.shiftwidth = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.tabstop = 2
+vim.opt_local.shiftwidth = 2

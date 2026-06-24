@@ -1,13 +1,15 @@
+-- lazydev.nvim manages workspace.library on demand, so we intentionally do not
+-- preload the entire Neovim runtime here. That avoids re-indexing each time a
+-- new lua buffer is opened.
+
 return {
-	cmd = { 'lua-language-server' },
-	filetypes = { 'lua' },
+	root_markers = { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git' },
 	settings = {
 		Lua = {
 			diagnostics = {
-				globals = { 'vim' }, -- Recognize 'vim' as a global
+				globals = { 'vim' },
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file('', true), -- Include Neovim runtime files
 				checkThirdParty = false,
 			},
 		},

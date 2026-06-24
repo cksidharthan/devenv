@@ -1,5 +1,6 @@
+-- Helm charts are YAML-with-templates, so this narrows filetypes and schema hints.
+
 return {
-	cmd = { 'helm_ls' },
 	filetypes = { 'helm' },
 	settings = {
 		yaml = {
