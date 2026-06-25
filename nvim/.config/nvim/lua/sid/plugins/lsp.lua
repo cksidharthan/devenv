@@ -123,7 +123,7 @@ local function format_client(client)
 		table.insert(lines, '   cmd:        ' .. cmd)
 	end
 
-	local bufs = client:get_buffers()
+	local bufs = vim.lsp.get_buffers_by_client_id(client.id)
 	if #bufs > 0 then
 		local names = {}
 		for _, b in ipairs(bufs) do
