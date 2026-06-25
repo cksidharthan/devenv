@@ -12,10 +12,18 @@ vim.api.nvim_create_autocmd('PackChanged', {
 		if data.kind ~= 'install' and data.kind ~= 'update' then
 			return
 		end
-		-- blink can use a Rust fuzzy matcher; build it after installs/updates when possible.
-		local result = vim.system({ 'cargo', 'build', '--release' }, { cwd = data.path }):wait()
-		if result.code ~= 0 then
-			vim.notify('Failed to build blink.cmp fuzzy matcher', vim.log.levels.WARN)
+		-- blink.cmp v2 ships its own build/download system for the Rust fuzzy
+		-- matcher (the native lib now lives in blink.lib). It downloads a prebuilt
+		-- binary when available and falls back to `cargo build` otherwise, so prefer
+		-- it over calling cargo directly. It needs the plugins on the runtimepath.
+		for _, name in ipairs({ 'blink.lib', 'blink.cmp' }) do
+			pcall(vim.cmd.packadd, name)
+		end
+		local ok, err = pcall(function()
+			require('blink.cmp').build():pwait()
+		end)
+		if not ok then
+			vim.notify('Failed to build blink.cmp fuzzy matcher: ' .. tostring(err), vim.log.levels.WARN)
 		end
 	end,
 })
@@ -89,7 +97,7 @@ local load_blink = pack.on_event('InsertEnter', 'blink', {
 		},
 
 		fuzzy = {
-			implementation = 'prefer_rust_with_warning',
+			implementation = 'prefer_rust',
 		},
 	})
 end)

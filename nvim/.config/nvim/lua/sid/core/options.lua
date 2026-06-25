@@ -81,10 +81,9 @@ local function apply_ui_highlights()
 	vim.api.nvim_set_hl(0, 'DiagnosticFloatingError', { bg = 'NONE', fg = '#ff5189' })
 	vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#51B3EC', bold = true })
 	vim.api.nvim_set_hl(0, 'LineNr', { fg = 'white', bold = true })
-	vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FB508F', bold = true })
+	vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#F2508C', bold = true })
 	vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#2a2e38' })
-	vim.api.nvim_set_hl(0, 'CursorLineSign', { bg = '#3a5a40' })
-	vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#ffcc00', bg = '#3a5a40', bold = true })
+	vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#1EE2FC', bold = true })
 end
 
 vim.api.nvim_create_autocmd('ColorScheme', {
