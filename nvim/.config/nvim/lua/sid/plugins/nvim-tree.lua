@@ -11,7 +11,7 @@ local load_tree = pack.loader('nvim-tree', {
 			width = 35,
 			relativenumber = false,
 			-- Keep a one-column signcolumn as a blank left margin.
-			signcolumn = 'yes',
+			-- signcolumn = 'yes',
 		},
 		disable_netrw = true,
 		hijack_netrw = true,

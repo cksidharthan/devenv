@@ -25,6 +25,10 @@
       "rev": "5876dd95deeb70aadbe9f1c0b7117a135061cdac",
       "src": "https://github.com/saghen/blink.lib"
     },
+    "conform.nvim": {
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
     "copilot-lsp": {
       "rev": "1b6d8273594643f51bb4c0c1d819bdb21b42159d",
       "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
@@ -40,6 +44,14 @@
     "gitsigns.nvim": {
       "rev": "2038c666bd9d8a0b7349a0b6ee00dc83104b9ecf",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "go.nvim": {
+      "rev": "0768d79bbebdb1a112a845f9cd6293bfbd544dab",
+      "src": "https://github.com/ray-x/go.nvim"
+    },
+    "guihua.lua": {
+      "rev": "f8e06bd8a26dee3377d63c2adf1e57cdb58ac474",
+      "src": "https://github.com/ray-x/guihua.lua"
     },
     "hlchunk.nvim": {
       "rev": "06f51922ca43d5cdacf96725c106405fe064c59e",
@@ -92,6 +104,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "render-markdown.nvim": {
+      "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "smart-splits.nvim": {
       "rev": "c02d70257e5d6065d4154acd596ec8054a725724",
