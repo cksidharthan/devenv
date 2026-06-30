@@ -50,6 +50,7 @@ local load_mason = pack.loader('mason', {
 			'golangci-lint',
 			'gofumpt',
 			'goimports',
+      'xmlformatter',
 			'black',
 			'pylint',
 			'yamllint',

@@ -29,6 +29,7 @@ local load_conform = pack.loader('conform', {
 			toml = { 'taplo' },
 			typescript = { 'prettier' },
 			typescriptreact = { 'prettier' },
+      xml = { 'xmlformatter', 'prettier' },
 			yaml = { 'prettier' },
 		},
 	})
