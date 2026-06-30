@@ -1,6 +1,14 @@
 -- ts_ls powers JavaScript/TypeScript editing.
 -- When Vue's language server is installed via mason, add its TS plugin so *.vue
 -- files get better TS-aware intelligence from ts_ls too.
+--
+-- This override lives in after/lsp/ (not lsp/) on purpose. nvim-lspconfig ships
+-- its own lsp/ts_ls.lua, and for list values like `filetypes` the file later on
+-- 'runtimepath' wins outright. ~/.config/nvim/lsp/ is loaded *before* the plugin,
+-- so an override there would lose and 'vue' would be dropped. after/ is last on
+-- 'runtimepath', so this file wins. The 'vue' filetype is required: vue_ls v3 runs
+-- in hybrid mode only and forwards all TypeScript requests to ts_ls, which must
+-- therefore attach to *.vue buffers.
 
 local vue_plugin_path = vim.fs.joinpath(
 	vim.fn.stdpath('data'),

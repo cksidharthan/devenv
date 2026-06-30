@@ -1,69 +1,11 @@
--- vue_ls handles Vue-specific language features.
--- If mason's bundled TypeScript SDK exists, point vue_ls at it for consistent behavior.
-
-local tsdk_path = vim.fs.joinpath(
-	vim.fn.stdpath('data'),
-	'mason',
-	'packages',
-	'vue-language-server',
-	'node_modules',
-	'typescript',
-	'lib'
-)
-
+-- vue_ls (Vue language server v3+) runs in "hybrid mode" only: it handles the
+-- template/style sections of *.vue files and forwards every TypeScript request
+-- to ts_ls, which loads @vue/typescript-plugin (see lsp/ts_ls.lua).
+--
+-- Takeover mode and the old init_options schema (languageFeatures, vue.hybridMode,
+-- tsdk, ...) were removed in v3.0.0, so this override is intentionally minimal.
+-- nvim-lspconfig's bundled vue_ls config provides cmd/root_markers and the on_init
+-- handler that bridges `tsserver/request` -> ts_ls -> `tsserver/response`.
 return {
 	filetypes = { 'vue' },
-	init_options = {
-		-- Passing tsdk is optional; when absent, vue_ls falls back to its default resolution.
-		typescript = vim.uv.fs_stat(tsdk_path) and { tsdk = tsdk_path } or nil,
-		preferences = {
-			disableSuggestions = false,
-		},
-		languageFeatures = {
-			implementation = true,
-			references = true,
-			definition = true,
-			typeDefinition = true,
-			callHierarchy = true,
-			hover = true,
-			rename = true,
-			renameFileRefactoring = true,
-			signatureHelp = true,
-			codeAction = true,
-			workspaceSymbol = true,
-			diagnostics = true,
-			semanticTokens = true,
-			completion = {
-				defaultTagNameCase = 'both',
-				defaultAttrNameCase = 'kebabCase',
-				getDocumentNameCasesRequest = false,
-				getDocumentSelectionRequest = false,
-			},
-		},
-		vue = {
-			hybridMode = false,
-		},
-	},
-	settings = {
-		typescript = {
-			inlayHints = {
-				enumMemberValues = {
-					enabled = true,
-				},
-				functionLikeReturnTypes = {
-					enabled = true,
-				},
-				propertyDeclarationTypes = {
-					enabled = true,
-				},
-				parameterTypes = {
-					enabled = true,
-					suppressWhenArgumentMatchesName = true,
-				},
-				variableTypes = {
-					enabled = true,
-				},
-			},
-		},
-	},
 }

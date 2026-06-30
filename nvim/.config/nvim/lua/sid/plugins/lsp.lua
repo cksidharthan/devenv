@@ -123,7 +123,12 @@ local function format_client(client)
 		table.insert(lines, '   cmd:        ' .. cmd)
 	end
 
-	local bufs = vim.lsp.get_buffers_by_client_id(client.id)
+	-- client.attached_buffers is a set keyed by bufnr; collect and sort for stable output.
+	local bufs = {}
+	for b in pairs(client.attached_buffers or {}) do
+		table.insert(bufs, b)
+	end
+	table.sort(bufs)
 	if #bufs > 0 then
 		local names = {}
 		for _, b in ipairs(bufs) do
