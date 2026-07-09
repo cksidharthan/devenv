@@ -203,3 +203,7 @@ vim.keymap.set('n', 'gi', builtin('lsp_implementations'), { desc = 'Goto impleme
 vim.keymap.set('n', '<leader>D', builtin('lsp_type_definitions'), { desc = 'Type definition' })
 vim.keymap.set('n', '<leader>ds', builtin('lsp_document_symbols'), { desc = 'Document symbols' })
 vim.keymap.set('n', '<leader>ws', builtin('lsp_dynamic_workspace_symbols'), { desc = 'Workspace symbols' })
+
+-- Exposed so other plugin files (e.g. obsidian.lua) can force telescope onto the
+-- runtimepath before it's needed, without duplicating the loader definition.
+return load_telescope

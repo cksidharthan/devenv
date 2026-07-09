@@ -24,6 +24,7 @@ require('sid.plugins.blink')
 require('sid.plugins.blink-compat')
 require('sid.plugins.copilot')
 require('sid.plugins.colorizer')
+require('sid.plugins.obsidian')
 
 -- UI helpers that can wait until startup settles.
 require('sid.plugins.which-key')
