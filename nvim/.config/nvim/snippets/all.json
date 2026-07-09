@@ -1,0 +1,9 @@
+{
+  "nolint-prefix": {
+    "prefix": "nolint",
+    "body": [
+      "//nolint:"
+    ],
+    "description": "nolint comment addition. placing this here to not have all.json as empty :)"
+  }
+}
