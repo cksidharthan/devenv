@@ -28,6 +28,7 @@ This is the `vim.pack` version of my Neovim config. It is intentionally smaller 
 - `lua/sid/core`: options, keymaps, and autocmds.
 - `lua/sid/pack.lua`: small helpers around `vim.pack.add()` and lazy-loading.
 - `lua/sid/plugins`: one file per plugin or tightly related plugin family.
+- `snippets`: some of the common code snippets that i use.
 - `lsp`: custom overrides for servers that need extra settings.
 - `after/ftplugin`: filetype-local indentation tweaks.
 - `plugin`: small local helper plugins that do not need external dependencies.

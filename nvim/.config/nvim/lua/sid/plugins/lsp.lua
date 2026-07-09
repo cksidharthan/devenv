@@ -45,6 +45,7 @@ local function configure_lsp()
 		'helm_ls',
 		'html',
 		'lua_ls',
+    'marksman',
 		'pyright',
 		'regal',
 		'rust_analyzer',
@@ -233,4 +234,10 @@ vim.api.nvim_create_autocmd('FileType', {
 	once = true,
 	callback = enable_schema_server('yamlls'),
 	desc = 'Enable yamlls (and load SchemaStore) on first yaml buffer',
+})
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = 'markdown',
+	once = true,
+	callback = enable_schema_server('marksman'),
+	desc = 'Enable marksman on first markdown buffer',
 })

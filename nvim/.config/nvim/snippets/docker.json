@@ -1,0 +1,353 @@
+{
+  "Basic Dockerfile": {
+    "prefix": "dockerfile",
+    "body": [
+      "FROM ${1:alpine:latest}",
+      "",
+      "WORKDIR ${2:/app}",
+      "",
+      "COPY ${3:.} ${2:/app}",
+      "",
+      "RUN ${4:apk add --no-cache curl}",
+      "",
+      "EXPOSE ${5:8080}",
+      "",
+      "CMD [\"${6:./app}\"]"
+    ],
+    "description": "Basic Dockerfile template"
+  },
+  "Multi-stage Dockerfile": {
+    "prefix": "dockermulti",
+    "body": [
+      "# Build stage",
+      "FROM ${1:golang:1.21} AS builder",
+      "",
+      "WORKDIR /app",
+      "COPY ${2:go.mod go.sum} ./",
+      "RUN go mod download",
+      "",
+      "COPY ${3:.} .",
+      "RUN go build -o ${4:app} ${5:.}",
+      "",
+      "# Production stage",
+      "FROM ${6:alpine:latest}",
+      "",
+      "RUN apk --no-cache add ca-certificates",
+      "WORKDIR /root/",
+      "",
+      "COPY --from=builder /app/${4:app} .",
+      "",
+      "EXPOSE ${7:8080}",
+      "CMD [\"./$(4:app}\"]"
+    ],
+    "description": "Multi-stage Dockerfile"
+  },
+  "Docker Compose Service": {
+    "prefix": "dcompose",
+    "body": [
+      "version: '3.8'",
+      "",
+      "services:",
+      "  ${1:app}:",
+      "    build: ${2:.}",
+      "    ports:",
+      "      - \"${3:8080}:${4:8080}\"",
+      "    environment:",
+      "      - ${5:ENV_VAR}=${6:value}",
+      "    volumes:",
+      "      - ${7:.}:${8:/app}",
+      "    depends_on:",
+      "      - ${9:db}",
+      "",
+      "  ${9:db}:",
+      "    image: ${10:postgres:15}",
+      "    environment:",
+      "      - POSTGRES_DB=${11:myapp}",
+      "      - POSTGRES_USER=${12:user}",
+      "      - POSTGRES_PASSWORD=${13:password}",
+      "    volumes:",
+      "      - ${14:db_data}:/var/lib/postgresql/data",
+      "",
+      "volumes:",
+      "  ${14:db_data}:"
+    ],
+    "description": "Docker Compose with app and database"
+  },
+  "Docker Run Command": {
+    "prefix": "drun",
+    "body": [
+      "docker run -d \\",
+      "  --name ${1:container_name} \\",
+      "  -p ${2:8080}:${3:8080} \\",
+      "  -e ${4:ENV_VAR}=${5:value} \\",
+      "  -v ${6:$(pwd)}:${7:/app} \\",
+      "  ${8:image_name}:${9:latest}"
+    ],
+    "description": "Docker run command with common options"
+  },
+  "Docker Build": {
+    "prefix": "dbuild",
+    "body": [
+      "docker build -t ${1:image_name}:${2:latest} ${3:.}"
+    ],
+    "description": "Docker build command"
+  },
+  "FROM Instruction": {
+    "prefix": "from",
+    "body": ["FROM ${1:alpine:latest}"],
+    "description": "FROM instruction"
+  },
+  "RUN Instruction": {
+    "prefix": "run",
+    "body": ["RUN ${1:apk add --no-cache curl}"],
+    "description": "RUN instruction"
+  },
+  "COPY Instruction": {
+    "prefix": "copy",
+    "body": ["COPY ${1:src} ${2:dest}"],
+    "description": "COPY instruction"
+  },
+  "WORKDIR Instruction": {
+    "prefix": "workdir",
+    "body": ["WORKDIR ${1:/app}"],
+    "description": "WORKDIR instruction"
+  },
+  "EXPOSE Instruction": {
+    "prefix": "expose",
+    "body": ["EXPOSE ${1:8080}"],
+    "description": "EXPOSE instruction"
+  },
+  "ENV Instruction": {
+    "prefix": "env",
+    "body": ["ENV ${1:NAME}=${2:value}"],
+    "description": "ENV instruction"
+  },
+  "CMD Instruction": {
+    "prefix": "cmd",
+    "body": ["CMD [\"${1:./app}\"]"],
+    "description": "CMD instruction"
+  },
+  "ENTRYPOINT Instruction": {
+    "prefix": "entrypoint",
+    "body": ["ENTRYPOINT [\"${1:./app}\"]"],
+    "description": "ENTRYPOINT instruction"
+  },
+  "VOLUME Instruction": {
+    "prefix": "volume",
+    "body": ["VOLUME [\"${1:/data}\"]"],
+    "description": "VOLUME instruction"
+  },
+  "LABEL Instruction": {
+    "prefix": "label",
+    "body": ["LABEL ${1:key}=\"${2:value}\""],
+    "description": "LABEL instruction"
+  },
+  "ARG Instruction": {
+    "prefix": "arg",
+    "body": ["ARG ${1:BUILD_ARG}=${2:default_value}"],
+    "description": "ARG instruction"
+  },
+  "USER Instruction": {
+    "prefix": "user",
+    "body": ["USER ${1:1000}"],
+    "description": "USER instruction"
+  },
+  "HEALTHCHECK Instruction": {
+    "prefix": "healthcheck",
+    "body": [
+      "HEALTHCHECK --interval=${1:30s} --timeout=${2:3s} --start-period=${3:5s} --retries=${4:3} \\",
+      "  CMD ${5:curl -f http://localhost:8080/health || exit 1}"
+    ],
+    "description": "HEALTHCHECK instruction"
+  },
+  "Docker Compose Override": {
+    "prefix": "doverride",
+    "body": [
+      "version: '3.8'",
+      "",
+      "services:",
+      "  ${1:app}:",
+      "    environment:",
+      "      - ${2:DEBUG}=true",
+      "    volumes:",
+      "      - ${3:.}:${4:/app}",
+      "    ports:",
+      "      - \"${5:9000}:${6:9000}\""
+    ],
+    "description": "Docker Compose override file"
+  },
+  "Docker Network": {
+    "prefix": "dnetwork",
+    "body": [
+      "networks:",
+      "  ${1:app_network}:",
+      "    driver: ${2:bridge}",
+      "    ipam:",
+      "      config:",
+      "        - subnet: ${3:172.20.0.0/16}"
+    ],
+    "description": "Docker Compose network"
+  },
+  "Docker Secret": {
+    "prefix": "dsecret",
+    "body": [
+      "secrets:",
+      "  ${1:db_password}:",
+      "    file: ${2:./secrets/db_password.txt}"
+    ],
+    "description": "Docker Compose secret"
+  },
+  "Go Dockerfile": {
+    "prefix": "dockergo",
+    "body": [
+      "FROM golang:1.21-alpine AS builder",
+      "",
+      "WORKDIR /app",
+      "",
+      "# Copy go mod files",
+      "COPY go.mod go.sum ./",
+      "RUN go mod download",
+      "",
+      "# Copy source code",
+      "COPY . .",
+      "",
+      "# Build the application",
+      "RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o ${1:app} .",
+      "",
+      "# Production stage",
+      "FROM alpine:latest",
+      "",
+      "RUN apk --no-cache add ca-certificates",
+      "",
+      "WORKDIR /root/",
+      "",
+      "COPY --from=builder /app/${1:app} .",
+      "",
+      "EXPOSE ${2:8080}",
+      "",
+      "CMD [\"./$(1:app}\"]"
+    ],
+    "description": "Go application Dockerfile"
+  },
+  "Node.js Dockerfile": {
+    "prefix": "dockernode",
+    "body": [
+      "FROM node:18-alpine",
+      "",
+      "WORKDIR /app",
+      "",
+      "# Copy package files",
+      "COPY package*.json ./",
+      "",
+      "# Install dependencies",
+      "RUN npm ci --only=production",
+      "",
+      "# Copy source code",
+      "COPY . .",
+      "",
+      "# Create non-root user",
+      "RUN addgroup -g 1001 -S nodejs",
+      "RUN adduser -S nextjs -u 1001",
+      "",
+      "USER nextjs",
+      "",
+      "EXPOSE ${1:3000}",
+      "",
+      "CMD [\"npm\", \"start\"]"
+    ],
+    "description": "Node.js application Dockerfile"
+  },
+  "Python Dockerfile": {
+    "prefix": "dockerpy",
+    "body": [
+      "FROM python:3.11-slim",
+      "",
+      "WORKDIR /app",
+      "",
+      "# Install system dependencies",
+      "RUN apt-get update && apt-get install -y \\",
+      "    gcc \\",
+      "    && rm -rf /var/lib/apt/lists/*",
+      "",
+      "# Copy requirements first for better caching",
+      "COPY requirements.txt .",
+      "",
+      "# Install Python dependencies",
+      "RUN pip install --no-cache-dir -r requirements.txt",
+      "",
+      "# Copy source code",
+      "COPY . .",
+      "",
+      "# Create non-root user",
+      "RUN useradd --create-home --shell /bin/bash app",
+      "USER app",
+      "",
+      "EXPOSE ${1:8000}",
+      "",
+      "CMD [\"python\", \"${2:app.py}\"]"
+    ],
+    "description": "Python application Dockerfile"
+  },
+  "Docker Ignore": {
+    "prefix": "dockerignore",
+    "body": [
+      "# Git",
+      ".git",
+      ".gitignore",
+      "",
+      "# Documentation",
+      "README.md",
+      "*.md",
+      "",
+      "# Dependencies",
+      "node_modules",
+      "vendor",
+      "",
+      "# Build artifacts",
+      "dist",
+      "build",
+      "target",
+      "",
+      "# IDE",
+      ".vscode",
+      ".idea",
+      "*.swp",
+      "*.swo",
+      "",
+      "# OS",
+      ".DS_Store",
+      "Thumbs.db",
+      "",
+      "# Docker",
+      "Dockerfile*",
+      "docker-compose*",
+      ".dockerignore"
+    ],
+    "description": ".dockerignore file"
+  },
+  "Docker Exec": {
+    "prefix": "dexec",
+    "body": ["docker exec -it ${1:container_name} ${2:sh}"],
+    "description": "Docker exec command"
+  },
+  "Docker Logs": {
+    "prefix": "dlogs",
+    "body": ["docker logs -f ${1:container_name}"],
+    "description": "Docker logs command"
+  },
+  "Docker Stop All": {
+    "prefix": "dstopall",
+    "body": ["docker stop $(docker ps -aq)"],
+    "description": "Stop all containers"
+  },
+  "Docker Remove All": {
+    "prefix": "drmall",
+    "body": ["docker rm $(docker ps -aq)"],
+    "description": "Remove all containers"
+  },
+  "Docker Prune": {
+    "prefix": "dprune",
+    "body": ["docker system prune -af"],
+    "description": "Docker system prune"
+  }
+}
